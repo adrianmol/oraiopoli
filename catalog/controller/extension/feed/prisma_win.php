@@ -3,7 +3,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	public function index() {
 
 
-		$this->GetDataURL('GetProducts');
+		$this->GetDataURL('GetProductsStock');
 
 
 	}
