@@ -6,8 +6,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	
 	
 				$xml = @simplexml_load_file($url);
+				echo "<pre>";
 				print_r($http_response_header);
-
+				echo "</pre>";
 	}
 
 
