@@ -20,14 +20,14 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		foreach($this->GetDataURL('GetProducts')->StoreDetails as $product){
 			
 			$data[$i]["id"]     =(string) $product->ItemId;
-			$data[$i]["code"]	=(string)$product->ItemCode;
+			$data[$i]["code"]	=(string) $product->ItemCode;
 			$data[$i]["title"]	=(string) $product->ItemDescr;
 			$data[$i]["weight"]	=(string) $product->ItemWeight;
 
 
 			$i++;
 		}
-		return ($data);
+		return $data;
 
 	}
 
@@ -52,7 +52,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		
 		$xml=simplexml_load_string($result) or die("Error: Cannot create object");
 		
-		return ($xml);
+		return $xml;
 	
 
 	}
