@@ -10,7 +10,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			'http' => array(
 				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
 				'method'  => 'POST',
-				'content' => http_build_query($data)
+				'content' => "SiteKey=bs-gg183-352&Date=1-9-2020&StorageCode=000"
 			)
 		);
 		$context  = stream_context_create($options);
