@@ -48,10 +48,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$products = $data_query->rows; 
 		
-		echo "</pre>";
+		echo "<pre>";
 		print_r($products);
-
-		
 		echo "</pre>";
 		return  $data;
 
