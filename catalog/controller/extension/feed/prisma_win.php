@@ -2,12 +2,12 @@
 class ControllerExtensionfeedPrismawin extends Controller {
 	public function index() {
 
-		GetDataURL('GetProducts');
+		$this->GetDataURL('GetProducts');
 
 
+	}
 
-
-	function GetDataURL($path ) {
+	function GetDataURL($path) {
 
 		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/'. $path;
 		$data = 'SiteKey=bs-gg183-352&Date=1-9-2020&StorageCode=000';
@@ -32,6 +32,5 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	}
 
 
-}
 
 }
