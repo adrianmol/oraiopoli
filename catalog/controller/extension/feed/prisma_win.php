@@ -41,10 +41,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 			$data_query=$this->db->query("SELECT * FROM product");
-
+			print_r($data);
 
 		}
-		return  $data_query;
+		return  $data;
 
 	}
 
