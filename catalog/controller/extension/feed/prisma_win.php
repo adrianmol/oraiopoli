@@ -46,7 +46,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$data_query=$this->db->query("SELECT * FROM " . DB_PREFIX . "product");
 
-		$products = $data_query->row; 
+		$products = $data_query->rows; 
 		
 		echo "</pre>";
 		print_r($products);
