@@ -3,10 +3,33 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	public function index() {
 
 
-		$this->GetDataURL('GetProductsStock');
+		$ProductsSkock = $this->GetDataURL('GetProductsStock');
+
+		echo "<pre>";
+		print_r($ProductsSkock);
+		echo "</pre>";
 
 
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	function GetDataURL($path) {
 
@@ -26,9 +49,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		if ($result === FALSE) { /* Handle error */ }
 		
 		$xml=simplexml_load_string($result) or die("Error: Cannot create object");
-		echo "<pre>";
-		print_r($xml);
-		echo "</pre>";
+		
+		return ($xml);
+	
 
 	}
 
