@@ -22,7 +22,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		
 
 
-		$someURL = "http://ecommercews.megasoft.gr/eCommerceWebService.asmx?op=GetProducts";
+		$someURL = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx?op=GetProducts';
 		//Translate the XML above in a array, like PHP SOAP function requires
 		$myParams = array('firstClient' => array('SiteKey' => 'bs-gg183-352',
 										  'Date' => '1/9/2020'),
