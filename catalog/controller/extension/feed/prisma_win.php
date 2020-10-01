@@ -22,20 +22,20 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		foreach($this->GetDataURL('GetProducts')->StoreDetails as $product){
 			
-			$data[$i]["id"]     	=(string) $product->ItemId;
-			$data[$i]["code"]		=(string) $product->ItemCode;
-			$data[$i]["title"]		=(string) $product->ItemDescr;
-			$data[$i]["weight"]		=(string) $product->ItemWeight;
-			$data[$i]["itemStock"]	=(string) $product->ItemStock;
-			$data[$i]["category"]		=(string) $product->ItemGroup1;
-			$data[$i]["category_1"]		=(string) $product->ItemGroup2;
-			$data[$i]["category_2"]		=(string) $product->ItemGroup3;
-			$data[$i]["category_3"]		=(string) $product->ItemGroup4;
-			$data[$i]["manufacturer"]	=(string) $product->ItemManufacturer;
-			$data[$i]["manufacturer_id"]	=(string) $product->ItemManufacturerId;
-			$data[$i]["price_wholesale"]	=(string) $product->ItemWholesale;
-			$data[$i]["price_vat"]			=(string) $product->ItemRetailVat;
-
+			$data["id"]     			=(string) $product->ItemId = array(
+			$data["code"]				=(string) $product->ItemCode,
+			$data["title"]				=(string) $product->ItemDescr,
+			$data["weight"]				=(string) $product->ItemWeight,
+			$data["itemStock"]			=(string) $product->ItemStock,
+			$data["category"]			=(string) $product->ItemGroup1,
+			$data["category_1"]			=(string) $product->ItemGroup2,
+			$data["category_2"]			=(string) $product->ItemGroup3,
+			$data["category_3"]			=(string) $product->ItemGroup4,
+			$data["manufacturer"]		=(string) $product->ItemManufacturer,
+			$data["manufacturer_id"]	=(string) $product->ItemManufacturerId,
+			$data["price_wholesale"]	=(string) $product->ItemWholesale,
+			$data["price_vat"]			=(string) $product->ItemRetailVat,
+			);
 			$i++;
 
 
