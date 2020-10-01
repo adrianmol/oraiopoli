@@ -15,16 +15,17 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	function GetProducts(){
 
 		$ProductData = $this->GetDataURL('GetProducts');
+		$i=0;
 
 		foreach($ProductData->StoreDetails as $product){
+			
+			$data[$i]["id"]     = $product->ItemId;
+			$data[$i]["code"]	= $product->ItemCode;
+			$data[$i]["title"]	= $product->ItemDescr;
+			$data[$i]["weight"]	= $product->ItemWeight;
 
-			$data["id"]     = $product->ItemId;
-			$data["code"]	= $product->ItemCode;
-			$data["title"]	= $product->ItemDescr;
-			$data["weight"]	= $product->ItemWeight;
 
-
-
+			$i++;
 		}
 		return $data;
 
