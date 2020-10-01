@@ -2,7 +2,7 @@
 class ControllerExtensionfeedPrismawin extends Controller {
 	public function index() {
 
-		$url = 'ecommercews.megasoft.gr/eCommerceWebService.asmx/GetProducts';
+		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx';
 		$data = 'SiteKey=bs-gg183-352&Date=1-9-2020&StorageCode=000';
 		
 		// use key 'http' even if you send the request to https://...
@@ -21,7 +21,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		
 		var_dump($result);
 	}
-
 
 
 }
