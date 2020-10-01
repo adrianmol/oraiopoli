@@ -2,9 +2,9 @@
 class ControllerExtensionfeedPrismawin extends Controller {
 	public function index() {
 
-		
+		echo "<pre>";
 		print_r($this->GetProducts());
-
+		echo "</pre>";
 
 
 	}
