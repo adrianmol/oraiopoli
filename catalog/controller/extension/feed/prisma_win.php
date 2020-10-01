@@ -1,8 +1,7 @@
 <?php
-class ControllerExtensionfeedPrismawin extends Controller {
+class Controllerextensionfeedprisma extends Controller {
 	public function index() {
 
-		echo "TEST";
 
 	}
 	
