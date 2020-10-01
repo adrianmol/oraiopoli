@@ -2,10 +2,7 @@
 class ControllerExtensionfeedPrismawin extends Controller {
 	public function index() {
 
-		GetProducts();
-
-
-
+	
 
 
 
