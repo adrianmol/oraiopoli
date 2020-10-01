@@ -22,7 +22,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		foreach($this->GetDataURL('GetProducts')->StoreDetails as $product){
 			
-			$productID = $product->ItemId;
+			(int)$productID = $product->ItemId;
 			$data[$productID] = array(
 			'code'				=>(string) $product->ItemCode,
 			'title'				=>(string) $product->ItemDescr,
