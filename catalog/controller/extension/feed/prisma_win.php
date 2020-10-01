@@ -27,7 +27,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 			$i++;
 		}
-		return $data;
+		return ((string)$data);
 
 	}
 
