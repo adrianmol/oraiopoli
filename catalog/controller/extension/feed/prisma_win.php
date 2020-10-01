@@ -37,8 +37,14 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			$data[$i]["price_vat"]			=(string) $product->ItemRetailVat;
 
 			$i++;
+
+
+
+			$data_query=$this->db->query("SELECT * FROM product");
+
+
 		}
-		return $data;
+		return  $data_query;
 
 	}
 
