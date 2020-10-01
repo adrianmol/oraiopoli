@@ -2,7 +2,8 @@
 class ControllerExtensionfeedPrismawin extends Controller {
 	public function index() {
 
-		$this->GetProducts();
+		
+		print_r($this->GetProducts());
 
 
 
@@ -17,12 +18,15 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		foreach($ProductData->StoreDetails as $product){
 
-			$data["id"] = $product->ItemId;
-			echo "<br>";
-			echo ("ID: ". $data["id"]);
+			$data["id"]     = $product->ItemId;
+			$data["code"]	= $product->ItemCode;
+			$data["title"]	= $product->ItemDescr;
+			$data["weight"]	= $product->ItemWeight;
+
+
 
 		}
-
+		return $data;
 
 	}
 
