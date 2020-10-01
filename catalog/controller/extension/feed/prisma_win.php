@@ -5,9 +5,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$data = $this->GetProducts();
 
-		echo "<pre>";
-			print_r($data);
-		echo "</pre>";
+		//echo "<pre>";
+		//print_r($data);
+		//echo "</pre>";
 
 
 	}
@@ -42,8 +42,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 			$data_query=$this->db->query("SELECT * FROM " . DB_PREFIX . "product");
-			print_r($data);
-
+			
+			print_r($data_query);
+			echo "</pre>";
 		}
 		return  $data;
 
