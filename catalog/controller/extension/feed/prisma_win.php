@@ -2,42 +2,24 @@
 class ControllerExtensionfeedPrismawin extends Controller {
 	public function index() {
 
-		$originalXML = "
-		POST /eCommerceWebService.asmx HTTP/1.1
-		Host: ecommercews.megasoft.gr
-		Content-Type: text/xml; charset=utf-8
-		Content-Length: length
-		SOAPAction: 'http://tempuri.org/GetProducts'
+		$url = 'ecommercews.megasoft.gr/eCommerceWebService.asmx/GetProducts';
+		$data = 'SiteKey=string&Date=string&StorageCode=string';
 		
-		<?xml version='1.0' encoding='utf-8'?>
-		<soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
-		  <soap:Body>
-			<GetProducts xmlns='http://tempuri.org/'>
-			  <SiteKey></SiteKey>
-			  <Date></Date>
-			  <StorageCode>001</StorageCode>
-			</GetProducts>
-		  </soap:Body>
-		</soap:Envelope>";
+		// use key 'http' even if you send the request to https://...
+		$options = array(
+			'http' => array(
+				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+				'method'  => 'POST',
+				'content' => http_build_query($data)
+			)
+		);
+		$context  = stream_context_create($options);
+		$result = file_get_contents($url, false, $context);
+		if ($result === FALSE) { /* Handle error */ }
 		
-
-
-		$someURL = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx?op=GetProducts';
-		//Translate the XML above in a array, like PHP SOAP function requires
-		$myParams = array('firstClient' => array('SiteKey' => 'bs-gg183-352',
-										  'Date' => '1/9/2020'),
-										  'StorageCode' => '001');
-					
-		$webService = new SoapClient($someURL);
-		$result = $webService->someWebServiceFunction($myParams);
-
-		print_r ($result);
-		echo ($result);
+		var_dump($result);
 	}
 
 
 
-
-
-	
 }
