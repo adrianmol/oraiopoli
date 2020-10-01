@@ -23,18 +23,18 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		foreach($this->GetDataURL('GetProducts')->StoreDetails as $product){
 			
 			$data[$product->ItemId] = array(
-			$data["code"]				=(string) $product->ItemCode,
-			$data["title"]				=(string) $product->ItemDescr,
-			$data["weight"]				=(string) $product->ItemWeight,
-			$data["itemStock"]			=(string) $product->ItemStock,
-			$data["category"]			=(string) $product->ItemGroup1,
-			$data["category_1"]			=(string) $product->ItemGroup2,
-			$data["category_2"]			=(string) $product->ItemGroup3,
-			$data["category_3"]			=(string) $product->ItemGroup4,
-			$data["manufacturer"]		=(string) $product->ItemManufacturer,
-			$data["manufacturer_id"]	=(string) $product->ItemManufacturerId,
-			$data["price_wholesale"]	=(string) $product->ItemWholesale,
-			$data["price_vat"]			=(string) $product->ItemRetailVat,
+			'code'				=>(string) $product->ItemCode,
+			'title'				=>(string) $product->ItemDescr,
+			'weight'			=>(string) $product->ItemWeight,
+			'itemStock'			=>(string) $product->ItemStock,
+			'category'			=>(string) $product->ItemGroup1,
+			'category_1'		=>(string) $product->ItemGroup2,
+			'category_2'		=>(string) $product->ItemGroup3,
+			'category_3'		=>(string) $product->ItemGroup4,
+			'manufacturer'		=>(string) $product->ItemManufacturer,
+			'manufacturer_id'	=>(string) $product->ItemManufacturerId,
+			'price_wholesale'	=>(string) $product->ItemWholesale,
+			'price_vat'			=>(string) $product->ItemRetailVat,
 			);
 			$i++;
 
