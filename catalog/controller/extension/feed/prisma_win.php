@@ -10,7 +10,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			'http' => array(
 				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
 				'host'    => "ecommercews.megasoft.gr",	
-				'Content-Length: ' => "length",
 				'method'  => 'POST',
 				'content' => http_build_query($data)
 			)
