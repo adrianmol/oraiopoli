@@ -22,7 +22,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		foreach($this->GetDataURL('GetProducts')->StoreDetails as $product){
 			
-			$data["id"]     			=(string) $product->ItemId = array(
+			$data[$product->ItemId] = array(
 			$data["code"]				=(string) $product->ItemCode,
 			$data["title"]				=(string) $product->ItemDescr,
 			$data["weight"]				=(string) $product->ItemWeight,
@@ -40,8 +40,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 
-			$data_query=$this->db->query("SELECT * FROM product");
-			print_r($data);
+			//$data_query=$this->db->query("SELECT * FROM product");
+			//print_r($data);
 
 		}
 		return  $data;
