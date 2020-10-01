@@ -2,22 +2,29 @@
 class ControllerExtensionfeedPrismawin extends Controller {
 	public function index() {
 
+		$this->GetProducts();
 
-		$GetProducts = $this->GetDataURL('GetProducts');
-
-		
-		foreach($GetProducts->StoreDetails as $product){
-
-			$data["id"] = $product->ItemId;
-			echo "<br>";
-			echo ($data["id"]);
-
-		}
-		
 
 
 	}
 
+
+
+
+	function GetProducts(){
+
+		$ProductData = $this->GetDataURL('GetProducts');
+
+		foreach($ProductData->StoreDetails as $product){
+
+			$data["id"] = $product->ItemId;
+			echo "<br>";
+			echo ("ID: ". $data["id"]);
+
+		}
+
+
+	}
 
 
 
