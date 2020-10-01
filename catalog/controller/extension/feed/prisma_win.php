@@ -22,7 +22,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		foreach($this->GetDataURL('GetProducts')->StoreDetails as $product){
 			
-			$data[$product->ItemId] = array(
+			$productID = $product->ItemId;
+			$data[$productID] = array(
 			'code'				=>(string) $product->ItemCode,
 			'title'				=>(string) $product->ItemDescr,
 			'weight'			=>(string) $product->ItemWeight,
