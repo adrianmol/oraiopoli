@@ -48,7 +48,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$ProductData = $this->GetDataURL('GetItemsPhotoInfo');
 
 
-		foreach($this->GetDataURL('GetProducts')->StoreDetails as $ItemsPhot){
+		foreach($this->GetDataURL('GetItemsPhotoInfo')->StoreDetails as $ItemsPhot){
 			
 			(int)$productID = $ItemsPhot->ItemCode;
 			$data[(int)$productID] = array(
@@ -56,7 +56,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			'ItemDesc'			=>(string) $ItemsPhot->ItemDescription,
 			'ItemPhotoName'		=>(string) $ItemsPhot->ItemPhotoName,
 			'PhotoPath'			=>(string) $ItemsPhot->ItemPhotoPath,
-			'code'				=>(string) $ItemsPhot->ItemCode,
 			);
 
 		}
