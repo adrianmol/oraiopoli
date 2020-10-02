@@ -64,11 +64,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		}
 
-		//$url_to_image = $data[00000018][];
-		//$my_save_dir = 'images/';
-		//$filename = basename($url_to_image);
-		//$complete_save_loc = $my_save_dir.$filename;
-		//file_put_contents($complete_save_loc,file_get_contents($url_to_image));
+		$url_to_image = $data['Code']['PhotoPath'];
+		$my_save_dir = DIR_IMAGE ;
+		$filename = basename($data['Code']['ItemPhotoName']);
+		$complete_save_loc = $my_save_dir.$filename;
+		file_put_contents($complete_save_loc,file_get_contents($url_to_image));
 
 		return  $data;
 
