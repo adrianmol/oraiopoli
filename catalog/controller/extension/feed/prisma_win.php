@@ -69,7 +69,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$url_to_image = $data[18]['PhotoPath'];
 		$my_save_dir = DIR_IMAGE ."products/" ;
-		$filename = basename($data['Code']['ItemPhotoName']);
+		$filename = basename($data[18]['ItemPhotoName']);
 		$complete_save_loc = $my_save_dir.$filename;
 		file_put_contents($complete_save_loc,file_get_contents($url_to_image));
 
