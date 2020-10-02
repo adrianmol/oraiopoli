@@ -5,9 +5,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$data = $this->GetItemsPhoto();
 
-		echo "<pre>";
-		print_r($data);
-		echo "</pre>";
+		// echo "<pre>";
+		// print_r($data);
+		// echo "</pre>";
 
 
 	}
@@ -47,8 +47,12 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	function GetItemsPhoto(){
 		$ProductData = $this->GetDataURL('GetItemsPhotoInfo');
 
+		echo "<pre>";
+		print_r($ProductData);
+		echo "</pre>";
 
-		foreach($this->GetDataURL('GetItemsPhotoInfo')->StoreDetails as $ItemsPhot){
+
+		foreach($this->GetDataURL('GetProducts')->StoreDetails as $ItemsPhot){
 			
 			(int)$productID = $ItemsPhot->ItemCode;
 			$data[(int)$productID] = array(
@@ -66,7 +70,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$complete_save_loc = $my_save_dir.$filename;
 		//file_put_contents($complete_save_loc,file_get_contents($url_to_image));
 
-		return  $data;
+		//return  $data;
 
 	}
 
