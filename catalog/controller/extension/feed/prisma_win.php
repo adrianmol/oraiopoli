@@ -37,6 +37,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			'manufacturer_id'	=>(string) $product->ItemManufacturerId,
 			'price_wholesale'	=>(string) $product->ItemWholesale,
 			'price_vat'			=>(string) $product->ItemRetailVat,
+			'mudescr'			=>(string) $product->ItemMUDescr,
+
 			);
 			$i++;
 		}
