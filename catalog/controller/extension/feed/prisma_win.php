@@ -13,8 +13,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	}
 
 
-
-
 	function GetProducts(){
 
 		$ProductData = $this->GetDataURL('GetProducts');
