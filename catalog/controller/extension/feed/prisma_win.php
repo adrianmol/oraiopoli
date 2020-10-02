@@ -3,7 +3,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	public function index() {
 
 
-		$data = $this->GetProducts();
+		$data = $this->GetItemsPhoto();
 
 		echo "<pre>";
 		print_r($data);
@@ -40,6 +40,36 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			);
 			$i++;
 		}
+
+
+	function GetItemsPhoto(){
+		$ProductData = $this->GetDataURL('GetItemsPhotoInfo');
+
+
+		foreach($this->GetDataURL('GetProducts')->StoreDetails as $ItemsPhot){
+			
+			(int)$productID = $ItemsPhot->ItemCode;
+			$data[(int)$productID] = array(
+			'Code'				=>(string) $ItemsPhot->ItemCode,
+			'ItemDesc'			=>(string) $ItemsPhot->ItemDescription,
+			'ItemPhotoName'		=>(string) $ItemsPhot->ItemPhotoName,
+			'PhotoPath'			=>(string) $ItemsPhot->ItemPhotoPath,
+			'code'				=>(string) $ItemsPhot->ItemCode,
+			);
+
+		}
+
+		$url_to_image = $data[00000018][];
+		$my_save_dir = 'images/';
+		$filename = basename($url_to_image);
+		$complete_save_loc = $my_save_dir.$filename;
+		file_put_contents($complete_save_loc,file_get_contents($url_to_image));
+
+		return $data;
+
+	}
+
+	
 
 		$data_query=$this->db->query("SELECT * FROM " . DB_PREFIX . "product");
 
