@@ -8,7 +8,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// echo "<pre>";
 		// print_r($data);
 		// echo "</pre>";
-
+		echo ($data['Code']['ItemPhotoName']);
 
 	}
 
@@ -18,7 +18,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$ProductData = $this->GetDataURL('GetProducts');
 		$i=0;
 
-		foreach($this->GetDataURL('GetProducts')->StoreDetails as $product){
+		foreach($this->$ProductData->StoreDetails as $product){
 			
 			(int)$productID = $product->ItemId;
 			$data[(int)$productID] = array(
@@ -44,6 +44,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		return $data;
 
 	}
+
+
+
 	function GetItemsPhoto(){
 		$ProductData = $this->GetDataURL('GetItemsPhotoInfo');
 
@@ -64,11 +67,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		}
 
-		$url_to_image = $data['Code']['PhotoPath'];
-		$my_save_dir = DIR_IMAGE ;
-		$filename = basename($data['Code']['ItemPhotoName']);
-		$complete_save_loc = $my_save_dir.$filename;
-		file_put_contents($complete_save_loc,file_get_contents($url_to_image));
+		// $url_to_image = $data['Code']['PhotoPath'];
+		// $my_save_dir = DIR_IMAGE ;
+		// $filename = basename($data['Code']['ItemPhotoName']);
+		// $complete_save_loc = $my_save_dir.$filename;
+		// file_put_contents($complete_save_loc,file_get_contents($url_to_image));
 
 		return  $data;
 
