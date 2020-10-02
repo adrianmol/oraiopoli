@@ -47,19 +47,19 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	function GetItemsPhoto(){
 		$ProductData = $this->GetDataURL('GetItemsPhotoInfo');
 
-		echo "<pre>";
-		print_r($ProductData);
-		echo "</pre>";
+		// echo "<pre>";
+		// print_r($ProductData);
+		// echo "</pre>";
 
 
-		foreach($this->GetDataURL('GetProducts')->StoreDetails as $ItemsPhot){
+		foreach($ProductData->ItemsPhotoInfo as $ItemsPhoto){
 			
-			(int)$productID = $ItemsPhot->ItemCode;
+			(int)$productID = $ItemsPhoto->ItemCode;
 			$data[(int)$productID] = array(
-			'Code'				=>(string) $ItemsPhot->ItemCode,
-			'ItemDesc'			=>(string) $ItemsPhot->ItemDescription,
-			'ItemPhotoName'		=>(string) $ItemsPhot->ItemPhotoName,
-			'PhotoPath'			=>(string) $ItemsPhot->ItemPhotoPath,
+			'Code'				=>(string) $ItemsPhoto->ItemCode,
+			'ItemDesc'			=>(string) $ItemsPhoto->ItemDescription,
+			'ItemPhotoName'		=>(string) $ItemsPhoto->ItemPhotoName,
+			'PhotoPath'			=>(string) $ItemsPhoto->ItemPhotoPath,
 			);
 
 		}
@@ -70,7 +70,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$complete_save_loc = $my_save_dir.$filename;
 		//file_put_contents($complete_save_loc,file_get_contents($url_to_image));
 
-		//return  $data;
+		return  $data;
 
 	}
 
