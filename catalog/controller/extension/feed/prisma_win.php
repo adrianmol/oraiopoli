@@ -70,7 +70,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$url_to_image = "https://www.oraiomarket.gr/cache/sj_revo/6c9c1a290c8f891527ec9959b62773eb.jpeg";
 		$my_save_dir = DIR_IMAGE ."products/" ;
 		$filename = basename($data[18]['ItemPhotoName']);
-		$complete_save_loc = $my_save_dir.$filename;
+		$complete_save_loc = $my_save_dir.$filename."png";
 		file_put_contents($complete_save_loc,file_get_contents($url_to_image));
 
 		return  $data;
