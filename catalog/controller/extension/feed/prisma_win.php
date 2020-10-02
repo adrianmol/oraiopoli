@@ -5,9 +5,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$data = $this->GetProducts();
 
-		//echo "<pre>";
-		//print_r($data);
-		//echo "</pre>";
+		echo "<pre>";
+		print_r($data);
+		echo "</pre>";
 
 
 	}
@@ -24,6 +24,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			
 			(int)$productID = $product->ItemId;
 			$data[(int)$productID] = array(
+			'id'				=>(string) $product->ItemId,		
 			'code'				=>(string) $product->ItemCode,
 			'title'				=>(string) $product->ItemDescr,
 			'weight'			=>(string) $product->ItemWeight,
@@ -38,19 +39,15 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			'price_vat'			=>(string) $product->ItemRetailVat,
 			);
 			$i++;
-
-
-
-
 		}
 
 		$data_query=$this->db->query("SELECT * FROM " . DB_PREFIX . "product");
 
 		$products = $data_query->rows; 
 		
-		echo "<pre>";
-		print_r($products);
-		echo "</pre>";
+		//echo "<pre>";
+		//print_r($products);
+		//echo "</pre>";
 		return  $data;
 
 	}
