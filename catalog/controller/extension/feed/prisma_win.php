@@ -41,7 +41,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			$i++;
 		}
 
+		return $data;
 
+	}
 	function GetItemsPhoto(){
 		$ProductData = $this->GetDataURL('GetItemsPhotoInfo');
 
@@ -65,29 +67,20 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$complete_save_loc = $my_save_dir.$filename;
 		//file_put_contents($complete_save_loc,file_get_contents($url_to_image));
 
-		return $data;
+		return  $data;
 
 	}
 
 	
 
-		$data_query=$this->db->query("SELECT * FROM " . DB_PREFIX . "product");
 
-		$products = $data_query->rows; 
-		
-		//echo "<pre>";
-		//print_r($products);
-		//echo "</pre>";
-		return  $data;
-
-	}
-
+	
 
 
 	function GetDataURL($path) {
 
 		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/'. $path;
-		$data = 'SiteKey=bs-gg183-352&StorageCode=000&Date=1-9-2020';
+		$data = 'SiteKey=bs-gg183-352&Date=1-9-2020&StorageCode=000';
 		
 		// use key 'http' even if you send the request to https://...
 		$options = array(
