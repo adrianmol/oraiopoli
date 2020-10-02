@@ -6,9 +6,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$data = $this->GetItemsPhoto();
 
 		// echo "<pre>";
-		// print_r($data);
+		 print_r($data);
 		// echo "</pre>";
-		echo ($data['ItemCode']['ItemPhotoName']);
+		//echo ($data['ItemCode']['ItemPhotoName']);
 
 	}
 
@@ -59,7 +59,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			
 			(int)$productID = $ItemsPhoto->ItemCode;
 			$data[(int)$productID] = array(
-			'ItemCode'				=>(string) $ItemsPhoto->ItemCode,
+			'ItemCode'			=>(string) $ItemsPhoto->ItemCode,
 			'ItemDesc'			=>(string) $ItemsPhoto->ItemDescription,
 			'ItemPhotoName'		=>(string) $ItemsPhoto->ItemPhotoName,
 			'PhotoPath'			=>(string) $ItemsPhoto->ItemPhotoPath,
