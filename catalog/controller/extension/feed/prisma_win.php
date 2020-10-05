@@ -17,7 +17,7 @@ error_reporting(E_ALL);
 		// echo "</pre>";
 		// echo ($data[18]['ItemPhotoName']);
 
-		$this->GetPhotoPath();
+		$this->GetPhotoPath('00000583');
 
 	}
 
@@ -163,10 +163,10 @@ error_reporting(E_ALL);
 
 	}
 
-	function GetPhotoPath() {
+	function GetPhotoPath($ItemCode) {
 
 		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/UploadImageToFtp';
-		$data = 'SiteKey=bs-gg183-352&JsonStrWeb={   "items": [ { "storecode": "00000533"  }]}';
+		$data = 'SiteKey=bs-gg183-352&JsonStrWeb={   "items": [ { "storecode": "'.$ItemCode.'"  }]}';
 		
 		// use key 'http' even if you send the request to https://...
 		$options = array(
@@ -183,9 +183,9 @@ error_reporting(E_ALL);
 		$xml=simplexml_load_string($result) or die("Error: Cannot create object");
 		
 		echo "<pre>";
-		print_r($xml);
-		echo "</pre>";
-		return $xml;
+		// print_r($xml);
+		// echo "</pre>";
+		// return $xml;
 	
 
 	}
