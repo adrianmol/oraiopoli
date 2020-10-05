@@ -2,8 +2,10 @@
 class ControllerExtensionfeedPrismawin extends Controller {
 	public function index() {
 
+#https://oraiopoli.gr/index.php?route=extension/feed/prisma_win
 
-		$data = $this->GetItemsPhoto();
+
+		$data = $this->GetProducts();
 
 		 echo "<pre>";
 		print_r($data);
