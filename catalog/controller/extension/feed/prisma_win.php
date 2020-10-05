@@ -173,7 +173,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$context  = stream_context_create($options);
 		$result = file_get_contents($url, false, $context);
 		if ($result === FALSE) { /* Handle error */ }
-		
+		echo $result;
 		$xml=simplexml_load_string($result) or die("Error: Cannot create object");
 		
 		echo "<pre>";
