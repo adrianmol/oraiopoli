@@ -20,10 +20,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// print_r($data);
 		// echo "</pre>";
 
-		$data = $this->GetCategory();
+		$data  = $this->GetCategory();
+		$data1 = $this->GetProducts();
 
 		echo "<pre>";
-		print_r($data);
+		print_r($data,$data1);
 		echo "</pre>";
 
 	}
@@ -106,29 +107,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	}
 
 
-	// function CreateCategory(){
-	// 	$categories =$this->GetCategory();
-		
-		
-
-	// 	$sql = $this->db->query("SELECT * FROM ". DB_PREFIX ."category ," );
-		
-		
-	// 	echo "<pre>";
-	// 	print_r($sql->rows);
-	// 	echo "</pre>";
-
-	// }
-
 
 
 	function GetItemsPhoto(){
 		$ProductData = $this->GetDataURL('GetItemsPhotoInfo');
-
-		// echo "<pre>";
-		// print_r($ProductData);
-		// echo "</pre>";
-
 
 		foreach($ProductData->ItemsPhotoInfo as $ItemsPhoto){
 			
@@ -176,7 +158,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//echo "</pre>";
 		return $xml;
 	
-
 	}
 
 	function GetPhotoPath($ItemCode) {
