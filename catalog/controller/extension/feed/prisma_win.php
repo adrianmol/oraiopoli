@@ -24,7 +24,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$data1 = $this->GetProducts();
 
 		echo "<pre>";
-		print_r($data);
+		// print_r($data);
 		print_r($data1[0]);
 		echo "</pre>";
 
