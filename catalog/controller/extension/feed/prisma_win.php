@@ -22,7 +22,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				'cat1' 	 => $category['level1'],
 				'cat2'   => $category['level2'],
 				'cat3'   => $category['level3'],
-				'level' => $levels
+				'level' => $level
 			);
 	 
 		}
