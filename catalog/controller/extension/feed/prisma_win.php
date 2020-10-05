@@ -8,7 +8,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$data = $this->GetProducts();
 
 		echo "<pre>";
-		print_r($data);
+		print_r($data[1]);
 		echo "</pre>";
 		//echo ($data[18]['ItemPhotoName']);
 
@@ -52,7 +52,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			$i++;
 		}
 
-		return ($data . $category);
+		return array($data , $category);
 
 	}
 
