@@ -166,13 +166,13 @@ error_reporting(E_ALL);
 	function GetPhotoPath() {
 
 		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/UploadImageToFtp';
-		$data = 'SiteKey=bs-gg183-352&JsonStrWeb={"items": [ { "storecode": "00000582"  }]}';
+		$data = 'SiteKey=bs-gg183-352&JsonStrWeb={   "items": [ { "storecode": "00000533"  }]}';
 		
 		// use key 'http' even if you send the request to https://...
 		$options = array(
 			'http' => array(
 				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-				'method'  => 'GET',
+				'method'  => 'POST',
 				'content' => $data
 			)
 		);
