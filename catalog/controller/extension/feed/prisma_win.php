@@ -5,12 +5,12 @@ class ControllerExtensionfeedPrismawin extends Controller {
 #https://oraiopoli.gr/index.php?route=extension/feed/prisma_win
 
 
-		$data = $this->GetCategory();
+		//$data = $this->GetCategory();
 
 
-		echo "<pre>";
-		print_r($data);
-		echo "</pre>";
+		//echo "<pre>";
+		//print_r($data);
+		//echo "</pre>";
 		//echo ($data[18]['ItemPhotoName']);
 
 	}
@@ -157,6 +157,31 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 	}
 
+	function GetPhotoPath($path) {
 
+		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/UploadImageToFtp';
+		$data = 'SiteKey=bs-gg183-352&JsonStrWeb={"items": [ { "storecode": "00000582"  }]}';
+		
+		// use key 'http' even if you send the request to https://...
+		$options = array(
+			'http' => array(
+				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+				'method'  => 'POST',
+				'content' => $data
+			)
+		);
+		$context  = stream_context_create($options);
+		$result = file_get_contents($url, false, $context);
+		if ($result === FALSE) { /* Handle error */ }
+		
+		$xml=simplexml_load_string($result) or die("Error: Cannot create object");
+		
+		echo "<pre>";
+		print_r($xml);
+		echo "</pre>";
+		return $xml;
+	
+
+	}
 
 }
