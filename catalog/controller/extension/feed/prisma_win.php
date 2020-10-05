@@ -65,7 +65,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$data = $this->GetProducts();
 		$i=0;
 		foreach($data[1] as $category){
-			
+		
 
 			if($category['level3']){
 				$level = 3;
@@ -89,11 +89,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	 
 		}
 
-		echo "<pre>";
-		print_r($CategoryPath);
-		echo "</pre>";
-		//echo ($data[18]['ItemPhotoName']);
-
+		return $CategoryPath;
 	}
 
 
