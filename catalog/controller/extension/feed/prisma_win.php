@@ -68,7 +68,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	function GetCategory(){
 
 		$data = $this->GetProducts();
-		$i=0;
+		$i=0; $catID = 0;
 		foreach($data[1] as $category){
 		
 
@@ -82,19 +82,19 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				$level = 1;
 			}
 
+			$sql = $this->db->query("SELECT cd.category_id FROM ". DB_PREFIX ."category_description cd WHERE name = '" . $category['level3'] . "'" );
 
-
+			$catID =(int)$sql->rows;
+			
 			$CategoryPath[$i++] =  array (
 
 				'parent' => $category['parent'],
 				'cat1' 	 => $category['level1'],
 				'cat2'   => $category['level2'],
 				'cat3'   => $category['level3'],
-				'level'  => $level
+				'level'  => $level,
+				'categoryID'  => $catID
 			);
-
-			$sql = $this->db->query("SELECT cd.category_id FROM ". DB_PREFIX ."category_description cd WHERE name = '" . $category['level3'] . "'" );
-
 	 
 		}
 
