@@ -11,25 +11,15 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		foreach($data[1] as $category){
 			
 
-			// if(!$category['level1']){
-			// $level= 1;
-			// }else if(!$category['level2']){
-			// 	$level= 2;
-			// }else if (!$category['level3']){
-			// 	$level= 3;
-			// }
-
-				switch($category){
-					case $category['level1']:
-						$level=1;
-					break;
-					case $category['level2']:
-						$level=2;
-					break;
-					case $category['level3']:
-						$level=3;
-					break;
-				}
+			if(!$category['level1']){
+			$level= 1;
+			break;
+			}else if(!$category['level2']){
+				$level= 2;
+			break;
+			}else if (!$category['level3']){
+				$level= 3;
+			}
 
 
 			$CategoryPath[$i++] =  array (
