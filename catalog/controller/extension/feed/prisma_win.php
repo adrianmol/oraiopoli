@@ -32,6 +32,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		foreach($ProductData->StoreDetails as $product){
 			
+
 			(int)$productID = $product->ItemId;
 			$data[(int)$productID] = array(
 			'id'				=>(string) $product->ItemId,		
@@ -82,6 +83,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			}
 
 
+
 			$CategoryPath[$i++] =  array (
 
 				'parent' => $category['parent'],
@@ -90,10 +92,13 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				'cat3'   => $category['level3'],
 				'level'  => $level
 			);
+
+			$sql = $this->db->query("SELECT cd.category_id FROM ". DB_PREFIX ."category_description cd WHERE name = '" . $category['level3'] . "'" );
+
 	 
 		}
 
-		$sql = $this->db->query("SELECT cd.category_id,cd.name FROM ". DB_PREFIX ."category_description cd" );
+	
 			echo "<pre>";
 			print_r($sql->rows);
 			echo "</pre>";
