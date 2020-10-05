@@ -91,7 +91,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 			$catID = $sql->rows[0];
 			
-			$CategoryPath[$i++] =  array (
+			$CategoryPath[$category['ID']] =  array (
 
 				'productID'   => $category['ID'],
 				'cat1' 	      => $category['level'.$level.''],
