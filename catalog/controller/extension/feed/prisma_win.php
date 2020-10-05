@@ -17,7 +17,7 @@ error_reporting(E_ALL);
 		// echo "</pre>";
 		// echo ($data[18]['ItemPhotoName']);
 
-		$data = $this->GetCategory();
+		$data = $this->GetProducts();
 
 		echo "<pre>";
 		print_r($data);
