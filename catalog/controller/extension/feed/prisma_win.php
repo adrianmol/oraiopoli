@@ -7,11 +7,13 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$data = $this->GetProducts();
 
-		$levels=0; $i=0;
+		$i=0;
 		foreach($data[1] as $category){
 			
-			while(isset($category)){
-				echo ($category . ", ");
+			if($category['level2']){
+				$level= 2;
+			}else if ($category['level2']){
+				$level= 3;
 			}
 
 			$CategoryPath[$i++] =  array (
@@ -22,7 +24,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				'cat3'   => $category['level3'],
 				'level' => $levels
 			);
-		$levels = 0;	 
+	 
 		}
 
 		echo "<pre>";
