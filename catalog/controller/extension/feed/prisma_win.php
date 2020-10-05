@@ -86,7 +86,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				$level = 1;
 			}
 
-			$sql = $this->db->query("SELECT cd.category_id FROM ". DB_PREFIX ."category_description cd WHERE name = '" . $category['level3'] . "'" );
+			$sql = $this->db->query("SELECT cd.category_id FROM ". DB_PREFIX ."category_description cd WHERE name = '" . $category['level'.$level.''] . "'" );
 
 			$catID = $sql->rows;
 			
