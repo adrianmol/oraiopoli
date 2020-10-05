@@ -9,13 +9,13 @@ error_reporting(E_ALL);
 #https://oraiopoli.gr/index.php?route=extension/feed/prisma_win
 
 
-		//$data = $this->GetCategory();
+		$data = $this->GetCategory();
 
 
-		//echo "<pre>";
-		//print_r($data);
-		//echo "</pre>";
-		//echo ($data[18]['ItemPhotoName']);
+		echo "<pre>";
+		print_r($data);
+		echo "</pre>";
+		echo ($data[18]['ItemPhotoName']);
 
 	}
 
