@@ -25,7 +25,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		echo "<pre>";
 		print_r($data);
-		print_r($data1);
+		print_r($data1[0]);
 		echo "</pre>";
 
 	}
