@@ -65,11 +65,7 @@ error_reporting(E_ALL);
 			$i++;
 		}
 
-		return array (
-
-			'products'   => $data ,
-			'categories' => $category
-		);
+		return array ( $data , $category);
 
 	}
 
@@ -78,7 +74,7 @@ error_reporting(E_ALL);
 
 		$data = $this->GetProducts();
 		$i=0;
-		foreach($data['category'] as $category){
+		foreach($data[1] as $category){
 		
 
 			if($category['level3']){
