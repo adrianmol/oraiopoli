@@ -88,7 +88,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 			$sql = $this->db->query("SELECT cd.category_id FROM ". DB_PREFIX ."category_description cd WHERE name = '" . $category['level3'] . "'" );
 
-			$catID =(int)$sql->rows->category_id;
+			$catID =(int)$sql->rows;
 			
 			$CategoryPath[$i++] =  array (
 
@@ -99,6 +99,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				'level'  => $level,
 				'categoryID'  => $catID
 			);
+
+
+			echo "<pre>";
+			print_r($catID);
+			echo "</pre>";
 	 
 		}
 
