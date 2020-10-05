@@ -106,7 +106,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		
 		
 		echo "<pre>";
-		print_r($sql);
+		print_r($sql->rows);
 		echo "</pre>";
 
 	}
