@@ -7,16 +7,17 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$data = $this->GetProducts();
 
-
+		$i=0;
 		foreach($data[1] as $category){
 			
-			$i=0;
+			
 			$CategoryPath[$i++] =  array (
 
 				'parent' => $category['parent'],
 				'cat1' => $category['level1'],
 				'cat2' => $category['level2'],
 				'cat3' => $category['level3']
+	
 			);
 		}
 
