@@ -140,7 +140,7 @@ error_reporting(E_ALL);
 	function GetDataURL($path) {
 
 		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/'. $path;
-		$data = 'SiteKey=bs-gg183-352&Date=1-9-2020&StorageCode=000';
+		$data = 'SiteKey=bs-gg183-352&Date=1-10-2020&StorageCode=000';
 		
 		// use key 'http' even if you send the request to https://...
 		$options = array(
@@ -187,7 +187,6 @@ error_reporting(E_ALL);
 		// print_r($xml);
 		// echo "</pre>";
 		return $result;
-	
 
 	}
 
