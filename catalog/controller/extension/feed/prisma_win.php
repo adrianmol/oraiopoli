@@ -26,8 +26,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 					case $category['level2']:
 						$level=2;
 					break;
-					case $category['level2']:
-						$level=2;
+					case $category['level3']:
+						$level=3;
 					break;
 				}
 
