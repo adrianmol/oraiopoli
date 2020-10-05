@@ -20,7 +20,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// print_r($data);
 		// echo "</pre>";
 
-		$this->GetCategory();
+		$data = $this->GetCategory();
+
+		echo "<pre>";
+		print_r($data);
+		echo "</pre>";
 
 	}
 
@@ -99,9 +103,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		}
 
 	
-			echo "<pre>";
-			print_r($sql->rows);
-			echo "</pre>";
+			// echo "<pre>";
+			// print_r($sql->rows);
+			// echo "</pre>";
 
 
 		return $CategoryPath;
