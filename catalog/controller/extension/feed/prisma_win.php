@@ -5,36 +5,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 #https://oraiopoli.gr/index.php?route=extension/feed/prisma_win
 
 
-		$data = $this->GetProducts();
+		$data = $this->GetCategory();
 
-		$i=0;
-		foreach($data[1] as $category){
-			
-
-			if($category['level3']){
-				$level = 3;
-
-			}else if ($category['level2']){
-				$level = 2;
-
-			}else if ($category['level1']){
-				$level = 1;
-			}
-
-
-			$CategoryPath[$i++] =  array (
-
-				'parent' => $category['parent'],
-				'cat1' 	 => $category['level1'],
-				'cat2'   => $category['level2'],
-				'cat3'   => $category['level3'],
-				'level'  => $level
-			);
-	 
-		}
 
 		echo "<pre>";
-		print_r($CategoryPath);
+		print_r($data);
 		echo "</pre>";
 		//echo ($data[18]['ItemPhotoName']);
 
@@ -81,6 +56,43 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		return array
 		($data , 
 		$category);
+
+	}
+
+
+	function GetCategory(){
+
+		$data = $this->GetProducts();
+		$i=0;
+		foreach($data[1] as $category){
+			
+
+			if($category['level3']){
+				$level = 3;
+
+			}else if ($category['level2']){
+				$level = 2;
+
+			}else if ($category['level1']){
+				$level = 1;
+			}
+
+
+			$CategoryPath[$i++] =  array (
+
+				'parent' => $category['parent'],
+				'cat1' 	 => $category['level1'],
+				'cat2'   => $category['level2'],
+				'cat3'   => $category['level3'],
+				'level'  => $level
+			);
+	 
+		}
+
+		echo "<pre>";
+		print_r($CategoryPath);
+		echo "</pre>";
+		//echo ($data[18]['ItemPhotoName']);
 
 	}
 
