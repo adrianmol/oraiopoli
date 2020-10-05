@@ -99,9 +99,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		}
 
 	
-			// echo "<pre>";
-			// print_r($sql->rows);
-			// echo "</pre>";
+			echo "<pre>";
+			print_r($sql->rows);
+			echo "</pre>";
 
 
 		return $CategoryPath;
