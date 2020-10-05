@@ -104,10 +104,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$sql = $this->db->query("SELECT * FROM ". DB_PREFIX ."category");
 		
+		
+		echo "<pre>";
 		print_r($sql);
-		// echo "<pre>";
-		// print_r($data);
-		// echo "</pre>";
+		echo "</pre>";
 
 	}
 
