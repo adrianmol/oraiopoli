@@ -7,9 +7,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$data = $this->GetProducts();
 
-		//echo "<pre>";
-		//print_r($data);
-		//echo "</pre>";
+		echo "<pre>";
+		print_r($data);
+		echo "</pre>";
 		//echo ($data[18]['ItemPhotoName']);
 
 	}
@@ -20,7 +20,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$ProductData = $this->GetDataURL('GetProducts');
 		$i=0;
 
-		foreach($this->$ProductData->StoreDetails as $product){
+		foreach($ProductData->StoreDetails as $product){
 			
 			(int)$productID = $product->ItemId;
 			$data[(int)$productID] = array(
@@ -113,9 +113,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		
 		$xml=simplexml_load_string($result) or die("Error: Cannot create object");
 		
-		echo "<pre>";
-		print_r($xml);
-		 echo "</pre>";
+		//echo "<pre>";
+		//print_r($xml);
+		//echo "</pre>";
 		return $xml;
 	
 
