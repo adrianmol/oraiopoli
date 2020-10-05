@@ -12,7 +12,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			
 			if($category['level2']){
 				$level= 2;
-			}else if ($category['level2']){
+			}else if ($category['level3']){
 				$level= 3;
 			}
 
