@@ -5,10 +5,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$data = $this->GetItemsPhoto();
 
-		// echo "<pre>";
-		//print_r($data);
-		// echo "</pre>";
-		echo ($data[18]['ItemPhotoName']);
+		 echo "<pre>";
+		print_r($data);
+		 echo "</pre>";
+		//echo ($data[18]['ItemPhotoName']);
 
 	}
 
@@ -37,11 +37,20 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			'price_vat'			=>(string) $product->ItemRetailVat,
 			'mudescr'			=>(string) $product->ItemMUDescr,
 
+			$category[$i] = array(
+				'parent' =>(string) $product->ItemGroup1,
+				'level1' =>(string) $product->ItemGroup2,
+				'level2' =>(string) $product->ItemGroup3,
+				'level3' =>(string) $product->ItemGroup4,
+			)
+
+
+
 			);
 			$i++;
 		}
 
-		return $data;
+		return ($data . $category);
 
 	}
 
@@ -70,7 +79,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$url_to_image = "https://www.oraiomarket.gr/cache/sj_revo/6c9c1a290c8f891527ec9959b62773eb.jpeg";
 		$my_save_dir = DIR_IMAGE ."products/" ;
 		$filename = basename($data[18]['ItemPhotoName']);
-		$complete_save_loc = $my_save_dir.$filename.".png";
+		$complete_save_loc = $my_save_dir.$filename.".jpg";
 		file_put_contents($complete_save_loc,file_get_contents($url_to_image));
 
 		return  $data;
