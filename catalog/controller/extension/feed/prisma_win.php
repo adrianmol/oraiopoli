@@ -2,9 +2,6 @@
 class ControllerExtensionfeedPrismawin extends Controller {
 	public function index() {
 
-		ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 #https://oraiopoli.gr/index.php?route=extension/feed/prisma_win
 
@@ -17,13 +14,13 @@ error_reporting(E_ALL);
 		// echo "</pre>";
 		// echo ($data[18]['ItemPhotoName']);
 
-		$data = $this->GetCategory();
+		// $data = $this->GetProducts();
 
-		echo "<pre>";
-		print_r($data);
-		echo "</pre>";
+		// echo "<pre>";
+		// print_r($data);
+		// echo "</pre>";
 
-
+		$this->CreateCategory();
 
 	}
 
@@ -97,6 +94,21 @@ error_reporting(E_ALL);
 		}
 
 		return $CategoryPath;
+	}
+
+
+	function CreateCategory(){
+		$categories =$this->GetCategory();
+		
+		
+
+		$sql = $this->db->query("SELECT * FROM ". DB_PREFIX ."category");
+		
+		print_r($sql);
+		// echo "<pre>";
+		// print_r($data);
+		// echo "</pre>";
+
 	}
 
 
