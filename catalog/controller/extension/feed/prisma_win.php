@@ -56,6 +56,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			);
 
 			$category[$i] = array(
+				'ID'     =>(string) $product->ItemId,
 				'parent' =>(string) $product->ItemGroup1,
 				'level1' =>(string) $product->ItemGroup2,
 				'level2' =>(string) $product->ItemGroup3,
@@ -92,9 +93,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			
 			$CategoryPath[$i++] =  array (
 
-				'productID' => $category['id'],
-				'cat1' 	 => $category['level'.$level.''],
-				'level'  => $level,
+				'productID'   => $category['id'],
+				'cat1' 	      => $category['level'.$level.''],
+				'level'       => $level,
 				'categoryID'  => (int)$catID['category_id']
 			);
 	 
