@@ -17,7 +17,13 @@ error_reporting(E_ALL);
 		// echo "</pre>";
 		// echo ($data[18]['ItemPhotoName']);
 
-		$this->GetPhotoPath('00000583');
+		$data = $this->GetCategory();
+
+		echo "<pre>";
+		print_r($data);
+		echo "</pre>";
+
+
 
 	}
 
@@ -59,9 +65,11 @@ error_reporting(E_ALL);
 			$i++;
 		}
 
-		return array
-		($data , 
-		$category);
+		return array (
+
+			'products'   => $data ,
+			'categories' => $category
+		);
 
 	}
 
@@ -70,7 +78,7 @@ error_reporting(E_ALL);
 
 		$data = $this->GetProducts();
 		$i=0;
-		foreach($data[1] as $category){
+		foreach($data['category'] as $category){
 		
 
 			if($category['level3']){
@@ -139,7 +147,7 @@ error_reporting(E_ALL);
 	function GetDataURL($path) {
 
 		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/'. $path;
-		$data = 'SiteKey=bs-gg183-352&Date=1-9-2020&StorageCode=000';
+		$data = 'SiteKey=bs-gg183-352&Date=1-10-2020&StorageCode=000';
 		
 		// use key 'http' even if you send the request to https://...
 		$options = array(
@@ -185,7 +193,7 @@ error_reporting(E_ALL);
 		echo "<pre>";
 		// print_r($xml);
 		// echo "</pre>";
-		// return $xml;
+		return $result;
 	
 
 	}
