@@ -92,28 +92,16 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			
 			$CategoryPath[$i++] =  array (
 
-				'parent' => $category['parent'],
-				'cat1' 	 => $category['level1'],
-				'cat2'   => $category['level2'],
-				'cat3'   => $category['level3'],
+				'productID' => $category['id'],
+				'cat1' 	 => $category['level'.$level.''],
 				'level'  => $level,
 				'categoryID'  => (int)$catID['category_id']
 			);
-
-
-			echo "<pre>";
-			print_r($catID);
-			echo "</pre>";
 	 
 		}
 
-	
-			// echo "<pre>";
-			// print_r($sql->rows);
-			// echo "</pre>";
-
-
 		return $CategoryPath;
+
 	}
 
 
