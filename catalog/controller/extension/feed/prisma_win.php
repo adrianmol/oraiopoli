@@ -53,13 +53,12 @@ error_reporting(E_ALL);
 			'mudescr'			=>(string) $product->ItemMUDescr,
 
 			);
-			$category[(string)$product->ItemGroup1] = array(
+			$category[$i] = array(
 				'parent' =>(string) $product->ItemGroup1,
 				'level1' =>(string) $product->ItemGroup2,
 				'level2' =>(string) $product->ItemGroup3,
 				'level3' =>(string) $product->ItemGroup4,
 			);
-
 			$i++;
 		}
 
