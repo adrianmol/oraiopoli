@@ -10,8 +10,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$levels=0; $i=0;
 		foreach($data[1] as $category){
 			
-			while($category){
-				$levels =+ 1;
+			while(isset($category)){
+				echo ($category . ", ");
 			}
 
 			$CategoryPath[$i++] =  array (
@@ -70,7 +70,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			$i++;
 		}
 
-		return array($data , $category);
+		return array
+		($data , 
+		$category);
 
 	}
 
