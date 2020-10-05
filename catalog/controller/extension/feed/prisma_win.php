@@ -93,15 +93,15 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				'level'  => $level
 			);
 
-			$sql = $this->db->query("SELECT cd.category_id FROM ". DB_PREFIX ."category_description cd WHERE name = '" . $category['level3'] . "'" );
+			//$sql = $this->db->query("SELECT cd.category_id FROM ". DB_PREFIX ."category_description cd WHERE name = '" . $category['level3'] . "'" );
 
 	 
 		}
 
 	
-			echo "<pre>";
-			print_r($sql->rows);
-			echo "</pre>";
+			// echo "<pre>";
+			// print_r($sql->rows);
+			// echo "</pre>";
 
 
 		return $CategoryPath;
@@ -157,7 +157,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	function GetDataURL($path) {
 
 		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/'. $path;
-		$data = 'SiteKey=bs-gg183-352&Date=4-10-2020&StorageCode=000';
+		$data = 'SiteKey=bs-gg183-352&Date=1-10-2020&StorageCode=000';
 		
 		// use key 'http' even if you send the request to https://...
 		$options = array(
