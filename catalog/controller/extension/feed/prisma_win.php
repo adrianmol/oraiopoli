@@ -52,16 +52,14 @@ error_reporting(E_ALL);
 			'price_vat'			=>(string) $product->ItemRetailVat,
 			'mudescr'			=>(string) $product->ItemMUDescr,
 
-			$category[$i] = array(
+			);
+			$category[$product->ItemGroup1] = array(
 				'parent' =>(string) $product->ItemGroup1,
 				'level1' =>(string) $product->ItemGroup2,
 				'level2' =>(string) $product->ItemGroup3,
 				'level3' =>(string) $product->ItemGroup4,
-			)
-
-
-
 			);
+
 			$i++;
 		}
 
