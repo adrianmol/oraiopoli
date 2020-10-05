@@ -11,14 +11,14 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		foreach($data[1] as $category){
 			
 
-			if(!$category['level1']){
-			$level= 1;
+			if($category['level3']){
+				$level = 3;
 			break;
-			}else if(!$category['level2']){
-				$level= 2;
+			}else if ($category['level2']){
+				$level = 2;
 			break;
-			}else if (!$category['level3']){
-				$level= 3;
+			}else if ($category['level1']){
+				$level = 1;
 			}
 
 
