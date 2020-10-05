@@ -20,7 +20,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// print_r($data);
 		// echo "</pre>";
 
-		$this->CreateCategory();
+		$this->GetCategory();
 
 	}
 
@@ -48,8 +48,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			'price_wholesale'	=>(string) $product->ItemWholesale,
 			'price_vat'			=>(string) $product->ItemRetailVat,
 			'mudescr'			=>(string) $product->ItemMUDescr,
-
 			);
+
 			$category[$i] = array(
 				'parent' =>(string) $product->ItemGroup1,
 				'level1' =>(string) $product->ItemGroup2,
@@ -93,23 +93,29 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	 
 		}
 
+		$sql = $this->db->query("SELECT cd.category_id,cd.name FROM ". DB_PREFIX ."category_description cd" );
+			echo "<pre>";
+			print_r($sql->rows);
+			echo "</pre>";
+
+
 		return $CategoryPath;
 	}
 
 
-	function CreateCategory(){
-		$categories =$this->GetCategory();
+	// function CreateCategory(){
+	// 	$categories =$this->GetCategory();
 		
 		
 
-		$sql = $this->db->query("SELECT * FROM ". DB_PREFIX ."category");
+	// 	$sql = $this->db->query("SELECT * FROM ". DB_PREFIX ."category ," );
 		
 		
-		echo "<pre>";
-		print_r($sql->rows);
-		echo "</pre>";
+	// 	echo "<pre>";
+	// 	print_r($sql->rows);
+	// 	echo "</pre>";
 
-	}
+	// }
 
 
 
@@ -133,13 +139,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		}
 
-		$url_to_image = "https://www.oraiomarket.gr/cache/sj_revo/6c9c1a290c8f891527ec9959b62773eb.jpeg";
-		$my_save_dir = DIR_IMAGE ."products/" ;
-		$filename = basename($data[18]['ItemPhotoName']);
-		$complete_save_loc = $my_save_dir.$filename.".jpg";
-		file_put_contents($complete_save_loc,file_get_contents($url_to_image));
-
-		return  $data;
+	return  $data;
 
 	}
 
