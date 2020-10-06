@@ -129,7 +129,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		}
 
 		$this->GetPhotoPath($products[29039]['code']);
-		$pathPhoto = ("/images/products/".$products[29039]['code'].".JPG");
+		$pathPhoto = ("images/".$products[29039]['code'].".JPG");
 
 
 		$sec = strtotime($products[29039]['datacreated']);
@@ -172,7 +172,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_category  SET 
 
-							product_id  = '".(int)$products[29039]['id']."' ON DUPLICATE KEY UPDATE product_id = '".(int)$products[29039]['id']."',
+							product_id  = '".(int)$products[29039]['id']."' ,
 							category_id = '".(int)$categories[29039]['categoryID']."' 
 
 							");	
