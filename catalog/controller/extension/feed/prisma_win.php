@@ -155,13 +155,18 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							
 							");	
 
-		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_description as pd, product_to_store as ps SET 
-							pd.product_id  = '".(int)$products[29039]['id']."' ON DUPLICATE KEY UPDATE pd.product_id = '".(int)$products[29039]['id']."',
-							pd.language_id = '".$language_id."',
-							pd.name = '".(string)$products[29039]['title'] . "',
-							pd.meta_title = '".(string)$products[29039]['title'] . "',
-							ps.product_id = '".(int)$products[29039]['id']."' ON DUPLICATE KEY UPDATE ps.sproduct_id = '".(int)$products[29039]['id']."',
-							ps.store_id = '".$storeid."'
+		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_description SET 
+							product_id  = '".(int)$products[29039]['id']."' ON DUPLICATE KEY UPDATE product_id = '".(int)$products[29039]['id']."',
+							language_id = '".$language_id."',
+							name = '".(string)$products[29039]['title'] . "',
+							pmeta_title = '".(string)$products[29039]['title'] . "',
+
+							");	
+
+		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_store SET 
+
+							product_id = '".(int)$products[29039]['id']."' ON DUPLICATE KEY UPDATE product_id = '".(int)$products[29039]['id']."',
+							store_id = '".$storeid."'
 
 							");	
 
