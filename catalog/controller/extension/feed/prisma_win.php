@@ -20,18 +20,18 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// print_r($data);
 		// echo "</pre>";
 
-		$data  = $this->GetCategory();
-		$data1 = $this->GetProducts();
+		//$data  = $this->GetCategory();
+		 $this->InsertProduct();
 
-		echo "<pre>";
+		// echo "<pre>";
 		// print_r($data);
-		print_r($data1[0]);
-		echo "</pre>";
+		// print_r($data1[0]);
+		// echo "</pre>";
 
 	}
 
 
-	private function GetProducts(){
+	function GetProducts(){
 
 		$ProductData = $this->GetDataURL('GetProducts');
 		$i=0;
@@ -55,7 +55,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			'price_wholesale'	=>(string) $product->ItemWholesale,
 			'price_vat'			=>(string) $product->ItemRetailVat,
 			'mudescr'			=>(string) $product->ItemMUDescr,
-			);
+			); 
 
 			$category[$i] = array(
 				'ID'     =>(string) $product->ItemId,
@@ -108,6 +108,22 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	}
 
 
+	function InsertProduct(){
+
+
+		$products   = $this->GetProducts();
+		$products   = $products[0];
+		$categories = $this->GetCategory();
+
+
+		echo "<pre>";
+		print_r($products);
+		echo "</pre>";
+
+		
+	}
+
+
 
 
 	function GetItemsPhoto(){
@@ -116,6 +132,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		foreach($ProductData->ItemsPhotoInfo as $ItemsPhoto){
 			
 			(int)$productID = $ItemsPhoto->ItemCode;
+
 			$data[(int)$productID] = array(
 			'ItemCode'			=>(string) $ItemsPhoto->ItemCode,
 			'ItemDesc'			=>(string) $ItemsPhoto->ItemDescription,
