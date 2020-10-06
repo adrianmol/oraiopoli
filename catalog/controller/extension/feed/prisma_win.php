@@ -133,7 +133,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$pathPhoto = ("/images/products/".$products[29039]['code'].".JPG");
 
 
-		$newdatacreated = date("Y/m/d H:i",$products[29039]['datacreated']);
+		$sec = $products[29039]['datacreated'];
+		$newdatacreated = date("Y/m/d H:i",$sec);
 
 
 
