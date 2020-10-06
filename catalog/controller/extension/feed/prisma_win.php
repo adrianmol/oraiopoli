@@ -134,7 +134,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 		$sec = $products[29039]['datacreated'];
-		$newdatacreated = date("Y/m/d H:i",$sec);
+		$newdatacreated = date("Y/d/m H:i",$sec);
 
 
 
