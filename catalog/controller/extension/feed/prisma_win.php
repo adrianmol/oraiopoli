@@ -134,7 +134,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
-							product_id = '".(int)$products[29039]['id']."',
+							product_id = '".(int)$products[29039]['id']."' ON DUPLICATE KEY UPDATE,
 							model = '".(int)$products[29039]['code']."',
 							quantity ='".(float)$products[29039]['itemStock']."',
 							stock_status_id = '".(int)$StockStatus."',
@@ -142,7 +142,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							shipping = '".(int)$status."',
 							price = '".$products[29039]['price_vat']."',
 							tax_class_id = '".(int)$tax_class."',
-							status = '".(int)$status."' ON DUPLICATE KEY UPDATE");	
+							status = '".(int)$status."' ");	
 
 
 		echo ($insertproduct);
