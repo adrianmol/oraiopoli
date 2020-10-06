@@ -160,9 +160,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_description SET 
 							product_id  = '".(int)$products[29039]['id']."' ON DUPLICATE KEY UPDATE product_id = '".(int)$products[29039]['id']."',
 							language_id = '".$language_id."',
-							name = '".$products[29039]['title'] . "',
-							meta_title = '".$products[29039]['title'] . "'
-							
+							name = '".(string)$products[29039]['title'] . "',
+							meta_title = '".(string)$products[29039]['title'] . "'
+
 							");	
 
 
