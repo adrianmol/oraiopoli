@@ -21,7 +21,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// echo "</pre>";
 
 		//$data  = $this->GetCategory();
-		 $this->InsertProduct();
+		 $this->GetPhotoPath(00028950);
 
 		// echo "<pre>";
 		// print_r($data);
@@ -38,7 +38,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		foreach($ProductData->StoreDetails as $product){
 			
-			if($product->ItemStock >= 0 ) $product->ItemStock = 0;
+			if($product->ItemStock <= 0 ) $product->ItemStock = 0;
 			
 
 			(int)$productID = $product->ItemId;
@@ -119,15 +119,27 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$products   = $products[0];
 		$categories = $this->GetCategory();
 
-		// $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
-		// 					product_id = '".$products['id']."',
-		// 					model = '".$products['code']."'
-		// 					");	
+
+		if($products[18]['itemStock']){
+			$StockStatus = 7;
+		}else {
+			$StockStatus = 5;
+		}
+
+		
+
+
+		$this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
+							product_id = '".$products[18]."',
+							model = '".$products[18]['code']."'
+							quantity ='".$products[18]['itemStock']."'
+							stock_status_id = '".$StockStatus."'
+							");	
 
 		echo "<pre>";
 		print_r($products);
 		echo "</pre>";
-		
+
 		echo "<pre>";
 		print_r($categories);
 		echo "</pre>";
@@ -202,9 +214,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//echo $result;
 		$xml=simplexml_load_string($result) or die("Error: Cannot create object");
 		
-		//echo "<pre>";
-		// print_r($xml);
-		// echo "</pre>";
+		echo "<pre>";
+		/print_r($xml);
+		echo "</pre>";
 		return $result;
 
 	}
