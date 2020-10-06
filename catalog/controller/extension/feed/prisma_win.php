@@ -121,7 +121,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$this->db->query("INSERT INTO ". DB_PREFIX ." product SET 
 							product_id = '".$products['id']."',
-							model = '".$products['id']['code']."'
+							model = '".$products['code']."'
 							");	
 
 		
