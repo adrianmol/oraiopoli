@@ -130,7 +130,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		}
 
 		$this->GetPhotoPath($products[29039]['code']);
-		$pathPhoto = ("/images/products/".$products[29039]['code']."JPG");
+		$pathPhoto = ("/images/products/".$products[29039]['code'].".JPG");
 
 
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
@@ -140,7 +140,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							stock_status_id = '".$StockStatus."'
 							image = '".$pathPhoto."'
 							shipping = '".$status."'
-							price = '".$products[29039]['price']."'
+							price = '".$products[29039]['price_wholesale']."'
 							tax_class_id = '".$tax_class."'
 							status = '".$status."'");	
 
