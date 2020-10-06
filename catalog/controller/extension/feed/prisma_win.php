@@ -133,6 +133,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$pathPhoto = ("/images/products/".$products[29039]['code'].".JPG");
 
 
+		$newdatacreated = date("Y/m/d H:i",$products[29039]['datacreated']);
+
+
+
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
 							product_id = '".(int)$products[29039]['id']."' ON DUPLICATE KEY UPDATE product_id = '".(int)$products[29039]['id']."',
 							model = '".(int)$products[29039]['code']."',
@@ -143,7 +147,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							price = '".$products[29039]['price_vat']."',
 							tax_class_id = '".(int)$tax_class."',
 							status = '".(int)$status."',
-							date_added ='".$products[29039]['datacreated'] ."',
+							date_added ='". $newdatacreated ."',
 							date_modified ='".$products[29039]['datamodified'] ."'
 							
 							
