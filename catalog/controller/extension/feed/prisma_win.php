@@ -122,6 +122,15 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$categories = $this->GetCategory();
 		$status     = 1; $tax_class  = 0; $language_id = 2; $storeid =0;
 
+		foreach($products as $product){
+
+			
+		}
+		echo "<pre>";
+		print_r($product);
+		echo "</pre>";
+
+
 		if($products[29039]['itemStock']){
 			$StockStatus = 7;
 		}else {
@@ -178,7 +187,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							");	
 
 
-		echo ("Update : ".$insertproduct. " product(s)");
+		//echo ("Update : ".$insertproduct. " product(s)");
 	}
 
 
