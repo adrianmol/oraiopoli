@@ -122,6 +122,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$categories = $this->GetCategory();
 		$status     = 1;
 		$tax_class  = 0;
+		$language_id = 2;
 
 		if($products[29039]['itemStock']){
 			$StockStatus = 7;
@@ -134,11 +135,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 		$sec = strtotime($products[29039]['datacreated']);
-		echo ($sec);
-		echo "<br>";
-
 		$newdatacreated = date("Y/m/d H:i",$sec);
-		echo ($newdatacreated);
+
+		$sec = strtotime($products[29039]['datamodified']);
+		$newdatamodified = date("Y/m/d H:i",$sec);
 
 
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
@@ -152,10 +152,19 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							tax_class_id = '".(int)$tax_class."',
 							status = '".(int)$status."',
 							date_added ='". $newdatacreated ."',
-							date_modified ='".$products[29039]['datamodified'] ."'
+							date_modified ='".$newdatamodified ."'
 							
 							
 							");	
+
+		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_description SET 
+							product_id  = '".(int)$products[29039]['id']."' ON DUPLICATE KEY UPDATE product_id = '".(int)$products[29039]['id']."',
+							language_id = '".$language_id."',
+							name = '".$products[29039]['title'] . "',
+							meta_title = '".$products[29039]['title'] . "'
+							
+							");	
+
 
 
 		echo ("Update : ".$insertproduct. " product(s)");
