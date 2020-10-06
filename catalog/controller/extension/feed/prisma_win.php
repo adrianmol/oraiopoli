@@ -120,9 +120,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$products   = $this->GetProducts();
 		$products   = $products[0];
 		$categories = $this->GetCategory();
-		$status     = 1;
-		$tax_class  = 0;
-		$language_id = 2;
+		$status     = 1; $tax_class  = 0; $language_id = 2; $storeid =0;
 
 		if($products[29039]['itemStock']){
 			$StockStatus = 7;
@@ -157,14 +155,21 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							
 							");	
 
-		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_description SET 
-							product_id  = '".(int)$products[29039]['id']."' ON DUPLICATE KEY UPDATE product_id = '".(int)$products[29039]['id']."',
-							language_id = '".$language_id."',
-							name = '".(string)$products[29039]['title'] . "',
-							meta_title = '".(string)$products[29039]['title'] . "'
+		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_description pd, product_to_store ps SET 
+							pd.product_id  = '".(int)$products[29039]['id']."' ON DUPLICATE KEY UPDATE product_id = '".(int)$products[29039]['id']."',
+							pd.language_id = '".$language_id."',
+							pd.name = '".(string)$products[29039]['title'] . "',
+							pd.meta_title = '".(string)$products[29039]['title'] . "',
+							ps.product_id = '".(int)$products[29039]['id']."' ON DUPLICATE KEY UPDATE product_id = '".(int)$products[29039]['id']."',
+							ps.store_id = '".$storeid."'
 
 							");	
 
+		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_category  SET 
+							product_id  = '".(int)$products[29039]['id']."' ON DUPLICATE KEY UPDATE product_id = '".(int)$products[29039]['id']."',
+							category_id = '".(int)$categories[29039]['categoryID']."' ON DUPLICATE KEY UPDATE product_id = '".(int)$categories[29039]['categoryID']."',
+
+							");	
 
 
 		echo ("Update : ".$insertproduct. " product(s)");
