@@ -55,6 +55,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			'price_wholesale'	=>(string) $product->ItemWholesale,
 			'price_vat'			=>(string) $product->ItemRetailVat,
 			'mudescr'			=>(string) $product->ItemMUDescr,
+			'datacreated'		=>(string) $product->ItemDateCreated,
+			'datamodified'		=>(string) $product->ItemDateModified,
 			); 
 
 			$category[$i] = array(
