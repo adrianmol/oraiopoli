@@ -137,7 +137,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		echo ($sec);
 		echo "<br>";
 
-		$newdatacreated = date("Y/d/m H:i",$sec);
+		$newdatacreated = date("Y/m/d H:i",$sec);
 		echo ($newdatacreated);
 
 
