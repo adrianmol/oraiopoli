@@ -38,6 +38,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		foreach($ProductData->StoreDetails as $product){
 			
+			if($product->ItemStock >= 0 ) $product->ItemStock = 0;
+			
 
 			(int)$productID = $product->ItemId;
 			$data[(int)$productID] = array(
@@ -117,10 +119,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$products   = $products[0];
 		$categories = $this->GetCategory();
 
-
-		echo "<pre>";
-		print_r($products);
-		echo "</pre>";
+		$this->db->query("INSERT INTO ". DB_PREFIX ." product SET 
+							product_id = '".$products['id']['id']."',
+							model = '".$products['id']['code']."',
+							");	
 
 		
 	}
