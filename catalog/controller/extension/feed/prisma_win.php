@@ -155,7 +155,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							
 							");	
 
-		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_description pd, product_to_store ps SET 
+		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_description as pd, product_to_store as ps SET 
 							pd.product_id  = '".(int)$products[29039]['id']."' ON DUPLICATE KEY UPDATE pd.product_id = '".(int)$products[29039]['id']."',
 							pd.language_id = '".$language_id."',
 							pd.name = '".(string)$products[29039]['title'] . "',
