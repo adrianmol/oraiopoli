@@ -159,7 +159,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							product_id  = '".(int)$products[29039]['id']."' ON DUPLICATE KEY UPDATE product_id = '".(int)$products[29039]['id']."',
 							language_id = '".$language_id."',
 							name = '".(string)$products[29039]['title'] . "',
-							pmeta_title = '".(string)$products[29039]['title'] . "',
+							meta_title = '".(string)$products[29039]['title'] . "',
 
 							");	
 
