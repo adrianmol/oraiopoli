@@ -142,7 +142,12 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							shipping = '".(int)$status."',
 							price = '".$products[29039]['price_vat']."',
 							tax_class_id = '".(int)$tax_class."',
-							status = '".(int)$status."' ");	
+							status = '".(int)$status."',
+							date_added ='".$products[29039]['datacreated'] ."'
+							date_modified ='".$products[29039]['datamodified'] ."'
+							
+							
+							");	
 
 
 		echo ($insertproduct);
