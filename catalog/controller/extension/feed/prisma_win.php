@@ -156,11 +156,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							");	
 
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_description pd, product_to_store ps SET 
-							pd.product_id  = '".(int)$products[29039]['id']."' ON DUPLICATE KEY UPDATE product_id = '".(int)$products[29039]['id']."',
+							pd.product_id  = '".(int)$products[29039]['id']."' ON DUPLICATE KEY UPDATE pd.product_id = '".(int)$products[29039]['id']."',
 							pd.language_id = '".$language_id."',
 							pd.name = '".(string)$products[29039]['title'] . "',
 							pd.meta_title = '".(string)$products[29039]['title'] . "',
-							ps.product_id = '".(int)$products[29039]['id']."' ON DUPLICATE KEY UPDATE product_id = '".(int)$products[29039]['id']."',
+							ps.product_id = '".(int)$products[29039]['id']."' ON DUPLICATE KEY UPDATE ps.sproduct_id = '".(int)$products[29039]['id']."',
 							ps.store_id = '".$storeid."'
 
 							");	
