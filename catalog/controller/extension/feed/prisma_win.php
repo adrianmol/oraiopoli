@@ -21,7 +21,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// echo "</pre>";
 
 		//$data  = $this->GetCategory();
-		 $this->GetPhotoPath('00028950');
+		//$this->GetPhotoPath('00028950');
+
+		$this->InsertProduct();
 
 		// echo "<pre>";
 		// print_r($data);
@@ -118,31 +120,32 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$products   = $this->GetProducts();
 		$products   = $products[0];
 		$categories = $this->GetCategory();
+		$status     = 1;
+		$tax_class  = 9;
 
-
-		if($products[18]['itemStock']){
+		if($products[29039]['itemStock']){
 			$StockStatus = 7;
 		}else {
 			$StockStatus = 5;
 		}
 
-		
+		$this->GetPhotoPath($products[29039]['code']);
+		$pathPhoto = ("/images/products/".$products[29039]['code']."JPG");
 
 
-		$this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
-							product_id = '".$products[18]."',
-							model = '".$products[18]['code']."'
-							quantity ='".$products[18]['itemStock']."'
+		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
+							product_id = '".$products[29039]."',
+							model = '".$products[29039]['code']."'
+							quantity ='".$products[29039]['itemStock']."'
 							stock_status_id = '".$StockStatus."'
-							");	
+							image = '".$pathPhoto."'
+							shipping = '".$status."'
+							price = '".$products[29039]['price']."'
+							tax_class_id = '".$tax_class."'
+							status = '".$status."'");	
 
-		echo "<pre>";
-		print_r($products);
-		echo "</pre>";
 
-		echo "<pre>";
-		print_r($categories);
-		echo "</pre>";
+		echo ($insertproduct);
 	}
 
 
