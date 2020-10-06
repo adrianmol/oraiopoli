@@ -134,8 +134,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 		$sec = $products[29039]['datacreated'];
-		$newdatacreated = date("Y/d/m H:i",$sec);
+		echo ($sec);
+		echo "<br>";
 
+		$newdatacreated = date("Y/d/m H:i",$sec);
+		echo ($newdatacreated);
 
 
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
