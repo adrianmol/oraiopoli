@@ -143,14 +143,14 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							price = '".$products[29039]['price_vat']."',
 							tax_class_id = '".(int)$tax_class."',
 							status = '".(int)$status."',
-							date_added ='".$products[29039]['datacreated'] ."'
+							date_added ='".$products[29039]['datacreated'] ."',
 							date_modified ='".$products[29039]['datamodified'] ."'
 							
 							
 							");	
 
 
-		echo ($insertproduct);
+		echo ("Update : ".$insertproduct. "product(s)");
 	}
 
 
@@ -222,9 +222,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//echo $result;
 		$xml=simplexml_load_string($result) or die("Error: Cannot create object");
 		
-		echo "<pre>";
-		print_r($xml);
-		echo "</pre>";
+		// echo "<pre>";
+		// print_r($xml);
+		// echo "</pre>";
 		return $result;
 
 	}
