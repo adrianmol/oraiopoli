@@ -133,7 +133,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$pathPhoto = ("/images/products/".$products[29039]['code'].".JPG");
 
 
-		$sec = $products[29039]['datacreated'];
+		$sec = strtotime($products[29039]['datacreated']);
 		echo ($sec);
 		echo "<br>";
 
