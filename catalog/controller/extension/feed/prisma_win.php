@@ -134,7 +134,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
-							product_id = '".$products[29039]."',
+							product_id = '".$products[29039]['id']."',
 							model = '".$products[29039]['code']."'
 							quantity ='".$products[29039]['itemStock']."'
 							stock_status_id = '".$StockStatus."'
