@@ -150,7 +150,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							");	
 
 
-		echo ("Update : ".$insertproduct. "product(s)");
+		echo ("Update : ".$insertproduct. " product(s)");
 	}
 
 
