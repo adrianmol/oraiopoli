@@ -121,7 +121,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$products   = $products[0];
 		$categories = $this->GetCategory();
 		$status     = 1;
-		$tax_class  = 9;
+		$tax_class  = 0;
 
 		if($products[29039]['itemStock']){
 			$StockStatus = 7;
@@ -140,9 +140,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							stock_status_id = '".(int)$StockStatus."',
 							image = '".$pathPhoto."',
 							shipping = '".(int)$status."',
-							price = '".$products[29039]['price_wholesale']."',
+							price = '".$products[29039]['price_vat']."',
 							tax_class_id = '".(int)$tax_class."',
-							status = '".(int)$status."'");	
+							status = '".(int)$status."' ON DUPLICATE KEY UPDATE");	
 
 
 		echo ($insertproduct);
