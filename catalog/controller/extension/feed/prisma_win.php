@@ -266,7 +266,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	function GetDataURL($path) {
 
 		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/'. $path;
-		$data = 'SiteKey=bs-gg183-352&Date=10-6-2020&StorageCode=000';
+		$data = 'SiteKey=bs-gg183-352&Date=1-1-2020&StorageCode=000';
 		
 		// use key 'http' even if you send the request to https://...
 		$options = array(
