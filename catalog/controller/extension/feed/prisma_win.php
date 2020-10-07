@@ -3,7 +3,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	public function index() {
 
 
-#https://oraiopoli.gr/index.php?route=extension/feed/prisma_win
+#https://oraiomarket.gr/index.php?route=extension/feed/prisma_win
 
 
 		// $data = $this->GetCategory();
