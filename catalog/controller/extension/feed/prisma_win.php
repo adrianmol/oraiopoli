@@ -154,7 +154,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							stock_status_id = '".(int)$StockStatus."',
 							image = '".$pathPhoto."',
 							shipping = '".(int)$status."',
-							price = '".$products[]['price_vat']."',
+							price = '".$products[29039]['price_vat']."',
 							tax_class_id = '".(int)$tax_class."',
 							status = '".(int)$status."',
 							date_added ='". $newdatacreated ."',
