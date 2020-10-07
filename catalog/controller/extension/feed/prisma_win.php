@@ -139,6 +139,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		if($products[9447]['mudescr'] == 'Κιλά'){
 			$minimum = 0.20;
+			echo ($minimum);
 		}
 
 
