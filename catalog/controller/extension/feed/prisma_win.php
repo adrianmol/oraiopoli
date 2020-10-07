@@ -164,7 +164,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							price = '".$products[9447]['price_vat']."',
 							tax_class_id = '".(int)$tax_class."',
 							status = '".(int)$status."',
-							minimum = '".$minimum."',
+							minimum = '".(float)$minimum."',
 							date_added ='". $newdatacreated ."',
 							date_modified ='".$newdatamodified ."'
 
