@@ -27,7 +27,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 
-		$this->GetManufacturer();
+		//$this->GetManufacturer();
 
 
 
