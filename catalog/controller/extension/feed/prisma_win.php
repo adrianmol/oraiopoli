@@ -223,22 +223,23 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	function GetManufacturer(){
 	
 		$manufacturers = $this->GetProducts();
-		$manufacturer = $manufacturers[0];
+		$manufacturers = $manufacturers[0];
 
+		foreach($manufacturers as $manufacturer){
 
-		$manufacturersDB = $this->db->query("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer WHERE manufacturer_id ='".(int)$manufacturer[18]['manufacturer_id']."'");
+		$manufacturersDB = $this->db->query("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer WHERE manufacturer_id ='".(int)$manufacturer['id']['manufacturer_id']."'");
 		$manufacturerDB =$manufacturersDB->rows;
 
 		if(empty($manufacturerDB)){ 
 
 		$insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
 
-				manufacturer_id  = '".(int)$manufacturer[18]['manufacturer_id']."',
-				name = '".(string)$manufacturer[18]['manufacturer']."',
+				manufacturer_id  = '".(int)$manufacturer['id']['manufacturer_id']."',
+				name = '".(string)$manufacturer['id']['manufacturer']."',
 				sort_order = 0 
 
-				ON DUPLICATE KEY UPDATE manufacturer_id = '".(int)$manufacturer[18]['manufacturer_id']."', 
-										name = '".(string)$manufacturer[18]['manufacturer']."'
+				ON DUPLICATE KEY UPDATE manufacturer_id = '".(int)$manufacturer['id']['manufacturer_id']."', 
+										name = '".(string)$manufacturer['id']['manufacturer']."'
 
 		");	
 		
@@ -246,7 +247,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		}
 
-
+	}
 	
 	}
 
