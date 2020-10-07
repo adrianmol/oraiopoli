@@ -232,7 +232,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$manufacturerDB =$manufacturersDB->rows;
 
 		if(empty($manufacturerDB)){ 
-		$manuf = preg_replace("/[^a-zA-Z0-9]/", " ", $manufacturer['manufacturer']);	
+		$manuf = preg_replace("/[^a-zA-Z0-9]/", "", $manufacturer['manufacturer']);	
 		$insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
 
 				manufacturer_id  = '".(int)$manufacturer['manufacturer_id']."',
@@ -244,7 +244,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		");	
 		
-		echo ($manuf ." = " .$insertmanufacturer ." update </br>");
+		echo ( $manufacturer['manufacturer'] ." = " .$insertmanufacturer ." update </br>");
 
 		}
 
