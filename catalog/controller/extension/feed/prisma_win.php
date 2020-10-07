@@ -223,14 +223,16 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	function GetManufacturer(){
 	
 		$manufacturers = $this->GetProducts();
-	
+		$i = 0;
+
+
 		foreach($manufacturers as $manufacturer)
 
 		$manufacturersDB = $this->db->query("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer");
 		$manufacturersDB = $manufacturersDB->rows;
 		
 		foreach($manufacturersDB as $manufacturerDB){
-			$manufacturerDB['ID'] = $manufacturerDB['manufacturer_id'];
+			$manufacturerDB['ID'] = $manufacturerDB[$i++]['manufacturer_id'];
 		}
 
 		echo "<pre>";
