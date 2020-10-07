@@ -150,17 +150,20 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
 							product_id = '".(int)$products[29039]['id']."' ,
 							model = '".(int)$products[29039]['code']."',
-							quantity ='".(float)$products[29039]['itemStock']."',
+							quantity ='".(float)$products[29039][3]."',
 							stock_status_id = '".(int)$StockStatus."',
 							image = '".$pathPhoto."',
 							shipping = '".(int)$status."',
-							price = '".$products[29039]['price_vat']."',
+							price = '".$products[29039][13]."',
 							tax_class_id = '".(int)$tax_class."',
 							status = '".(int)$status."',
 							date_added ='". $newdatacreated ."',
 							date_modified ='".$newdatamodified ."'
-							
-							ON DUPLICATE KEY UPDATE product_id = '".(int)$products[29039]['id']."'
+
+							ON DUPLICATE KEY UPDATE product_id = '".(int)$products[29039]['id']."', 
+													price = '".$products[29039]['price_vat']."',
+													quantity ='".(float)$products[29039]['itemStock']."',
+													stock_status_id = '".(int)$StockStatus."'
 							
 							");	
 
@@ -169,14 +172,16 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							language_id = '".$language_id."',
 							name = '".(string)$products[29039]['title'] . "',
 							meta_title = '".(string)$products[29039]['title'] . "' 
+
 							ON DUPLICATE KEY UPDATE product_id = '".(int)$products[29039]['id']."'
 							");	
 
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_store SET 
 
-							product_id = '".(int)$products[29039]['id']."' ON DUPLICATE KEY UPDATE product_id = '".(int)$products[29039]['id']."',
+							product_id = '".(int)$products[29039]['id']."' ,
 							store_id = '".$storeid."'
 
+							ON DUPLICATE KEY UPDATE product_id = '".(int)$products[29039]['id']."'
 							");	
 
 
