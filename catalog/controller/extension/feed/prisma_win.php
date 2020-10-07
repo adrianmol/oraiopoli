@@ -234,8 +234,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$manufacturersDB = $this->db->query("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer WHERE manufacturer_id ='".$manufacturer[18]['manufacturer_id'] ."'");
 
-		
-		echo ($manufacturersDB);
+		echo "<pre>";
+		print_r($manufacturersDB);
+		echo "</pre>";
+
+		echo (is_null($manufacturersDB));
 	
 	
 	}
