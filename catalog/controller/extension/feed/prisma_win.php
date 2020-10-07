@@ -226,9 +226,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$manufacturer = $manufacturers[0];
 		$i = 0;
 
-		echo "<pre>";
-		print_r($manufacturer);
-		echo "</pre>";
+		// echo "<pre>";
+		// print_r($manufacturer);
+		// echo "</pre>";
 
 
 
@@ -238,7 +238,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		print_r($manufacturersDB);
 		echo "</pre>";
 
-		echo (is_null($manufacturersDB));
+		echo ($manufacturersDB['num_rows']);
 	
 	
 	}
