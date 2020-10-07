@@ -120,7 +120,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$products   = $this->GetProducts();
 		$products   = $products[0];
 		$categories = $this->GetCategory();
-		$status     = 1; $tax_class  = 0; $language_id = 2; $storeid =0; $minimum = 1.00;
+
+		$status = 1; $tax_class  = 0; $language_id = 2; $storeid =0; $minimum = 1.00;
 
 		foreach($products as $product){
 
@@ -147,12 +148,13 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$this->GetPhotoPath($products[9447]['code']);
 		$pathPhoto = ("images/catalog/product/".$products[9447]['code'].".JPG");
 
-
 		$sec = strtotime($products[9447]['datacreated']);
 		$newdatacreated = date("Y/m/d H:i",$sec);
 
 		$sec = strtotime($products[9447]['datamodified']);
 		$newdatamodified = date("Y/m/d H:i",$sec);
+
+
 
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
 							product_id = '".(int)$products[9447]['id']."' ,
@@ -235,7 +237,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	function GetDataURL($path) {
 
 		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/'. $path;
-		$data = 'SiteKey=bs-gg183-352&Date=1-10-2020&StorageCode=000';
+		$data = 'SiteKey=bs-gg183-352&Date=10-6-2020&StorageCode=000';
 		
 		// use key 'http' even if you send the request to https://...
 		$options = array(
