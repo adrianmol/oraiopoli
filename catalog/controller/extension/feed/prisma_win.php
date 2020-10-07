@@ -23,7 +23,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$data  = $this->GetCategory();
 		//$this->GetPhotoPath('00028950');
 
-		// $this->InsertProduct();
+		$this->InsertProduct();
 
 
 
@@ -171,7 +171,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							shipping = '".(int)$status."',
 							price = '".$products[1871]['price_vat']."',
 							tax_class_id = '".(int)$tax_class."',
-
+							manufacturer_id = '".(int)$products[1871]['manufacturer_id']."',
 							status = '".(int)$status."',
 							minimum = '".(float)$minimum."',
 							date_added ='". $newdatacreated ."',
