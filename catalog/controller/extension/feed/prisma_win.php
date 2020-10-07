@@ -227,29 +227,27 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		foreach($manufacturers as $manufacturer){
 
-		// $manufacturersDB = $this->db->query("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer WHERE manufacturer_id ='".(int)$manufacturer['manufacturer_id']."'");
-		// $manufacturerDB =$manufacturersDB->rows;
+		$manufacturersDB = $this->db->query("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer WHERE manufacturer_id ='".(int)$manufacturer['manufacturer_id']."'");
+		$manufacturerDB =$manufacturersDB->rows;
 
-		// if(empty($manufacturerDB)){ 
+		if(empty($manufacturerDB)){ 
 
-		// $insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
+		$insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
 
-		// 		manufacturer_id  = '".(int)$manufacturer['manufacturer_id']."',
-		// 		name = '".(string)$manufacturer['manufacturer']."',
-		// 		sort_order = 0 
+				manufacturer_id  = '".(int)$manufacturer['manufacturer_id']."',
+				name = '".(string)$manufacturer['manufacturer']."',
+				sort_order = 0 
 
-		// 		ON DUPLICATE KEY UPDATE manufacturer_id = '".(int)$manufacturer['manufacturer_id']."', 
-		// 								name = '".(string)$manufacturer['manufacturer']."'
+				ON DUPLICATE KEY UPDATE manufacturer_id = '".(int)$manufacturer['manufacturer_id']."', 
+										name = '".(string)$manufacturer['manufacturer']."'
 
-		// ");	
+		");	
 		
-		// echo ($insertmanufacturer);
+		echo ($insertmanufacturer);
 
-		// }
+		}
 
-		echo "<pre>";
-		print_r ($manufacturer);
-		echo "<pre>";
+
 
 	}
 	
