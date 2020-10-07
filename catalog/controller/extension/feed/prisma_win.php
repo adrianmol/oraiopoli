@@ -234,11 +234,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
 
 				manufacturer_id  = '".(int)$manufacturer[18]['manufacturer_id']."' ,
-				manufacturer = '".(int)$manufacturer[18]['manufacturer']."' ,
+				name = '".(int)$manufacturer[18]['manufacturer']."' ,
 				sort_order = 0 ,
 
 				ON DUPLICATE KEY UPDATE manufacturer_id = '".(int)$manufacturer[18]['manufacturer_id']."', 
-										manufacturer = '".(int)$manufacturer[18]['manufacturer']."'
+										name = '".(int)$manufacturer[18]['manufacturer']."'
 
 		");	
 		
