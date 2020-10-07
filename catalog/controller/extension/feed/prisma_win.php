@@ -238,7 +238,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		print_r($manufacturersDB);
 		echo "</pre>";
 
-		echo ($manufacturersDB['num_rows']);
+		echo ($manufacturersDB->rows);
 	
 	
 	}
