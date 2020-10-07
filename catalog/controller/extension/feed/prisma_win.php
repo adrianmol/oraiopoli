@@ -234,16 +234,16 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		if(empty($manufacturerDB) && !empty($manufacturer['manufacturer'])){ 
 		
-		// $insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
+		$insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
 
-		// 		manufacturer_id  = '".(int)$manufacturer['manufacturer_id']."',
-		// 		name = '".(string)$manuf."',
-		// 		sort_order = 0 
+				manufacturer_id  = '".(int)$manufacturer['manufacturer_id']."',
+				name = '".(string)$manuf."',
+				sort_order = 0 
 
-		// 		ON DUPLICATE KEY UPDATE manufacturer_id = '".(int)$manufacturer['manufacturer_id']."', 
-		// 								name = '".(string)$manuf."'
+				ON DUPLICATE KEY UPDATE manufacturer_id = '".(int)$manufacturer['manufacturer_id']."', 
+										name = '".(string)$manuf."'
 
-		// ");	
+		");	
 		
 		echo ( $manufacturer['manufacturer'] ." = " .$manuf ." , " . $manufacturer['manufacturer_id'] ."</br>");
 
