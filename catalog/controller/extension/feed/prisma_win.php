@@ -147,7 +147,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$sec = strtotime($products[29039]['datamodified']);
 		$newdatamodified = date("Y/m/d H:i",$sec);
 
-
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
 							product_id = '".(int)$products[29039]['id']."' ON DUPLICATE KEY UPDATE product_id = '".(int)$products[29039]['id']."',
 							model = '".(int)$products[29039]['code']."',
