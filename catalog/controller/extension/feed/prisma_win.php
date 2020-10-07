@@ -224,25 +224,26 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	
 		$manufacturers = $this->GetProducts();
 		$manufacturer = $manufacturers[0];
-		$i = 0;
-
-		// echo "<pre>";
-		// print_r($manufacturer);
-		// echo "</pre>";
-
 
 
 		$manufacturersDB = $this->db->query("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer WHERE manufacturer_id ='".(int)$manufacturer[18]['manufacturer_id']."'");
 		$manufacturerDB =$manufacturersDB->rows;
 
-		// echo "<pre>";
-		// print_r($manufacturer);
-		// echo "</pre>";
-
 		if(empty($manufacturerDB)){ 
 
-		echo "Given Array is empty <br>"; 
+		$insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
+
+				manufacturer_id  = '".(int)$manufacturer[18]['manufacturer_id']."' ,
+				manufacturer = '".(int)$manufacturer[18]['manufacturer']."' ,
+				sort_order = 0 ,
+
+				ON DUPLICATE KEY UPDATE manufacturer_id = '".(int)$manufacturer[18]['manufacturer_id']."', 
+										manufacturer = '".(int)$manufacturer[18]['manufacturer']."'
+
+		");	
 		
+		echo ($insertmanufacturer);
+
 		}
 
 
