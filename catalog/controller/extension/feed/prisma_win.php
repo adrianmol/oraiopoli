@@ -132,77 +132,77 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		echo "</pre>";
 
 
-		if($products[9447]['itemStock']){
+		if($products[1871]['itemStock']){
 			$StockStatus = 7;
 		}else {
 			$StockStatus = 5;
 		}
 
-		if($products[9447]['mudescr'] == 'Κιλά'){
+		if($products[1871]['mudescr'] == 'Κιλά'){
 			$minimum = 0.20;
 			echo ($minimum);
 		}
 
 
 
-		$this->GetPhotoPath($products[9447]['code']);
+		$this->GetPhotoPath($products[1871]['code']);
 		$pathPhoto = ("images/catalog/product/".$products[9447]['code'].".JPG");
 
-		$sec = strtotime($products[9447]['datacreated']);
+		$sec = strtotime($products[1871]['datacreated']);
 		$newdatacreated = date("Y/m/d H:i",$sec);
 
-		$sec = strtotime($products[9447]['datamodified']);
+		$sec = strtotime($products[1871]['datamodified']);
 		$newdatamodified = date("Y/m/d H:i",$sec);
 
 
 
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
-							product_id = '".(int)$products[9447]['id']."' ,
-							model = '".(int)$products[9447]['code']."',
-							quantity ='".(float)$products[9447]['itemStock']."',
+							product_id = '".(int)$products[1871]['id']."' ,
+							model = '".(int)$products[1871]['code']."',
+							quantity ='".(float)$products[1871]['itemStock']."',
 							stock_status_id = '".(int)$StockStatus."',
 							image = '".$pathPhoto."',
 							shipping = '".(int)$status."',
-							price = '".$products[9447]['price_vat']."',
+							price = '".$products[1871]['price_vat']."',
 							tax_class_id = '".(int)$tax_class."',
 							status = '".(int)$status."',
 							minimum = '".(float)$minimum."',
 							date_added ='". $newdatacreated ."',
 							date_modified ='".$newdatamodified ."'
 
-							ON DUPLICATE KEY UPDATE product_id = '".(int)$products[9447]['id']."', 
-													price = '".$products[9447]['price_vat']."',
-													quantity ='".(float)$products[9447]['itemStock']."',
+							ON DUPLICATE KEY UPDATE product_id = '".(int)$products[1871]['id']."', 
+													price = '".$products[1871]['price_vat']."',
+													quantity ='".(float)$products[1871]['itemStock']."',
 													stock_status_id = '".(int)$StockStatus."'
 							
 							");	
 
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_description SET 
-							product_id  = '".(int)$products[9447]['id']."' ,
+							product_id  = '".(int)$products[1871]['id']."' ,
 							language_id = '".$language_id."',
-							name = '".(string)$products[9447]['title'] . "',
-							meta_title = '".(string)$products[9447]['title'] . "' 
+							name = '".(string)$products[1871]['title'] . "',
+							meta_title = '".(string)$products[1871]['title'] . "' 
 
-							ON DUPLICATE KEY UPDATE product_id = '".(int)$products[9447]['id']."'
+							ON DUPLICATE KEY UPDATE product_id = '".(int)$products[1871]['id']."'
 							");	
 
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_store SET 
 
-							product_id = '".(int)$products[9447]['id']."' ,
+							product_id = '".(int)$products[1871]['id']."' ,
 							store_id = '".$storeid."'
 
-							ON DUPLICATE KEY UPDATE product_id = '".(int)$products[9447]['id']."'
+							ON DUPLICATE KEY UPDATE product_id = '".(int)$products[1871]['id']."'
 							");	
 
 
 
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_category  SET 
 
-							product_id  = '".(int)$products[9447]['id']."' ,
-							category_id = '".(int)$categories[9447]['categoryID']."' 
+							product_id  = '".(int)$products[1871]['id']."' ,
+							category_id = '".(int)$categories[1871]['categoryID']."' 
 
-							ON DUPLICATE KEY UPDATE product_id = '".(int)$products[9447]['id']."', 
-													category_id = '".(int)$categories[9447]['categoryID']."'
+							ON DUPLICATE KEY UPDATE product_id = '".(int)$products[1871]['id']."', 
+													category_id = '".(int)$categories[1871]['categoryID']."'
 
 							");	
 
