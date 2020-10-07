@@ -240,6 +240,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		echo ($manufacturersDB->rows);
 	
+		if(empty($manufacturersDB->rows)){ 
+    	echo "Given Array is empty <br>"; 
+		}
+
+
 	
 	}
 
