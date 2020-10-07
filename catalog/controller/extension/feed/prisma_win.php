@@ -148,7 +148,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$newdatamodified = date("Y/m/d H:i",$sec);
 
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
-							product_id = '".(int)$products[29039]['id']."' ON DUPLICATE KEY UPDATE product_id = '".(int)$products[29039]['id']."',
+							product_id = '".(int)$products[29039]['id']."' ,
 							model = '".(int)$products[29039]['code']."',
 							quantity ='".(float)$products[29039]['itemStock']."',
 							stock_status_id = '".(int)$StockStatus."',
@@ -160,6 +160,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							date_added ='". $newdatacreated ."',
 							date_modified ='".$newdatamodified ."'
 							
+							ON DUPLICATE KEY UPDATE product_id = '".(int)$products[29039]['id']."'
 							
 							");	
 
@@ -184,7 +185,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 							product_id  = '".(int)$products[29039]['id']."' ,
 							category_id = '".(int)$categories[29039]['categoryID']."' 
-							
+
 							ON DUPLICATE KEY UPDATE product_id = '".(int)$products[29039]['id']."', 
 													category_id = '".(int)$categories[29039]['categoryID']."'
 
