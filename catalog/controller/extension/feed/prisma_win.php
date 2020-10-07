@@ -244,7 +244,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		");	
 		
-		echo ($insertmanufacturer);
+		echo ($manuf ." = " .$insertmanufacturer ." update </br>");
 
 		}
 
