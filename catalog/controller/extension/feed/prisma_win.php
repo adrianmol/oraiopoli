@@ -235,7 +235,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 				manufacturer_id  = '".(int)$manufacturer[18]['manufacturer_id']."',
 				name = '".(string)$manufacturer[18]['manufacturer']."',
-				sort_order = 0 ,
+				sort_order = 0 
 
 				ON DUPLICATE KEY UPDATE manufacturer_id = '".(int)$manufacturer[18]['manufacturer_id']."', 
 										name = '".(string)$manufacturer[18]['manufacturer']."'
