@@ -232,7 +232,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$manufacturersDB = $manufacturersDB->rows;
 		
 		foreach($manufacturersDB as $manufacturerDB){
-			$manufacturerDB['ID'] = $manufacturerDB[$i++]['manufacturer_id'];
+			$manufacturerDB = $manufacturerDB[$i++]['manufacturer_id'];
 		}
 
 		echo "<pre>";
