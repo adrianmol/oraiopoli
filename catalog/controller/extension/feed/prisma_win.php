@@ -230,21 +230,22 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$manufacturersDB = $this->db->query("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer WHERE manufacturer_id ='".(int)$manufacturer['manufacturer_id']."'");
 		$manufacturerDB =$manufacturersDB->rows;
+		$manuf = preg_replace("/[^a-zA-Z0-9]/", "", $manufacturer['manufacturer']);	
 
 		if(empty($manufacturerDB) && !empty($manufacturer['manufacturer'])){ 
-		$manuf = preg_replace("/[^a-zA-Z0-9]/", "", $manufacturer['manufacturer']);	
-		$insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
-
-				manufacturer_id  = '".(int)$manufacturer['manufacturer_id']."',
-				name = '".(string)$manuf."',
-				sort_order = 0 
-
-				ON DUPLICATE KEY UPDATE manufacturer_id = '".(int)$manufacturer['manufacturer_id']."', 
-										name = '".(string)$manuf."'
-
-		");	
 		
-		echo ( $manufacturer['manufacturer'] ." = " .$insertmanufacturer ." update </br>");
+		// $insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
+
+		// 		manufacturer_id  = '".(int)$manufacturer['manufacturer_id']."',
+		// 		name = '".(string)$manuf."',
+		// 		sort_order = 0 
+
+		// 		ON DUPLICATE KEY UPDATE manufacturer_id = '".(int)$manufacturer['manufacturer_id']."', 
+		// 								name = '".(string)$manuf."'
+
+		// ");	
+		
+		echo ( $manufacturer['manufacturer'] ." = " .$manuf ." , " . $manufacturer['manufacturer_id'] ."</br>");
 
 		}
 
