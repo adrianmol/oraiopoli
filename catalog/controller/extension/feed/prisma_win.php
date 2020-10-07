@@ -230,7 +230,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$manufacturersDB = $this->db->query("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer WHERE manufacturer_id ='".(int)$manufacturer['manufacturer_id']."'");
 		$manufacturerDB =$manufacturersDB->rows;
-		$manuf = preg_replace('\'', '"', ',' , ';', '<', '>',  ' ', $manufacturer['manufacturer']);	
+		$manuf = preg_replace(array('\'', '"', ',' , ';', '<', '>'),  ' ', $manufacturer['manufacturer']);	
 
 		if(empty($manufacturerDB) && !empty($manufacturer['manufacturer'])){ 
 		
