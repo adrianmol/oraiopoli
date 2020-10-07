@@ -171,6 +171,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							shipping = '".(int)$status."',
 							price = '".$products[1871]['price_vat']."',
 							tax_class_id = '".(int)$tax_class."',
+
 							status = '".(int)$status."',
 							minimum = '".(float)$minimum."',
 							date_added ='". $newdatacreated ."',
@@ -231,23 +232,21 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$manufacturerDB =$manufacturersDB->rows;
 
 		if(empty($manufacturerDB)){ 
-
+		$manuf = preg_replace("/[^a-zA-Z0-9]/", " ", $manufacturer['manufacturer']);	
 		$insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
 
 				manufacturer_id  = '".(int)$manufacturer['manufacturer_id']."',
-				name = '".(string)$manufacturer['manufacturer']."',
+				RemoveSpecialCharacterDemo name = '".(string)$manuf."',
 				sort_order = 0 
 
 				ON DUPLICATE KEY UPDATE manufacturer_id = '".(int)$manufacturer['manufacturer_id']."', 
-										name = '".(string)$manufacturer['manufacturer']."'
+										name = '".(string)$manuf."'
 
 		");	
 		
 		echo ($insertmanufacturer);
 
 		}
-
-
 
 	}
 	
