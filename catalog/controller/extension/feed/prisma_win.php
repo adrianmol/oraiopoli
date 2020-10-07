@@ -227,7 +227,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		foreach($manufacturers as $manufacturer)
 
 		$manufacturersDB = $this->db->query("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer");
-		$manufacturersDB = $manufacturerDB->rows;
+		$manufacturersDB = $manufacturersDB->rows;
 		
 		foreach($manufacturersDB as $manufacturerDB){
 			$manufacturerDB['ID'] = $manufacturerDB['manufacturer_id'];
