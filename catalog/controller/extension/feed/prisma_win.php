@@ -23,7 +23,13 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$data  = $this->GetCategory();
 		//$this->GetPhotoPath('00028950');
 
-		$this->InsertProduct();
+		// $this->InsertProduct();
+
+
+
+		$this->GetManufacturer();
+
+
 
 		// echo "<pre>";
 		// print_r($data);
@@ -209,6 +215,29 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		//echo ("Update : ".$insertproduct. " product(s)");
 	}
+
+
+	
+
+
+	function GetManufacturer(){
+	
+		$manufacturers = $this->GetProducts();
+	
+		foreach($manufacturers as $manufacturer)
+
+		$manufacturerDB = $this->db->query("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer");
+		
+		echo "<pre>";
+		print_r($manufacturerDB);
+		echo "</pre>";
+	
+	
+	}
+
+
+
+
 
 
 
