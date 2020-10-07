@@ -232,13 +232,17 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 
-		$manufacturersDB = $this->db->query("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer WHERE manufacturer_id ='".$manufacturer[18]['manufacturer_id'] ."'");
+		$manufacturersDB = $this->db->query("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer WHERE manufacturer_id ='".(int)$manufacturer[18]['manufacturer_id']."'");
 		$manufacturerDB =$manufacturersDB->rows;
 
+		// echo "<pre>";
+		// print_r($manufacturer);
+		// echo "</pre>";
 
-		if(empty($manufacturerDB->rows)){ 
+		if(empty($manufacturerDB)){ 
 
-    	echo "Given Array is empty <br>"; 
+		echo "Given Array is empty <br>"; 
+		
 		}
 
 
