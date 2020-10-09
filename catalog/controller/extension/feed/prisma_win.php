@@ -152,12 +152,12 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 		$this->GetPhotoPath($products[32]['code']);
-		$pathPhoto = ("catalog/product/".$products[1871]['code'].".JPG");
+		$pathPhoto = ("catalog/product/".$products[32]['code'].".JPG");
 
-		$sec = strtotime($products[1871]['datacreated']);
+		$sec = strtotime($products[32]['datacreated']);
 		$newdatacreated = date("Y/m/d H:i",$sec);
 
-		$sec = strtotime($products[1871]['datamodified']);
+		$sec = strtotime($products[32]['datamodified']);
 		$newdatamodified = date("Y/m/d H:i",$sec);
 
 
