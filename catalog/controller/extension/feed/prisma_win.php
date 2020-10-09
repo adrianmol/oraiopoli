@@ -133,12 +133,13 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		
 		foreach($products as $product){
 
-		$filename = "image/catalog/products/".$product['code'].".JPG";
+		$filename = "/image/catalog/products/".$product['code'].".JPG";
 		if($filename)		
 		// $this->GetPhotoPath($product['code']);
 				echo ($product['code']);
+				echo "</br>";
 		}
-		
+
 	}
 
 
