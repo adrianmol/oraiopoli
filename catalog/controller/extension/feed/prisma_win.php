@@ -139,90 +139,89 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		foreach($products as $product){
 
 			
-		}
-		echo "<pre>";
-		print_r($product);
-		echo "</pre>";
+		// echo "<pre>";
+		// print_r($product);
+		// echo "</pre>";
 
 
-		if($products[32]['itemStock']){
+		if($product['itemStock']){
 			$StockStatus = 7;
 		}else {
 			$StockStatus = 5;
 		}
 
-		if($products[32]['mudescr'] == 'Κιλά'){
+		if($product['mudescr'] == 'Κιλά'){
 			$minimum = 0.20;
 			echo ($minimum);
 		}
 
 
 
-		$this->GetPhotoPath($products[32]['code']);
-		$pathPhoto = ("catalog/products/".$products[32]['code'].".jpg");
+		$this->GetPhotoPath($product['code']);
+		$pathPhoto = ("catalog/products/".$product['code'].".jpg");
 
-		$sec = strtotime($products[32]['datacreated']);
+		$sec = strtotime($product['datacreated']);
 		$newdatacreated = date("Y/m/d H:i",$sec);
 
-		$sec = strtotime($products[32]['datamodified']);
+		$sec = strtotime($product['datamodified']);
 		$newdatamodified = date("Y/m/d H:i",$sec);
 
 
 
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
-							product_id = '".(int)$products[32]['id']."' ,
-							model = '".(int)$products[32]['code']."',
-							quantity ='".(float)$products[32]['itemStock']."',
+							product_id = '".(int)$product['id']."' ,
+							model = '".(int)$product['code']."',
+							quantity ='".(float)$product['itemStock']."',
 							stock_status_id = '".(int)$itemOutStock."',
 							in_stock_status_id = '".(int)$StockStatus."',
 							image = '".$pathPhoto."',
 							shipping = '".(int)$status."',
-							price = '".$products[32]['price_vat']."',
+							price = '".$product['price_vat']."',
 							tax_class_id = '".(int)$tax_class."',
-							manufacturer_id = '".(int)$products[32]['manufacturer_id']."',
+							manufacturer_id = '".(int)$product['manufacturer_id']."',
 							status = '".(int)$status."',
 							minimum = '".(float)$minimum."',
 							date_added ='". $newdatacreated ."',
 							date_modified ='".$newdatamodified ."'
 
-							ON DUPLICATE KEY UPDATE product_id = '".(int)$products[32]['id']."', 
-													price = '".$products[32]['price_vat']."',
-													quantity ='".(float)$products[32]['itemStock']."',
+							ON DUPLICATE KEY UPDATE product_id = '".(int)$product['id']."', 
+													price = '".$product['price_vat']."',
+													quantity ='".(float)$product['itemStock']."',
 													stock_status_id = '".(int)$StockStatus."'
 							
 							");	
 
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_description SET 
-							product_id  = '".(int)$products[32]['id']."',
+							product_id  = '".(int)$product['id']."',
 							language_id = '".$language_id."',
-							name = '".(string)$products[32]['title'] . "',
-							meta_title = '".(string)$products[32]['title'] . "' 
+							name = '".(string)$product['title'] . "',
+							meta_title = '".(string)$product['title'] . "' 
 
-							ON DUPLICATE KEY UPDATE product_id = '".(int)$products[32]['id']."'
+							ON DUPLICATE KEY UPDATE product_id = '".(int)$product['id']."'
 							");	
 
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_store SET 
 
-							product_id = '".(int)$products[32]['id']."' ,
+							product_id = '".(int)$product['id']."' ,
 							store_id = '".$storeid."'
 
-							ON DUPLICATE KEY UPDATE product_id = '".(int)$products[32]['id']."'
+							ON DUPLICATE KEY UPDATE product_id = '".(int)$product['id']."'
 							");	
 
 
 
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_category  SET 
 
-							product_id  = '".(int)$products[32]['id']."' ,
-							category_id = '".(int)$categories[32]['categoryID']."' 
+							product_id  = '".(int)$product['id']."' ,
+							category_id = '".(int)$categories[$product['id']]['categoryID']."' 
 
-							ON DUPLICATE KEY UPDATE product_id  = '".(int)$products[32]['id']."', 
-													category_id = '".(int)$categories[32]['categoryID']."'
+							ON DUPLICATE KEY UPDATE product_id  = '".(int)$product['id']."', 
+													category_id = '".(int)$categories[$product['id']]['categoryID']."'
 
 							");	
 
-
-		//echo ("Update : ".$insertproduct. " product(s)");
+						}
+		echo ("Update : ".$insertproduct. " product(s) </br>");
 	}
 
 	function GetManufacturer(){
