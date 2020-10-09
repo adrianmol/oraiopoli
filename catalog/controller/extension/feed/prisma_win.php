@@ -8,6 +8,13 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		// $data = $this->GetCategory();
 		
+		if(!isset($_REQUEST["update"])) {
+				echo "Updated";
+		}
+
+
+
+
 
 		// echo "<pre>";
 		// print_r($data);
@@ -152,7 +159,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 		$this->GetPhotoPath($products[32]['code']);
-		$pathPhoto = ("catalog/products/".$products[32]['code'].".JPG");
+		$pathPhoto = ("catalog/products/".$products[32]['code'].".jpg");
 
 		$sec = strtotime($products[32]['datacreated']);
 		$newdatacreated = date("Y/m/d H:i",$sec);
@@ -186,7 +193,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							");	
 
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_description SET 
-							product_id  = '".(int)$products[32]['id']."' ,
+							product_id  = '".(int)$products[32]['id']."',
 							language_id = '".$language_id."',
 							name = '".(string)$products[32]['title'] . "',
 							meta_title = '".(string)$products[32]['title'] . "' 
@@ -209,7 +216,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							product_id  = '".(int)$products[32]['id']."' ,
 							category_id = '".(int)$categories[32]['categoryID']."' 
 
-							ON DUPLICATE KEY UPDATE product_id = '".(int)$products[32]['id']."', 
+							ON DUPLICATE KEY UPDATE product_id  = '".(int)$products[32]['id']."', 
 													category_id = '".(int)$categories[32]['categoryID']."'
 
 							");	
