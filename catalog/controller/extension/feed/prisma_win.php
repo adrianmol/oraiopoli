@@ -23,11 +23,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$data  = $this->GetCategory();
 		//$this->GetPhotoPath('00028950');
 
-		// $this->InsertProduct();
+		$this->InsertProduct();
 
 
 
-		$this->GetManufacturer();
+		//$this->GetManufacturer();
 
 
 
