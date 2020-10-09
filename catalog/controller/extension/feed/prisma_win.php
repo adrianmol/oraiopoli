@@ -142,7 +142,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// echo "<pre>";
 		// print_r($product);
 		// echo "</pre>";
-
+		
+		
 
 		if($product['itemStock']){
 			$StockStatus = 7;
@@ -156,9 +157,12 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		}
 
 
+		
+		$title = str_replace('\'', ' ', $product['title']);	
+
 
 		$this->GetPhotoPath($product['code']);
-		$pathPhoto = ("catalog/products/".$product['code'].".jpg");
+		$pathPhoto = ("catalog/products/".$product['code'].".JPG");
 
 		$sec = strtotime($product['datacreated']);
 		$newdatacreated = date("Y/m/d H:i",$sec);
@@ -187,6 +191,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							ON DUPLICATE KEY UPDATE product_id = '".(int)$product['id']."', 
 													price = '".$product['price_vat']."',
 													quantity ='".(float)$product['itemStock']."',
+													image = '".$pathPhoto."',
 													stock_status_id = '".(int)$StockStatus."'
 							
 							");	
@@ -194,8 +199,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_description SET 
 							product_id  = '".(int)$product['id']."',
 							language_id = '".$language_id."',
-							name = '".(string)$product['title'] . "',
-							meta_title = '".(string)$product['title'] . "' 
+							name = '".(string)$title . "',
+							meta_title = '".(string)$title . "' 
 
 							ON DUPLICATE KEY UPDATE product_id = '".(int)$product['id']."'
 							");	
