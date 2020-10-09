@@ -127,7 +127,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$products   = $products[0];
 		$categories = $this->GetCategory();
 
-		$status = 1; $tax_class  = 0; $language_id = 2; $storeid =0; $minimum = 1.00;
+		$status = 1; $tax_class  = 0; $language_id = 2; $storeid =0; $minimum = 1.00; $itemOutStock = 5;
 
 		foreach($products as $product){
 
@@ -152,7 +152,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 		$this->GetPhotoPath($products[1871]['code']);
-		$pathPhoto = ("images/catalog/product/".$products[1871]['code'].".JPG");
+		$pathPhoto = ("catalog/product/".$products[1871]['code'].".JPG");
 
 		$sec = strtotime($products[1871]['datacreated']);
 		$newdatacreated = date("Y/m/d H:i",$sec);
@@ -166,7 +166,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							product_id = '".(int)$products[1871]['id']."' ,
 							model = '".(int)$products[1871]['code']."',
 							quantity ='".(float)$products[1871]['itemStock']."',
-							stock_status_id = '".(int)$StockStatus."',
+							stock_status_id = '".(int)$itemOutStock."',
+							in_stock_status_id = '".(int)$StockStatus."',
 							image = '".$pathPhoto."',
 							shipping = '".(int)$status."',
 							price = '".$products[1871]['price_vat']."',
