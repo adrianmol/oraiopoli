@@ -147,7 +147,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				echo "</br>";
 			$i++;
 			}
-			if($i>40)break;
+			
 		}
 
 	}
