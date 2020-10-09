@@ -14,11 +14,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// echo "</pre>";
 		// echo ($data[18]['ItemPhotoName']);
 
-		$data = $this->GetProducts();
+		// $data = $this->GetProducts();
 
-		echo "<pre>";
-		print_r($data);
-		echo "</pre>";
+		// echo "<pre>";
+		// print_r($data);
+		// echo "</pre>";
 
 		//$data  = $this->GetCategory();
 		//$this->GetPhotoPath('00028950');
@@ -27,7 +27,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 
-		//$this->GetManufacturer();
+		$this->GetManufacturer();
 
 
 
