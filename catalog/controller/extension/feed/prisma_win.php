@@ -30,9 +30,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$data  = $this->GetCategory();
 		//$this->GetPhotoPath('00028950');
 
-		// $this->InsertProduct();
+		$this->InsertProduct();
 		// sleep(60);
-		$this->InsertPhoto();
+		//$this->InsertPhoto();
 
 		// $this->GetManufacturer();
 
@@ -141,6 +141,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 		}
+
 	}
 
 
@@ -186,7 +187,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 		// $this->GetPhotoPath($product['code']);
-		// $pathPhoto = ("catalog/products/".$product['code'].".JPG");
+		$pathPhoto = ("catalog/products/".$product['code'].".JPG");
 
 		$sec = strtotime($product['datacreated']);
 		$newdatacreated = date("Y/m/d H:i",$sec);
@@ -194,7 +195,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$sec = strtotime($product['datamodified']);
 		$newdatamodified = date("Y/m/d H:i",$sec);
 
-
+		
 
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
 							product_id = '".(int)$product['id']."' ,
@@ -202,7 +203,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							quantity ='".(float)$product['itemStock']."',
 							stock_status_id = '".(int)$itemOutStock."',
 							in_stock_status_id = '".(int)$StockStatus."',
-
+							image ='". $pathPhoto ."',
 							shipping = '".(int)$status."',
 							price = '".$product['price_vat']."',
 							tax_class_id = '".(int)$tax_class."',
@@ -215,7 +216,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							ON DUPLICATE KEY UPDATE product_id = '".(int)$product['id']."', 
 													price = '".$product['price_vat']."',
 													quantity ='".(float)$product['itemStock']."',
-
+													image ='". $pathPhoto ."',
 													stock_status_id = '".(int)$StockStatus."'
 							
 							");	
