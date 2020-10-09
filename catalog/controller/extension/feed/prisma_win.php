@@ -135,11 +135,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$this->GetPhotoPath($product['code']);
 		$pathPhoto = ("catalog/products/".$product['code'].".JPG");
 
-		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
+		$insertproduct = $this->db->query("UPDATE ". DB_PREFIX ."product SET 
 
-			image = '".$pathPhoto."' WHERE product_id = '".(int)$product['id']."'
+			image = '".$pathPhoto."' WHERE product_id = '".(int)$product['id']."'");	
 
-		");	
 
 		}
 	}
