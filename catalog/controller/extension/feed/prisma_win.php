@@ -48,7 +48,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 	function GetProducts(){
 
-		$ProductData = $this->GetDataURL('GetProducts','1/1/2020');
+		$ProductData = $this->GetDataURL('GetProducts','10/1/2020');
 		$i=0;
 
 		foreach($ProductData->StoreDetails as $product){
