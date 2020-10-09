@@ -30,9 +30,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$data  = $this->GetCategory();
 		//$this->GetPhotoPath('00028950');
 
-		$this->InsertProduct();
-		// sleep(60);
-		//$this->InsertPhoto();
+		//$this->InsertProduct();
+		sleep(60);
+		$this->InsertPhoto();
 
 		// $this->GetManufacturer();
 
@@ -133,15 +133,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		foreach($products as $product){
 
 		$this->GetPhotoPath($product['code']);
-		$pathPhoto = ("catalog/products/".$product['code'].".JPG");
-
-		$insertproduct = $this->db->query("UPDATE ". DB_PREFIX ."product SET 
-
-			image = '".$pathPhoto."' WHERE product_id = '".(int)$product['id']."'");	
-
 
 		}
-
 	}
 
 
