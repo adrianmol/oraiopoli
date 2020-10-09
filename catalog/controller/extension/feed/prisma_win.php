@@ -1,8 +1,12 @@
 <?php
 class ControllerExtensionfeedPrismawin extends Controller {
+
+
+	
+
 	public function index() {
 
-
+		
 #https://oraiomarket.gr/index.php?route=extension/feed/prisma_win
 
 
@@ -47,6 +51,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 	function GetProducts(){
+
+		global $data;
 
 		$ProductData = $this->GetDataURL('GetProducts','10/1/2020');
 		$i=0;
@@ -127,7 +133,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	}
 
 	function InsertPhoto(){
-
+		$i = 0;
 		$products   = $this->GetProducts();
 		$products = $products[0];
 		
@@ -135,9 +141,13 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$filename = DIR_IMAGE."/catalog/products/".$product['code'].".JPG";
 		if(file_exists($filename))	{	
+
 		$this->GetPhotoPath($product['code']);
 				echo ($product['code']);
-				echo "</br>";}
+				echo "</br>";
+			$i++;
+			}
+			if($i>40)break;
 		}
 
 	}
