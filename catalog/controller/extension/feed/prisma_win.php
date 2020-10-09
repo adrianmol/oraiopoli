@@ -130,11 +130,15 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$products   = $this->GetProducts();
 		$products = $products[0];
+		
 		foreach($products as $product){
 
-		$this->GetPhotoPath($product['code']);
-
+		$filename = "image/catalog/products/".$product['code'].".JPG";
+		if($filename)		
+		// $this->GetPhotoPath($product['code']);
+				echo ($product['code']);
 		}
+		
 	}
 
 
@@ -171,7 +175,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		if($product['mudescr'] == 'Κιλά'){
 			$minimum = 0.20;
-			echo ($minimum);
+
 		}
 
 
