@@ -161,8 +161,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$title = str_replace('\'', ' ', $product['title']);	
 
 
-		$this->GetPhotoPath($product['code']);
-		$pathPhoto = ("catalog/products/".$product['code'].".JPG");
+		// $this->GetPhotoPath($product['code']);
+		// $pathPhoto = ("catalog/products/".$product['code'].".JPG");
 
 		$sec = strtotime($product['datacreated']);
 		$newdatacreated = date("Y/m/d H:i",$sec);
@@ -178,7 +178,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							quantity ='".(float)$product['itemStock']."',
 							stock_status_id = '".(int)$itemOutStock."',
 							in_stock_status_id = '".(int)$StockStatus."',
-							image = '".$pathPhoto."',
+
 							shipping = '".(int)$status."',
 							price = '".$product['price_vat']."',
 							tax_class_id = '".(int)$tax_class."',
@@ -191,7 +191,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							ON DUPLICATE KEY UPDATE product_id = '".(int)$product['id']."', 
 													price = '".$product['price_vat']."',
 													quantity ='".(float)$product['itemStock']."',
-													image = '".$pathPhoto."',
+
 													stock_status_id = '".(int)$StockStatus."'
 							
 							");	
