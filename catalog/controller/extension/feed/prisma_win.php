@@ -21,11 +21,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// echo "</pre>";
 		// echo ($data[18]['ItemPhotoName']);
 
-		// $data = $this->GetProducts();
+		$data = $this->GetProducts();
 
-		// echo "<pre>";
-		// print_r($data);
-		// echo "</pre>";
+		echo "<pre>";
+		print_r($data);
+		echo "</pre>";
 
 		//$data  = $this->GetCategory();
 		//$this->GetPhotoPath('00028950');
@@ -48,7 +48,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 	function GetProducts(){
 
-		$ProductData = $this->GetDataURL('GetProducts');
+		$ProductData = $this->GetDataURL('GetProducts','1/1/2020');
 		$i=0;
 
 		foreach($ProductData->StoreDetails as $product){
@@ -225,10 +225,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//echo ("Update : ".$insertproduct. " product(s)");
 	}
 
-
-
-
-
 	function GetManufacturer(){
 	
 		$manufacturers = $this->GetProducts();
@@ -263,13 +259,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 
-
-
-
-
-
 	function GetItemsPhoto(){
-		$ProductData = $this->GetDataURL('GetItemsPhotoInfo');
+		$ProductData = $this->GetDataURL('GetItemsPhotoInfo','1/1/2020');
 
 		foreach($ProductData->ItemsPhotoInfo as $ItemsPhoto){
 			
@@ -289,10 +280,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	}
 
 
-	function GetDataURL($path) {
+	function GetDataURL($path,$date) {
 
 		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/'. $path;
-		$data = 'SiteKey=bs-gg183-352&Date=10-8-2020&StorageCode=000';
+		$data = 'SiteKey=bs-gg183-352&Date='.$date.'&StorageCode=000';
 		
 		// use key 'http' even if you send the request to https://...
 		$options = array(
