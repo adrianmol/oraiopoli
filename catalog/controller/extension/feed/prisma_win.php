@@ -7,9 +7,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 		// $data = $this->GetCategory();
-		
+
 		if(isset($_REQUEST["update"])) {
-			echo ($_POST['TEST']);
+			echo "Updated";
 		}
 
 
