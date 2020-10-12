@@ -330,7 +330,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		
 		$xml=simplexml_load_string($result) or die("Error: Cannot create object");
 		echo "<br>";
-		echo $xml->saveXML('products.xml');
+		$xml->saveXML('products.xml');
 		echo "<br>";
 		//echo "<pre>";
 		//print_r($xml);
