@@ -326,11 +326,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$this->db->query("INSERT INTO ".DB_PREFIX."prisma_win SET
 			products_updated = '".$itemsUpdate."',
 			products_added = '".$itemsAdded."',
-			date_added = '".$now."'
+			date_added = '".(string)$now."'
 		");				
 		echo ("Update : ".$itemsUpdate. " product(s) </br>");
 		echo ("Added : ".$itemsAdded. " product(s) </br>");
-
+		echo ("Date : ".$now. "  </br>");
 	}
 
 	function GetManufacturer(){
