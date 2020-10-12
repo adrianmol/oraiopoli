@@ -145,7 +145,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// $filename = DIR_IMAGE."/catalog/products/".$product['code'].".JPG";
 
 
-				$output .= ('{ "storecode": "'.$product['code'].'" },');
+				//$output .= ('{ "storecode": "'.$product['code'].'" },');
 				
 			
 
