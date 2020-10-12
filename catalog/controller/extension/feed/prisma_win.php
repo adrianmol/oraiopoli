@@ -370,8 +370,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		foreach($xml->ItemImageUpload as $photoInfo){
 			$data1[(int)$photoInfo->ItemCode] = array(
 
-			'itemcode'  => (int)$photoInfo->ItemCode,
-			'itemtype' => (string)$photoInfo->ItemType
+			'itemcode'  => (string)$photoInfo->ItemCode,
+			'itemtype' => (string)$photoInfo->ImageType
 			);
 		}
 				
