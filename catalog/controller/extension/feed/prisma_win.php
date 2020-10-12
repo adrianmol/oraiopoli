@@ -39,7 +39,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// print_r ($data);
 		// echo "</pre>";
 		//sleep(60);
-		$this->InsertPhoto();
+		$this->InsertProduct();
 
 		// $this->GetManufacturer();
 
@@ -57,7 +57,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		global $data;
 
-		$ProductData = $this->GetDataURL('GetProducts','1-1-2020');
+		$ProductData = $this->GetDataURL('GetProducts','10-12-2020');
 		$i=0;
 
 		foreach($ProductData->StoreDetails as $product){
@@ -372,7 +372,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			$photo[(int)$photoInfo->ItemCode] = array(
 
 			'itemcode'  => (string)$photoInfo->ItemCode,
-			'itemtype' => (string)$photoInfo->ImageType
+			'itemtype'  => (string)$photoInfo->ImageType
 			);
 		}
 				
