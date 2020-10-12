@@ -182,6 +182,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		if($product['mudescr'] == 'Κιλά'){
 			$minimum = 0.20;
 
+		}else{
+			$minimum = 1;
 		}
 
 
@@ -254,6 +256,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 							");	
 
 						}
+						
 		echo ("Update : ".$insertproduct. " product(s) </br>");
 	}
 
