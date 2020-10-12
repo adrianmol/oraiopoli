@@ -34,12 +34,12 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$data  = $this->GetCategory();
 		//$this->GetPhotoPath('00028950');
 
-		$this->GetItemsPhoto();
-		echo "<pre>";
-		print_r ($data);
-		echo "</pre>";
+		// $this->GetItemsPhoto();
+		// echo "<pre>";
+		// print_r ($data);
+		// echo "</pre>";
 		//sleep(60);
-		//$this->InsertPhoto();
+		$this->InsertPhoto();
 
 		// $this->GetManufacturer();
 
@@ -302,17 +302,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	function GetItemsPhoto(){
 		$ProductData = $this->GetDataURL('GetItemsPhotoInfo','1/1/2020');
 
-		echo "<pre>";
-		print_r ($ProductData);
-		echo "</pre>";
-		
-
 		foreach($ProductData->ItemsPhotoInfo as $ItemsPhoto){
 			
 			(int)$productID = $ItemsPhoto->ItemCode;
 
 			$data[(int)$productID] = array(
-			'ImagType'			=>(string) $ItemsPhoto->ImageType,
 			'ItemCode'			=>(string) $ItemsPhoto->ItemCode,
 			'ItemDesc'			=>(string) $ItemsPhoto->ItemDescription,
 			'ItemPhotoName'		=>(string) $ItemsPhoto->ItemPhotoName,
@@ -374,9 +368,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		if ($result === FALSE) { /* Handle error */ }
 		//echo $result;
 		$xml=simplexml_load_string($result) or die("Error: Cannot create object");
-		// echo "<pre>";
-		// print_r($xml);
-		// echo "</pre>";
+		echo "<pre>";
+		print_r($xml);
+		echo "</pre>";
 		return $result;
 
 	}
