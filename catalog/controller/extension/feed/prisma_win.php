@@ -183,7 +183,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			$minimum = 0.20;
 
 		}else{
-			$minimum = 1;
+			$minimum = 1.00;
 		}
 
 
@@ -222,7 +222,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 													price = '".$product['price_vat']."',
 													quantity ='".(float)$product['itemStock']."',
 													image ='". $pathPhoto ."',
-													stock_status_id = '".(int)$StockStatus."'
+													stock_status_id = '".(int)$StockStatus."',
+													minimum = '".(float)$minimum."'
 							
 							");	
 
