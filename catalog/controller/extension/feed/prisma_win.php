@@ -136,7 +136,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$i = 0;
 		$products   = $this->GetProducts();
 		$products = $products[0];
-		$output = array();
 		foreach($products as $product){
 
 		$filename = DIR_IMAGE."/catalog/products/".$product['code'].".JPG";
@@ -147,8 +146,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				echo "</br>";
 			$i++;
 			}
-
-			$output = "";
 
 			
 		}
@@ -289,7 +286,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 	}
 	
-	}
+}
 
 
 
