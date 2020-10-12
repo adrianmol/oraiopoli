@@ -352,9 +352,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/UploadImageToFtp';
 		$data = 'SiteKey=bs-gg183-352&JsonStrWeb={   "items": [ '.$ItemCode.' ]}';
-		
-		echo "</br>";
-		echo ($data);
+
 		//use key 'http' even if you send the request to https://...
 		$options = array(
 			'http' => array(
