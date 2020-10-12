@@ -34,7 +34,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$data  = $this->GetCategory();
 		//$this->GetPhotoPath('00028950');
 
-		$data = $this->GetItemsPhoto();
+		$this->GetItemsPhoto();
 		echo "<pre>";
 		print_r ($data);
 		echo "</pre>";
@@ -301,6 +301,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 	function GetItemsPhoto(){
 		$ProductData = $this->GetDataURL('GetItemsPhotoInfo','1/1/2020');
+
+		echo "<pre>";
+		print_r ($ProductData);
+		echo "</pre>";
+		
 
 		foreach($ProductData->ItemsPhotoInfo as $ItemsPhoto){
 			
