@@ -138,15 +138,16 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	function InsertPhoto(){
 		$i = 0;
 		$products   = $this->GetProducts();
-		$products = $products[0];
+		$products = $products[0]; $numItems = count($products); $i=0;
 		$output = "";
+
 		foreach($products as $product){
 
-		// $filename = DIR_IMAGE."/catalog/products/".$product['code'].".JPG";
-
-
+				if(++$i != $numItems){
 				$output .= ('{ "storecode": "'.$product['code'].'" },');
-				
+				}else{
+				$output .= ('{ "storecode": "'.$product['code'].'" }');	
+				}
 
 			// $i++;
 			// if($i == 10){
@@ -154,7 +155,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			// }
 		}
 		
-		$output .= ('{ "storecode": "00033006" }');
 		//echo ($output);
 		$photo = $this->GetPhotoPath($output);
 		echo "<pre>";
