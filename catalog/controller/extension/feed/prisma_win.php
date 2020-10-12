@@ -140,19 +140,19 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$products   = $this->GetProducts();
 		$products = $products[0];
 		$output = "";
-		foreach($products as $product){
+		// foreach($products as $product){
 
-		// $filename = DIR_IMAGE."/catalog/products/".$product['code'].".JPG";
-		// if(file_exists($filename))	{	
+		// // $filename = DIR_IMAGE."/catalog/products/".$product['code'].".JPG";
+		// // if(file_exists($filename))	{	
 
-				$output .= ('{ "storecode": "'.$product['code'].'" },');
+		// 		$output .= ('{ "storecode": "'.$product['code'].'" },');
 
-			}
+		// 	}
 
 			
 		// }
 		
-		$output .= ('{ "storecode": "'.$product['code'].'" }');
+		$output .= ('{ "storecode": "00033006" }');
 		//echo ($output);
 		$this->GetPhotoPath($output);
 	}
