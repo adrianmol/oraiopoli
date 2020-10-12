@@ -139,15 +139,15 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$output = "";
 		foreach($products as $product){
 
-		$filename = DIR_IMAGE."/catalog/products/".$product['code'].".JPG";
-		if(file_exists($filename))	{	
+		// $filename = DIR_IMAGE."/catalog/products/".$product['code'].".JPG";
+		// if(file_exists($filename))	{	
 
 				$output .= ('{ "storecode": "'.$product['code'].'" },');
 
 			}
 
 			
-		}
+		// }
 
 		echo ($output);
 
