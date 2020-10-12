@@ -371,9 +371,14 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			$data1[(int)$photoInfo->ItemCode] = array(
 
 			'itemcode'  => (int)$photoInfo->ItemCode,
-			'itemrtype' => (string)$photoInfo->ItemType
+			'itemtype' => (string)$photoInfo->ItemType
 			);
 		}
+				
+		echo "<pre>";
+		print_r($xml);
+		echo "</pre>";
+
 		echo "<pre>";
 		print_r($data1);
 		echo "</pre>";
