@@ -368,10 +368,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$xml=simplexml_load_string($result) or die("Error: Cannot create object");
 
 		foreach($xml->ItemImageUpload as $photoInfo){
-			$data[$photoInfo->ItemCode] = array(
+			$data[(int)$photoInfo->ItemCode] = array(
 
-			'itemcode'  => $photoInfo->ItemCode,
-			'itemrtype' => $photoInfo->ItemType
+			'itemcode'  => (int)$photoInfo->ItemCode,
+			'itemrtype' => (string)$photoInfo->ItemType
 			);
 		}
 		echo "<pre>";
