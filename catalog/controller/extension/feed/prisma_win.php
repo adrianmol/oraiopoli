@@ -307,6 +307,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			(int)$productID = $ItemsPhoto->ItemCode;
 
 			$data[(int)$productID] = array(
+			'ImagType'			=>(string) $ItemsPhoto->ImageType,
 			'ItemCode'			=>(string) $ItemsPhoto->ItemCode,
 			'ItemDesc'			=>(string) $ItemsPhoto->ItemDescription,
 			'ItemPhotoName'		=>(string) $ItemsPhoto->ItemPhotoName,
