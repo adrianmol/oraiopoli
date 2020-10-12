@@ -39,7 +39,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// print_r ($data);
 		// echo "</pre>";
 		//sleep(60);
-		// $this->InsertProduct();
+		$this->InsertProduct();
 		// $this->InsertPhoto();
 		$this->GetManufacturer();
 
@@ -206,7 +206,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$sec = strtotime($product['datamodified']);
 		$newdatamodified = date("Y/m/d H:i",$sec);
 
-		
+		$exits_item = $this->db->query("SELECT product_id ".DB_PREFIX."product WHERE product_id = '".(int)$product['id']."'");
+
+		echo "<pre>";
+		print_r($exits_item);
+		echo "</pre>";
 
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
 							product_id = '".(int)$product['id']."' ,
@@ -290,7 +294,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 										name = '".(string)$manuf."'
 
 		");	
-			echo ($manuf);
 
 		}
 
