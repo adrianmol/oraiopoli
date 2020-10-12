@@ -39,9 +39,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// print_r ($data);
 		// echo "</pre>";
 		//sleep(60);
-		$this->InsertProduct();
-		$this->InsertPhoto();
-		// $this->GetManufacturer();
+		// $this->InsertProduct();
+		// $this->InsertPhoto();
+		$this->GetManufacturer();
 
 
 
@@ -290,7 +290,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 										name = '".(string)$manuf."'
 
 		");	
-	
+			echo ($manuf);
 
 		}
 
