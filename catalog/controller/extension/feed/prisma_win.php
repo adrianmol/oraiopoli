@@ -152,7 +152,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			
 		// }
 		
-		$output .= ('{ "storecode": "00033006" }');
+		$output .= ('{ "storecode": "00000018" },{ "storecode": "00033006" }');
 		//echo ($output);
 		$this->GetPhotoPath($output);
 	}
