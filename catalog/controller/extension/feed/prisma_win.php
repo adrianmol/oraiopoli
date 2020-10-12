@@ -154,7 +154,13 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		
 		$output .= ('{ "storecode": "00000018" },{ "storecode": "00033006" }');
 		//echo ($output);
-		$this->GetPhotoPath($output);
+		$photo = $this->GetPhotoPath($output);
+		echo "<pre>";
+		print_r($photo);
+		echo "</pre>";
+
+		//$pathPhoto = ("catalog/products/".$product['code'].".JPG");
+
 	}
 
 
@@ -170,13 +176,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$status = 1; $tax_class  = 0; $language_id = 2; $storeid =0; $minimum = 1.00; $itemOutStock = 5;
 
 		foreach($products as $product){
-
-			
-		// echo "<pre>";
-		// print_r($product);
-		// echo "</pre>";
-		
-		
 
 		if($product['itemStock']){
 			$StockStatus = 7;
@@ -196,7 +195,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$title = str_replace('\'', ' ', $product['title']);	
 
 
-		// $this->GetPhotoPath($product['code']);
+		//$this->GetPhotoPath();
 		$pathPhoto = ("catalog/products/".$product['code'].".JPG");
 
 		$sec = strtotime($product['datacreated']);
@@ -368,21 +367,14 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$xml=simplexml_load_string($result) or die("Error: Cannot create object");
 
 		foreach($xml->ItemImageUpload as $photoInfo){
-			$data1[(int)$photoInfo->ItemCode] = array(
+			$photo[(int)$photoInfo->ItemCode] = array(
 
 			'itemcode'  => (string)$photoInfo->ItemCode,
 			'itemtype' => (string)$photoInfo->ImageType
 			);
 		}
 				
-		echo "<pre>";
-		print_r($xml);
-		echo "</pre>";
-
-		echo "<pre>";
-		print_r($data1);
-		echo "</pre>";
-		return $result;
+		return $photo;
 
 	}
 
