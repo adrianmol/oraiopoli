@@ -207,11 +207,15 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$newdatamodified = date("Y/m/d H:i",$sec);
 
 		$exits_item = $this->db->query("SELECT product_id FROM ". DB_PREFIX ."product WHERE product_id = '".(int)$product['id']."' ");
-
+		$exits_item = $exits_item->rows;
 		echo "<pre>";
 		print_r($exits_item);
 		echo "</pre>";
+		if (empty($exits_item)){
 
+			echo ("Product with ".$product['id']."doesnt exist");
+
+		}
 		$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
 							product_id = '".(int)$product['id']."' ,
 							model = '".(int)$product['code']."',
