@@ -159,7 +159,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		print_r($photo);
 		echo "</pre>";
 
-		$pathPhoto = ("catalog/products/".$product['code'].".".$photo[$product['code']]['itemtype']);
+		$pathPhoto = ("catalog/products/".$product['code'].".".$photo[18]['itemtype']);
 		echo ($pathPhoto);
 	}
 
