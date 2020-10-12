@@ -140,17 +140,17 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$products   = $this->GetProducts();
 		$products = $products[0];
 		$output = "";
-		// foreach($products as $product){
+		foreach($products as $product){
 
-		// // $filename = DIR_IMAGE."/catalog/products/".$product['code'].".JPG";
-		// // if(file_exists($filename))	{	
+		// $filename = DIR_IMAGE."/catalog/products/".$product['code'].".JPG";
 
-		// 		$output .= ('{ "storecode": "'.$product['code'].'" },');
 
-		// 	}
+				$output .= ('{ "storecode": "'.$product['code'].'" },');
 
 			
-		// }
+
+			
+		}
 		
 		$output .= ('{ "storecode": "00000018" },{ "storecode": "00033006" }');
 		//echo ($output);
@@ -159,8 +159,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		print_r($photo);
 		echo "</pre>";
 
-		//$pathPhoto = ("catalog/products/".$product['code'].".JPG");
-
+		$pathPhoto = ("catalog/products/".$product['code'].".".$photo[$product['code']]['itemtype']);
+		echo ($pathPhoto);
 	}
 
 
