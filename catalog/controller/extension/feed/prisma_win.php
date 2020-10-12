@@ -283,8 +283,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 										name = '".(string)$manuf."'
 
 		");	
-		
-		echo ( $manufacturer['manufacturer'] ." = " .$manuf ." , " . $manufacturer['manufacturer_id'] ."</br>");
+	
 
 		}
 
@@ -333,7 +332,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		if ($result === FALSE) { /* Handle error */ }
 		
 		$xml=simplexml_load_string($result) or die("Error: Cannot create object");
-		
+		echo $xml->saveXML('products.xml');
 		//echo "<pre>";
 		//print_r($xml);
 		//echo "</pre>";
@@ -359,8 +358,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		if ($result === FALSE) { /* Handle error */ }
 		//echo $result;
 		$xml=simplexml_load_string($result) or die("Error: Cannot create object");
-		//echo $xml->saveXML();
-		echo $xml->saveXML('products.xml');
 		// echo "<pre>";
 		// print_r($xml);
 		// echo "</pre>";
