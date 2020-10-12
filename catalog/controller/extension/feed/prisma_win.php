@@ -34,9 +34,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$data  = $this->GetCategory();
 		//$this->GetPhotoPath('00028950');
 
-		//$this->InsertProduct();
-		// sleep(60);
-		$this->InsertPhoto();
+		$this->InsertProduct();
+		//sleep(60);
+		// $this->InsertPhoto();
 
 		// $this->GetManufacturer();
 
@@ -136,7 +136,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$i = 0;
 		$products   = $this->GetProducts();
 		$products = $products[0];
-		
+		$output = array();
 		foreach($products as $product){
 
 		$filename = DIR_IMAGE."/catalog/products/".$product['code'].".JPG";
@@ -147,6 +147,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				echo "</br>";
 			$i++;
 			}
+
+			$output = "";
+
 			
 		}
 
@@ -356,7 +359,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		if ($result === FALSE) { /* Handle error */ }
 		//echo $result;
 		$xml=simplexml_load_string($result) or die("Error: Cannot create object");
-		
+		//echo $xml->saveXML();
+		echo $xml->saveXML('products.xml');
 		// echo "<pre>";
 		// print_r($xml);
 		// echo "</pre>";
