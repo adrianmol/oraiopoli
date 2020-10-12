@@ -140,7 +140,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$products   = $this->GetProducts();
 		$products = $products[0]; $numItems = count($products); $i=0;
 		$output = "";
-
+		echo ($numItems);
 		foreach($products as $product){
 
 				if(++$i != $numItems){
