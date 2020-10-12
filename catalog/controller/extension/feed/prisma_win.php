@@ -366,9 +366,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		if ($result === FALSE) { /* Handle error */ }
 		//echo $result;
 		$xml=simplexml_load_string($result) or die("Error: Cannot create object");
-		//$xml = $xml;
+		$xml1 = $xml->ItemImageUpload;
 		echo "<pre>";
-		print_r($xml);
+		print_r($xml1);
 		echo "</pre>";
 		return $result;
 
