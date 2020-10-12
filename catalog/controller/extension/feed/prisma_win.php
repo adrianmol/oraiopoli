@@ -148,9 +148,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 			
 		// }
-
+		
+		$output .= ('{ "storecode": "'.$product['code'].'" }');
 		echo ($output);
-
+		$this->GetPhotoPath($output);
 	}
 
 
@@ -347,7 +348,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	function GetPhotoPath($ItemCode) {
 
 		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/UploadImageToFtp';
-		$data = 'SiteKey=bs-gg183-352&JsonStrWeb={   "items": [ { "storecode": "'.$ItemCode.'"  }]}';
+		$data = 'SiteKey=bs-gg183-352&JsonStrWeb={   "items": [ "'.$ItemCode.'" ]}';
 		
 		// use key 'http' even if you send the request to https://...
 		$options = array(
