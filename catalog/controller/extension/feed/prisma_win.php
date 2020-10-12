@@ -322,15 +322,15 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		}
 		$now =new DateTime();
-		//$today = date("Y-m-d H:i:s", strtotime('+3 hours',$today));
+		$today = date("Y-m-d H:i:s", strtotime('+3 hours',$now));
 		$this->db->query("INSERT INTO ".DB_PREFIX."prisma_win SET
 			products_updated = '".$itemsUpdate."',
 			products_added = '".$itemsAdded."',
-			date_added = '".(string)$now."'
+			date_added = '".$today."'
 		");				
 		echo ("Update : ".$itemsUpdate. " product(s) </br>");
 		echo ("Added : ".$itemsAdded. " product(s) </br>");
-		echo ("Date : ".$now. "  </br>");
+		echo ("Date : ".$today. "  </br>");
 	}
 
 	function GetManufacturer(){
