@@ -34,9 +34,12 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$data  = $this->GetCategory();
 		//$this->GetPhotoPath('00028950');
 
-		$this->InsertProduct();
+		$data = $this->GetItemsPhoto();
+		echo "<pre>";
+		print_r ($data);
+		echo "</pre>";
 		//sleep(60);
-		$this->InsertPhoto();
+		//$this->InsertPhoto();
 
 		// $this->GetManufacturer();
 
