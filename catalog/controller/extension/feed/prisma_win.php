@@ -152,7 +152,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// }
 
 
-		$output .= ('{ "storecode": "00033007" },{ "storecode": "00033006" },{ "storecode": "00033004" },{ "storecode": "00033003" },{ "storecode": "00033002" },{ "storecode": "00033005" },{ "storecode": "00033000" },');
+		$output .= ('{ "storecode": "00033007" },{ "storecode": "00033006" },{ "storecode": "00033004" },{ "storecode": "00033003" },{ "storecode": "00033002" },{ "storecode": "00033005" },{ "storecode": "00033000" }');
 
 
 
