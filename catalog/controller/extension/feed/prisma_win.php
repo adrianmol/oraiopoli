@@ -162,6 +162,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 						$output = "";
 
 					}
+
 				}else{
 				$output .= ('{ "storecode": "'.$product['code'].'" }');	
 				}
@@ -170,7 +171,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		}
 		
-		$output .= ('{ "storecode": "'.$product['code'].'" }');	
+		// $output .= ('{ "storecode": "'.$product['code'].'" }');	
 		//echo ($output);
 		$photo = $this->GetPhotoPath($output);
 		echo "<pre>";
