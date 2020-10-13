@@ -39,8 +39,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// print_r ($data);
 		// echo "</pre>";
 		//sleep(60);
-		$this->InsertProduct();
-		// $this->InsertPhoto();
+		//$this->InsertProduct();
+		$this->InsertPhoto();
 		//$this->GetManufacturer();
 
 
