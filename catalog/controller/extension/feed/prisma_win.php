@@ -140,36 +140,22 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$products   = $this->GetProducts();
 		$products = $products[0]; $numItems = count($products); $i=0;
 		$output = "";
-		echo ($numItems);
-		foreach($products as $product){
+		// echo ($numItems);
+		// foreach($products as $product){
 
-				if(++$i != $numItems){
-					if($j <=100){
+		// 		if(++$i != $numItems){
+		// 			$output .= ('{ "storecode": "00033006" },');
+		// 		}else{
+		// 			$output .= ('{ "storecode": "'.$product['code'].'" }');	
+		// 		}
 
-						$output .= ('{ "storecode": "'.$product['code'].'" },');
-						$j++;
+		// }
 
-					}else{
 
-						$output .= ('{ "storecode": "'.$product['code'].'" }');							
-						$photo = $this->GetPhotoPath($output);
+		$output .= ('{ "storecode": "00033007" },{ "storecode": "00033006" },{ "storecode": "00033004" },{ "storecode": "00033003" },{ "storecode": "00033002" },{ "storecode": "00033005" },{ "storecode": "00033000" },');
 
-						echo "<pre>";
-						print_r($photo);
-						echo "</pre>";
 
-						$j=0;
-						$output = "";
 
-					}
-
-				}else{
-				$output .= ('{ "storecode": "'.$product['code'].'" }');	
-				}
-
-			// $i++;
-
-		}
 		
 		// $output .= ('{ "storecode": "'.$product['code'].'" }');	
 		//echo ($output);
@@ -330,8 +316,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 					WHERE product_id = '".(int)$product['id']."'
 					");	
-
-
 
 			$itemsUpdate++;
 		}
