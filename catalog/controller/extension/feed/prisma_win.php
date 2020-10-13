@@ -150,7 +150,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				}
 
 			$i++;
-			if($i == 100){
+			if($i == 1000){
 			break;
 			}
 		}
