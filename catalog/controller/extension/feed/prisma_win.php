@@ -149,10 +149,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				$output .= ('{ "storecode": "'.$product['code'].'" }');	
 				}
 
-			// $i++;
-			// if($i == 10){
-			// break;
-			// }
+			$i++;
+			if($i == 50){
+			break;
+			}
 		}
 		
 		//echo ($output);
