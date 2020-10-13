@@ -136,7 +136,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	}
 
 	function InsertPhoto(){
-		$i = 0;
+		$i = 0; $j=0;
 		$products   = $this->GetProducts();
 		$products = $products[0]; $numItems = count($products); $i=0;
 		$output = "";
@@ -144,19 +144,21 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		foreach($products as $product){
 
 				if(++$i != $numItems){
-					if($i <100){
+					if($j <=100){
+
 						$output .= ('{ "storecode": "'.$product['code'].'" },');
 
 					}else{
-						$output .= ('{ "storecode": "'.$product['code'].'" }');	
-						
+
+						$output .= ('{ "storecode": "'.$product['code'].'" }');							
 						$photo = $this->GetPhotoPath($output);
 
 						echo "<pre>";
 						print_r($photo);
 						echo "</pre>";
-						$i=0;
+						$j=0;
 						$output = "";
+
 					}
 				}else{
 				$output .= ('{ "storecode": "'.$product['code'].'" }');	
@@ -164,14 +166,14 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 			$i++;
 
-			}
 		}
+		
 		$output .= ('{ "storecode": "'.$product['code'].'" }');	
 		//echo ($output);
 		$photo = $this->GetPhotoPath($output);
-		// echo "<pre>";
-		// print_r($photo);
-		// echo "</pre>";
+		echo "<pre>";
+		print_r($photo);
+		echo "</pre>";
 
 		// $pathPhoto = ("catalog/products/".$product['code'].".".$photo[$product['id']]['itemtype']);
 		// echo ($pathPhoto);
