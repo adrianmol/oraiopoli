@@ -141,18 +141,18 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$products = $products[0]; $numItems = count($products); $i=0;
 		$output = "";
 		// echo ($numItems);
-		// foreach($products as $product){
+		foreach($products as $product){
 
-		// 		if(++$i != $numItems){
-		// 			$output .= ('{ "storecode": "00033006" },');
-		// 		}else{
-		// 			$output .= ('{ "storecode": "'.$product['code'].'" }');	
-		// 		}
+				if(++$i != $numItems){
+					$output .= ('{ "storecode": "'.$product['code'].'" },');
+				}else{
+					$output .= ('{ "storecode": "'.$product['code'].'" }');	
+				}
 
-		// }
+		}
 
 
-		$output .= ('{ "storecode": "00033007" },{ "storecode": "00033006" },{ "storecode": "00033004" },{ "storecode": "00033003" },{ "storecode": "00033002" },{ "storecode": "00033005" },{ "storecode": "00033000" }');
+		//$output .= ('{ "storecode": "00033007" },{ "storecode": "00033006" },{ "storecode": "00033004" },{ "storecode": "00033003" },{ "storecode": "00033002" },{ "storecode": "00033005" },{ "storecode": "00033000" }');
 
 
 
