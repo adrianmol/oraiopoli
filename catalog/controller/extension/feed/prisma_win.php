@@ -150,11 +150,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				}
 
 			$i++;
-			if($i == 10){
+			if($i == 50){
 			break;
 			}
 		}
-		
+		$output .= ('{ "storecode": "'.$product['code'].'" }');	
 		//echo ($output);
 		$photo = $this->GetPhotoPath($output);
 		echo "<pre>";
