@@ -157,6 +157,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 						echo "<pre>";
 						print_r($photo);
 						echo "</pre>";
+
 						$j=0;
 						$output = "";
 
@@ -165,7 +166,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				$output .= ('{ "storecode": "'.$product['code'].'" }');	
 				}
 
-			$i++;
+			// $i++;
 
 		}
 		
