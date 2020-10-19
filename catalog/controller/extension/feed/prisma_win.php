@@ -59,7 +59,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		global $data;
 
-		$ProductData = $this->GetDataURL('GetProducts','10-15-2020');
+		$ProductData = $this->GetDataURL('GetProducts','10-19-2020');
 		$i=0;
 
 		foreach($ProductData->StoreDetails as $product){
