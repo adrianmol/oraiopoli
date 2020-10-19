@@ -59,7 +59,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		global $data;
 
-		$ProductData = $this->GetDataURL('GetProducts','1-13-2020');
+		$ProductData = $this->GetDataURL('GetProducts','10-15-2020');
 		$i=0;
 
 		foreach($ProductData->StoreDetails as $product){
@@ -153,21 +153,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		}
 
+		$photo = $this->GetPhotoPath($output);
 
-		//$output .= ('{ "storecode": "00033007" },{ "storecode": "00033006" },{ "storecode": "00033004" },{ "storecode": "00033003" },{ "storecode": "00033002" },{ "storecode": "00033005" },{ "storecode": "00033000" }');
+		$pathPhoto = ("catalog/products/".$product['code'].".".$photo[$product['id']]['itemtype']);
+		echo ($pathPhoto);
 
-
-
-		
-		// $output .= ('{ "storecode": "'.$product['code'].'" }');	
-		//echo ($output);
-		// $photo = $this->GetPhotoPath($output);
-		// echo "<pre>";
-		// print_r($photo);
-		// echo "</pre>";
-
-		// $pathPhoto = ("catalog/products/".$product['code'].".".$photo[$product['id']]['itemtype']);
-		// echo ($pathPhoto);
 	}
 
 
