@@ -39,7 +39,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// print_r ($data);
 		// echo "</pre>";
 		//sleep(60);
+		
 		$this->InsertProduct();
+
 		//$this->InsertPhoto();
 		//$this->GetManufacturer();
 
@@ -159,10 +161,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		
 		// $output .= ('{ "storecode": "'.$product['code'].'" }');	
 		//echo ($output);
-		$photo = $this->GetPhotoPath($output);
-		echo "<pre>";
-		print_r($photo);
-		echo "</pre>";
+		// $photo = $this->GetPhotoPath($output);
+		// echo "<pre>";
+		// print_r($photo);
+		// echo "</pre>";
 
 		// $pathPhoto = ("catalog/products/".$product['code'].".".$photo[$product['id']]['itemtype']);
 		// echo ($pathPhoto);
