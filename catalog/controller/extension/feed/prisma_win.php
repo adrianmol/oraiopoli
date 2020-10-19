@@ -156,7 +156,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		}
 
 		$photo = $this->GetPhotoPath($output);
-
+		$photo[$product['id']]['itemtype'] = ($photo[$product['id']]['itemtype'] ? $photo[$product['id']]['itemtype'] : "JPG");
 		$pathPhoto = ("catalog/products/".$product['code'].".".$photo[$product['id']]['itemtype']);
 
 		echo ($pathPhoto);
