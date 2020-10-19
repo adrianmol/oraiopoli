@@ -57,7 +57,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 	function GetProducts(){
 
-		$today_ = date("m-d-y");
+		$today_ = date("m-d-Y");
 
 		echo ($today_);
 
