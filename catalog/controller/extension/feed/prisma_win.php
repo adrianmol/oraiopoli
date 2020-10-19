@@ -42,7 +42,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		
 		$this->InsertProduct();
 
-		//$this->InsertPhoto();
+		$this->InsertPhoto();
 		//$this->GetManufacturer();
 
 
@@ -156,6 +156,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$photo = $this->GetPhotoPath($output);
 
 		$pathPhoto = ("catalog/products/".$product['code'].".".$photo[$product['id']]['itemtype']);
+		
 		echo ($pathPhoto);
 
 	}
