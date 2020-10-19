@@ -1,7 +1,7 @@
 <?php
 class ControllerExtensionfeedPrismawin extends Controller {
 
-
+	
 	
 
 	public function index() {
@@ -46,9 +46,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$this->GetManufacturer();
 
 		
-		$GLOBALS['today_'] = date("m.d.y");
 
-		echo $GLOBALS['today_'];
 		// echo "<pre>";
 		// print_r($data);
 		// print_r($data1[0]);
@@ -59,9 +57,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 	function GetProducts(){
 
-		global $data;
+		$today_ = date("m.d.y");
 
-		$ProductData = $this->GetDataURL('GetProducts',$GLOBALS['today_']);
+		echo ($today_);
+
+		$ProductData = $this->GetDataURL('GetProducts',$today_);
 		$i=0;
 
 		foreach($ProductData->StoreDetails as $product){
