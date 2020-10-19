@@ -45,8 +45,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$this->InsertPhoto();
 		//$this->GetManufacturer();
 
+		
+		$GLOBALS['today_'] = date("m.d.y");
 
-
+		echo $GLOBALS['today_'];
 		// echo "<pre>";
 		// print_r($data);
 		// print_r($data1[0]);
@@ -59,7 +61,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		global $data;
 
-		$ProductData = $this->GetDataURL('GetProducts','10-17-2020');
+		$ProductData = $this->GetDataURL('GetProducts',$GLOBALS['today_']);
 		$i=0;
 
 		foreach($ProductData->StoreDetails as $product){
