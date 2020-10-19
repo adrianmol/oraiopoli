@@ -59,7 +59,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		global $data;
 
-		$ProductData = $this->GetDataURL('GetProducts','10-15-2020');
+		$ProductData = $this->GetDataURL('GetProducts','10-17-2020');
 		$i=0;
 
 		foreach($ProductData->StoreDetails as $product){
@@ -156,7 +156,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$photo = $this->GetPhotoPath($output);
 
 		$pathPhoto = ("catalog/products/".$product['code'].".".$photo[$product['id']]['itemtype']);
-		
+
 		echo ($pathPhoto);
 
 	}
