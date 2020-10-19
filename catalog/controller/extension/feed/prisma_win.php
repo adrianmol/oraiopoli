@@ -383,7 +383,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 	function GetDataURL($path,$date) {
-
+		$today = date('h-i-s_j-m-y');
 		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/'. $path;
 		$data = 'SiteKey=bs-gg183-352&Date='.$date.'&StorageCode=000';
 		
@@ -401,7 +401,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		
 		$xml=simplexml_load_string($result) or die("Error: Cannot create object");
 		echo "<br>";
-		$xml->saveXML('/home/oraiomarket/public_html/products.xml');
+		$xml->saveXML('/home/oraiomarket/public_html/Prisma Win/products'.$today.'.xml');
 		echo "<br>";
 		//echo "<pre>";
 		//print_r($xml);
