@@ -16,10 +16,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			echo "Updated";
 		}
 
-
-
-
-
 		// echo "<pre>";
 		// print_r($data);
 		// echo "</pre>";
@@ -401,7 +397,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		
 		$xml=simplexml_load_string($result) or die("Error: Cannot create product xml");
 		echo "<br>";
-		$xml->saveXML('/home/oraiomarket/public_html/Prisma Win/products'.$today.'.xml');
+		$xml->saveXML('/home/oraiomarket/public_html/Prisma Win/products.xml');
 		echo "<br>";
 		//echo "<pre>";
 		//print_r($xml);
