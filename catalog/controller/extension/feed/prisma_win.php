@@ -399,7 +399,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$result = file_get_contents($url, false, $context);
 		if ($result === FALSE) { /* Handle error */ }
 		
-		$xml=simplexml_load_string($result) or die("Error: Cannot create object");
+		$xml=simplexml_load_string($result) or die("Error: Cannot create product xml");
 		echo "<br>";
 		$xml->saveXML('/home/oraiomarket/public_html/Prisma Win/products'.$today.'.xml');
 		echo "<br>";
@@ -427,7 +427,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$result = file_get_contents($url, false, $context);
 		if ($result === FALSE) { /* Handle error */ }
 		//echo $result;
-		$xml=simplexml_load_string($result) or die("Error: Cannot create object");
+		$xml=simplexml_load_string($result) or die("Error: Cannot create image xml");
 
 		foreach($xml->ItemImageUpload as $photoInfo){
 			$photo[(int)$photoInfo->ItemCode] = array(
