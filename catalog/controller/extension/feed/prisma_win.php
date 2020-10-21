@@ -13,7 +13,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// $data = $this->GetCategory();
 
 		if(isset($_REQUEST["update"])) {
+
 			echo "Updated";
+
 		}
 
 		// echo "<pre>";
@@ -37,8 +39,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//sleep(60);
 		
 		$this->InsertProduct();
-
 		$this->InsertPhoto();
+
 		//$this->GetManufacturer();
 
 		
@@ -57,7 +59,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		echo ($today_);
 
-		$ProductData = $this->GetDataURL('GetProducts',$today_);
+		$ProductData = $this->GetDataURL('GetProducts','10-20-2020');
 		$i=0;
 
 		foreach($ProductData->StoreDetails as $product){
