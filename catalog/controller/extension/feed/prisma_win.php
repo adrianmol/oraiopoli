@@ -15,8 +15,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		if(isset($_REQUEST["update"])) {
 
 			echo "Updated";
-
+			$this->InsertProduct();
 		}
+
+
+		//$today_ = date("m-d-Y");
 
 		// echo "<pre>";
 		// print_r($data);
@@ -62,12 +65,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 	function GetProducts(){
 
-		$today_ = date("m-d-Y");
-
-		echo ($today_);
+		
 
 		//$ProductData = $this->GetDataURL('GetProducts','10-20-2020');
-		$ProductData = simplexml_load_file("/home/oraiomarket/public_html/Prisma Win/products.xml") or die("Error: Cannot create object");
+		$ProductData = simplexml_load_file("/home/oraiomarket/public_html/Prisma Win/products.xml") or die("<br>Error: Cannot open XML</br>");
 		$i=0;
 
 		foreach($ProductData->StoreDetails as $product){
