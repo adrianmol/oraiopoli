@@ -45,6 +45,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//sleep(60);
 		
 		$this->InsertProduct();
+
+		$this->GetDataURL('GetDataURL', '1-1-2020');
 		//$this->InsertPhoto();
 
 		//$this->GetManufacturer();
@@ -411,7 +413,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		
 		$xml=simplexml_load_string($result) or die("Error: Cannot create product xml");
 		echo "<br>";
+		if($path == 'GetProducts'){
 		$xml->saveXML('/home/oraiomarket/public_html/Prisma Win/products.xml');
+		}else if($path == 'GetItemsWithNoEshop'){
+		$xml->saveXML('/home/oraiomarket/public_html/Prisma Win/productsNoEshop.xml');
+		}
 		echo "<br>";
 		//echo "<pre>";
 		//print_r($xml);
