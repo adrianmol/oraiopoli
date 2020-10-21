@@ -57,7 +57,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		echo ($today_);
 
-		$ProductData = $this->GetDataURL('GetProducts','10-18-2020');
+		$ProductData = $this->GetDataURL('GetProducts',$today_));
 		$i=0;
 
 		foreach($ProductData->StoreDetails as $product){
@@ -65,7 +65,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			if($product->ItemStock <= 0 ) $product->ItemStock = 0;
 			
 
-			(int)$productID = $product->ItemId;
+			(int)$productID = $product->ItemId;	
 			$data[(int)$productID] = array(
 			'id'				=>(string) $product->ItemId,		
 			'code'				=>(string) $product->ItemCode,
@@ -422,7 +422,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$context  = stream_context_create($options);
 		$result = file_get_contents($url, false, $context);
 		if ($result === FALSE) { /* Handle error */ }
-		//echo $result;
 		$xml=simplexml_load_string($result) or die("Error: Cannot create image xml");
 
 		foreach($xml->ItemImageUpload as $photoInfo){
