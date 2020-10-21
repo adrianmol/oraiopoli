@@ -1,8 +1,6 @@
 <?php
 class ControllerExtensionfeedPrismawin extends Controller {
 
-	
-	
 
 	public function index() {
 
@@ -10,59 +8,16 @@ class ControllerExtensionfeedPrismawin extends Controller {
 #https://oraiomarket.gr/index.php?route=extension/feed/prisma_win
 
 
-		// $data = $this->GetCategory();
-
 		if(isset($_REQUEST["update"])) {
 
 			echo "Updated";
 			$this->InsertProduct();
 		}
 
-
-
-
-
-		//$today_ = date("m-d-Y");
-
-		// echo "<pre>";
-		// print_r($data);
-		// echo "</pre>";
-		// echo ($data[18]['ItemPhotoName']);
-
-		// $data = $this->GetProducts();
-
-		// echo "<pre>";
-		// print_r($data);
-		// echo "</pre>";
-
-		//$data  = $this->GetCategory();
-		//$this->GetPhotoPath('00028950');
-
-		// $this->GetItemsPhoto();
-		// echo "<pre>";
-		// print_r ($data);
-		// echo "</pre>";
-		//sleep(60);
 		
 		$this->InsertProduct();
 		$this->GetDataURL('GetItemsWithNoEshop','1-1-2020');
 		$this->GetDataURL('GetProducts','10-19-2020');
-		//$this->InsertPhoto();
-
-		//$this->GetManufacturer();
-
-		
-
-		// echo "<pre>";
-		// print_r($data);
-		// print_r($data1[0]);
-		// echo "</pre>";
-
-		
-
-
-
-
 
 
 	}
