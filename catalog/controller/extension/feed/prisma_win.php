@@ -39,7 +39,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//sleep(60);
 		
 		$this->InsertProduct();
-		$this->InsertPhoto();
+		//$this->InsertPhoto();
 
 		//$this->GetManufacturer();
 
