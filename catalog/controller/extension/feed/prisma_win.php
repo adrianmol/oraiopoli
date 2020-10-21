@@ -50,6 +50,13 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// print_r($data1[0]);
 		// echo "</pre>";
 
+		
+
+
+
+
+
+
 	}
 
 
@@ -59,7 +66,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		echo ($today_);
 
-		$ProductData = $this->GetDataURL('GetProducts','10-20-2020');
+		//$ProductData = $this->GetDataURL('GetProducts','10-20-2020');
+		$ProductData = simplexml_load_file("/home/oraiomarket/public_html/Prisma Win/products.xml") or die("Error: Cannot create object");
 		$i=0;
 
 		foreach($ProductData->StoreDetails as $product){
