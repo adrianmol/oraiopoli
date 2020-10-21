@@ -46,7 +46,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		
 		$this->InsertProduct();
 
-		$this->GetDataURL('GetDataURL', '1-1-2020');
+		$this->GetDataURL('GetItemsWithNoEshop','1-1-2020');
 		//$this->InsertPhoto();
 
 		//$this->GetManufacturer();
