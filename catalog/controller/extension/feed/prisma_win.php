@@ -18,10 +18,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			$this->InsertProduct();
 		}
 
-		while(1){
-			sleep(120);
-			$this->InsertProduct();
-		}
+
 
 
 
