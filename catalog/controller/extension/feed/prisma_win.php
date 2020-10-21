@@ -70,10 +70,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 	function GetProducts(){
 
-		
-
 		//$ProductData = $this->GetDataURL('GetProducts','10-20-2020');
-		$ProductData = simplexml_load_file("/home/oraiomarket/public_html/Prisma Win/products.xml") or die("<br>Error: Cannot open XML</br>");
+		$ProductData = simplexml_load_file("/home/oraiomarket/public_html/Prisma Win/products.xml") or die("<br>Error: Cannot open XML (Products)</br>");
 		$i=0;
 
 		foreach($ProductData->StoreDetails as $product){
@@ -175,7 +173,14 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 	}
 
+	function ItemsWithNoEshop(){
 
+
+		$ProductData = simplexml_load_file("/home/oraiomarket/public_html/Prisma Win/productsNoEshop.xml") or die("<br>Error: Cannot open XML (No Eshop)</br>");
+
+
+
+	}
 
 
 	function InsertProduct(){
