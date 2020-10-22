@@ -370,7 +370,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	function GetDataURL($path,$sitekey,$date) {
 		$today = date('h-i-s_j-m-y');
 		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/'. $path;
-		$data = 'SiteKey='.$sitekey.'&Date='.$date.'&StorageCode=000';
+		$data = 'SiteKey=bs-gg183-352&Date='.$date.'&StorageCode=000';
 		
 		// use key 'http' even if you send the request to https://...
 		$options = array(
@@ -380,7 +380,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				'content' => $data
 			)
 		);
-		
+
 		$context  = stream_context_create($options);
 		$result = file_get_contents($url, false, $context);
 		if ($result === FALSE) { /* Handle error */ }
