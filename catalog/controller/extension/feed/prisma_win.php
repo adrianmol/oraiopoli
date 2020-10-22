@@ -16,7 +16,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$today = date("m-d-Y");
 		
 		// $this->InsertProduct();
-		$this->GetDataURL('GetItemsWithNoEshop','10-19-2020');
+		$this->GetDataURL('GetItemsWithNoEshop','10-10-2020');
 		$this->GetDataURL('GetProducts',$today);
 
 		$this->ItemsWithNoEshop();
@@ -381,12 +381,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$context  = stream_context_create($options);
 		$result = file_get_contents($url, false, $context);
 		if ($result === FALSE) { /* Handle error */ }
-		
-		$xml=simplexml_load_string($result) or die("Error: Cannot create product xml");
-		echo "<br>";
 		if($path == 'GetProducts'){
+		$xml=simplexml_load_string($result) or die("Error: Cannot create product xml");	
 		$xml->saveXML('/home/oraiomarket/public_html/Prisma Win/products.xml');
 		}else if($path == 'GetItemsWithNoEshop'){
+		$xml=simplexml_load_string($result) or die("Error: Cannot create product no eshop xml");	
 		$xml->saveXML('/home/oraiomarket/public_html/Prisma Win/productsNoEshop.xml');
 		}
 		echo "<br>";
