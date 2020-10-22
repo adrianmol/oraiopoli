@@ -16,9 +16,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$today = date("m-d-Y");
 		
 		
-		$this->GetDataURL('GetItemsWithNoEshop','10-1-2020');
+		$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','10-1-2020');
 
-		$this->GetDataURL('GetProducts',$today);
+		$this->GetDataURL('GetProducts','bs-gg183-352',$today);
 
 		$this->InsertProduct();
 		$this->ItemsWithNoEshop();
@@ -347,7 +347,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 	function GetItemsPhoto(){
-		$ProductData = $this->GetDataURL('GetItemsPhotoInfo','1/1/2020');
+		$ProductData = $this->GetDataURL('GetItemsPhotoInfo','bs-gg183-352','1/1/2020');
 
 		foreach($ProductData->ItemsPhotoInfo as $ItemsPhoto){
 			
@@ -367,10 +367,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	}
 
 
-	function GetDataURL($path,$date) {
+	function GetDataURL($path,$sitekey,$date) {
 		$today = date('h-i-s_j-m-y');
 		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/'. $path;
-		$data = 'SiteKey=bs-gg183-352&Date='.$date.'&StorageCode=000';
+		$data = 'SiteKey='.$sitekey.'&Date='.$date.'&StorageCode=000';
 		
 		// use key 'http' even if you send the request to https://...
 		$options = array(
@@ -380,22 +380,22 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				'content' => $data
 			)
 		);
+		
 		$context  = stream_context_create($options);
 		$result = file_get_contents($url, false, $context);
 		if ($result === FALSE) { /* Handle error */ }
-		if($path == 'GetProducts'){
-		$xml=simplexml_load_string($result) or die("Error: Cannot create product xml");	
-		$xml->saveXML('/home/oraiomarket/public_html/Prisma Win/products.xml');
-		}else if($path == 'GetItemsWithNoEshop'){
-		$xml=simplexml_load_string($result) or die("Error: Cannot create product no eshop xml");	
-		$xml->saveXML('/home/oraiomarket/public_html/Prisma Win/productsNoEshop.xml');
-		}
-		echo "<br>";
-		//echo "<pre>";
-		//print_r($xml);
-		//echo "</pre>";
-		return $xml;
-	
+
+			if($path == 'GetProducts'){
+
+				$xml=simplexml_load_string($result) or die("Error: Cannot create product xml");	
+				$xml->saveXML('/home/oraiomarket/public_html/Prisma Win/products.xml');
+
+			}else if($path == 'GetItemsWithNoEshop'){
+
+				$xml=simplexml_load_string($result) or die("Error: Cannot create product no eshop xml");	
+				$xml->saveXML('/home/oraiomarket/public_html/Prisma Win/productsNoEshop.xml');
+
+			}
 	}
 
 	function GetPhotoPath($ItemCode) {
