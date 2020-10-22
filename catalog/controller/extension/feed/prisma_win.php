@@ -15,10 +15,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		}
 		$today = date("m-d-Y");
 		
-		$this->InsertProduct();
-		$this->GetDataURL('GetItemsWithNoEshop','1-1-2020');
-		$this->GetDataURL('GetProducts',$today);
+		// $this->InsertProduct();
+		// $this->GetDataURL('GetItemsWithNoEshop','1-1-2020');
+		// $this->GetDataURL('GetProducts',$today);
 
+		$this->ItemsWithNoEshop();
 
 	}
 
@@ -132,9 +133,13 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 		$ProductData = simplexml_load_file("/home/oraiomarket/public_html/Prisma Win/productsNoEshop.xml") or die("<br>Error: Cannot open XML (No Eshop)</br>");
-
-
-
+		
+		foreach($ProductData->StoreDetails as $product){
+			$data['id'] = $product->storeid;
+		}
+		echo "<pre>";
+		print_r ($data);
+		echo "</pre>";
 	}
 
 
