@@ -369,6 +369,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 	function GetDataURL($path,$sitekey,$date) {
 		$today = date('h-i-s_j-m-y');
+		echo ($sitekey);
 		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/'. $path;
 		$data = 'SiteKey=bs-gg183-352&Date='.$date.'&StorageCode=000';
 		
