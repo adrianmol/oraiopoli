@@ -134,7 +134,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$ProductData = simplexml_load_file("/home/oraiomarket/public_html/Prisma Win/productsNoEshop.xml") or die("<br>Error: Cannot open XML (No Eshop)</br>");
 		
-		foreach($ProductData->StoreDetails as $product){
+		foreach($ProductData->StoreItemsNoEshop as $product){
 			$data['id'] = (string)$product->storeid;
 		}
 		echo "<pre>";
