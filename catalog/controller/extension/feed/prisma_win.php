@@ -138,10 +138,16 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$data = array(); $i = 0;
 		
 		foreach($ProductData->StoreItemsNoEshop as $product){
+		$exits_item = $this->db->query("SELECT product_id FROM ". DB_PREFIX ."product WHERE product_id = '".(int)$product->storeid."' ");
+		$exits_item = $exits_item->rows;
+		if (empty($exits_item)){
 
 			$this->db->query("UPDATE ".DB_PREFIX."product SET 
 			status = 0 WHERE product_id = '".(int)$product->storeid."'");
+				$i++;
+			}
 		}
+		echo ($i);
 	}
 
 
