@@ -371,7 +371,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$today = date('h-i-s_j-m-y');
 		echo ($sitekey);
 		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/'. $path;
-		$data = 'SiteKey='.(int)$sitekey.'&Date='.$date.'&StorageCode=000';
+		$data = 'SiteKey='.(string)$sitekey.'&Date='.$date.'&StorageCode=000';
 		
 		// use key 'http' even if you send the request to https://...
 		$options = array(
