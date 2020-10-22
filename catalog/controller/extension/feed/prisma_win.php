@@ -147,7 +147,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				$i++;
 			}
 		}
-		echo ($i);
+		echo ("ProductNoEshop: ". $i."</br>");
 	}
 
 
@@ -369,7 +369,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 	function GetDataURL($path,$sitekey,$date) {
 		$today = date('h-i-s_j-m-y');
-		echo ($sitekey);
 		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/'. $path;
 		$data = 'SiteKey='.(string)$sitekey.'&Date='.$date.'&StorageCode=000';
 		
