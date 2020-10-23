@@ -99,10 +99,12 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				'level'       => $level,
 				'categoryID'  => (int)$catID['category_id']
 			);
+
+	}
+
 		echo "<pre>";
 		print_r ($CategoryPath);
 		echo "</pre>";
-	}
 
 		return $CategoryPath;
 
