@@ -97,7 +97,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			echo ($sqlparent['category_id']."2 => ");
 			$sql = $this->db->query("SELECT cd.category_id FROM ". DB_PREFIX ."category_description cd ,". DB_PREFIX ."category c WHERE cd.name = '" . $category['level'.$level.''] . "' AND c.parent_id ='".$sqlparent['category_id']."' AND cd.category_id = c.category_id");
 			$catID = $sql->rows[0];
-			echo ($catID['category_id']."3 => ");
+			echo ($catID['category_id']."3 => </br>" );
 
 
 			$CategoryPath[$category['ID']] =  array (
