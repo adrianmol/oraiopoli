@@ -104,6 +104,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				'categoryID'  => (int)$catID['category_id']
 			);
 		echo "<pre>";
+		print_r ($sqlparent);
 		print_r ($catID);
 		echo "</pre>";
 	}
