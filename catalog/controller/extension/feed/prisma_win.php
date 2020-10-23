@@ -91,7 +91,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			$parentlevel = $level - 1;
 			$sqlparent = $this->db->query("SELECT cd.category_id FROM ". DB_PREFIX ."category_description cd WHERE name = '" . $category['level'.$parentlevel.''] . "'" );
 			(int)$sqlparent = $sqlparent->rows[0];
-			$sql = $this->db->query("SELECT cd.category_id FROM ". DB_PREFIX ."category_description cd WHERE name = '" . $category['level'.$level.''] . "'" );
+			$sql = $this->db->query("SELECT cd.category_id FROM ". DB_PREFIX ."category_description cd ". DB_PREFIX ."category c WHERE cd.name = '" . $category['level'.$level.''] . "' AND c.parent_id ='".$sqlparent."' AND cd.category_id = c.category_id");
 			
 			$catID = $sql->rows[0];
 			
@@ -103,7 +103,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				'categoryID'  => (int)$catID['category_id']
 			);
 		echo "<pre>";
-		print_r ($sqlparent);
+		print_r ($catID);
 		echo "</pre>";
 	}
 
