@@ -92,7 +92,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			$sqlparent1 = $this->db->query("SELECT cd.category_id FROM ". DB_PREFIX ."category_description cd WHERE name = '" . $category['level'.($level-2).''] . "'" );
 			(int)$sqlparent1 = $sqlparent1->rows[0];
 			echo ($sqlparent1['category_id']."1 => ");
-			$sqlparent = $this->db->query("SELECT cd.category_id FROM ". DB_PREFIX ."category_description cd WHERE ,". DB_PREFIX ."category c cd.name = '" . $category['level'.($level-1).''] . "' AND c.parent_id = '".$sqlparent1['category_id']."'" );
+			$sqlparent = $this->db->query("SELECT cd.category_id FROM ". DB_PREFIX ."category_description cd ,". DB_PREFIX ."category c WHERE cd.name = '" . $category['level'.($level-1).''] . "' AND c.parent_id = '".$sqlparent1['category_id']."'" );
 			(int)$sqlparent = $sqlparent->rows[0];
 			echo ($sqlparent['category_id']."2 => ");
 			$sql = $this->db->query("SELECT cd.category_id FROM ". DB_PREFIX ."category_description cd ,". DB_PREFIX ."category c WHERE cd.name = '" . $category['level'.$level.''] . "' AND c.parent_id ='".$sqlparent['category_id']."' AND cd.category_id = c.category_id");
