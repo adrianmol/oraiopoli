@@ -16,13 +16,13 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$today = date("m-d-Y");
 		
 		
-		$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','10-1-2020');
+		// $this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','10-1-2020');
 
-		$this->GetDataURL('GetProducts','bs-gg183-352',$today);
+		// $this->GetDataURL('GetProducts','bs-gg183-352',$today);
 
-		$this->InsertProduct();
-		$this->ItemsWithNoEshop();
-
+		// $this->InsertProduct();
+		// $this->ItemsWithNoEshop();
+		$this->GetCategory();
 	}
 
 
@@ -90,7 +90,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			}
 
 			$sql = $this->db->query("SELECT cd.category_id FROM ". DB_PREFIX ."category_description cd WHERE name = '" . $category['level'.$level.''] . "'" );
-
+			$level-=1;
+			$sqlparent = $this->db->query("SELECT cd.category_id FROM ". DB_PREFIX ."category_description cd WHERE name = '" . $category['level'.$level.''] . "'" );
 			$catID = $sql->rows[0];
 			
 			$CategoryPath[$category['ID']] =  array (
@@ -100,8 +101,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				'level'       => $level,
 				'categoryID'  => (int)$catID['category_id']
 			);
-	 
-		}
+		echo "<pre>";
+		print_r ($sqlparent);
+		echo "</pre>";
+	}
 
 		return $CategoryPath;
 
@@ -346,25 +349,25 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 
-	function GetItemsPhoto(){
-		$ProductData = $this->GetDataURL('GetItemsPhotoInfo','bs-gg183-352','1/1/2020');
+	// function GetItemsPhoto(){
+	// 	$ProductData = $this->GetDataURL('GetItemsPhotoInfo','bs-gg183-352','1/1/2020');
 
-		foreach($ProductData->ItemsPhotoInfo as $ItemsPhoto){
+	// 	foreach($ProductData->ItemsPhotoInfo as $ItemsPhoto){
 			
-			(int)$productID = $ItemsPhoto->ItemCode;
+	// 		(int)$productID = $ItemsPhoto->ItemCode;
 
-			$data[(int)$productID] = array(
-			'ItemCode'			=>(string) $ItemsPhoto->ItemCode,
-			'ItemDesc'			=>(string) $ItemsPhoto->ItemDescription,
-			'ItemPhotoName'		=>(string) $ItemsPhoto->ItemPhotoName,
-			'PhotoPath'			=>(string) $ItemsPhoto->ItemPhotoPath,
-			);
+	// 		$data[(int)$productID] = array(
+	// 		'ItemCode'			=>(string) $ItemsPhoto->ItemCode,
+	// 		'ItemDesc'			=>(string) $ItemsPhoto->ItemDescription,
+	// 		'ItemPhotoName'		=>(string) $ItemsPhoto->ItemPhotoName,
+	// 		'PhotoPath'			=>(string) $ItemsPhoto->ItemPhotoPath,
+	// 		);
 
-		}
+	// 	}
 
-	return  $data;
+	// return  $data;
 
-	}
+	// }
 
 
 	function GetDataURL($path,$sitekey,$date) {
@@ -396,6 +399,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				$xml->saveXML('/home/oraiomarket/public_html/Prisma Win/productsNoEshop.xml');
 
 			}
+			//return $xml;
 	}
 
 	function GetPhotoPath($ItemCode) {
