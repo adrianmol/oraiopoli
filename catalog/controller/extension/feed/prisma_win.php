@@ -21,8 +21,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// $this->GetDataURL('GetProducts','bs-gg183-352',$today);
 
 		$this->InsertProduct();
-		// $this->ItemsWithNoEshop();
+		$this->ItemsWithNoEshop();
 		$this->GetCategory();
+		$this->InsertPhoto();
 	}
 
 
@@ -217,6 +218,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 									quantity ='".(float)$product['itemStock']."',
 									image ='". $pathPhoto ."',
 									stock_status_id = '".(int)$StockStatus."',
+									manufacturer_id = '".(int)$product['manufacturer_id']."',
 									minimum = '".(float)$minimum."'
 			");	
 
@@ -242,6 +244,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 									quantity ='".(float)$product['itemStock']."',
 									image ='". $pathPhoto ."',
 									stock_status_id = '".(int)$StockStatus."',
+									manufacturer_id = '".(int)$product['manufacturer_id']."',
 									minimum = '".(float)$minimum."'
 			
 			");	
@@ -286,6 +289,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 					stock_status_id = '".(int)$itemOutStock."',
 					in_stock_status_id = '".(int)$StockStatus."',
 					price = '".$product['price_vat']."',
+					manufacturer_id = '".(int)$product['manufacturer_id']."',
 					date_modified ='".$newdatamodified ."'
 					
 					WHERE product_id = '".(int)$product['id']."'
