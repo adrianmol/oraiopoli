@@ -341,7 +341,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 										name = '".(string)$manuf."'
 
 		");	
-
+		echo ("Manufacturer: " .$manuf."</br>")	;
 		}
 
 	}
