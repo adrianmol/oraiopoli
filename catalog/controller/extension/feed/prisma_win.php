@@ -16,9 +16,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$today = date("m-d-Y");
 		
 		
-		// $this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','10-1-2020');
+		//$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','10-1-2020');
 
-		// $this->GetDataURL('GetProducts','bs-gg183-352',$today);
+		$this->GetDataURL('GetProducts','bs-gg183-352',$today);
 
 		$this->InsertProduct();
 		$this->ItemsWithNoEshop();
