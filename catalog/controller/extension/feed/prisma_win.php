@@ -23,7 +23,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$this->InsertProduct();
 		$this->ItemsWithNoEshop();
 		$this->GetCategory();
-		//$this->InsertPhoto();
+		$this->InsertPhoto();
 
 	}
 
@@ -103,11 +103,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			);
 
 	}
-
-		echo "<pre>";
-		print_r ($catID);
-		echo "</pre>";
-
+	
 		return $CategoryPath;
 
 	}
