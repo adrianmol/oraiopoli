@@ -327,7 +327,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		foreach($manufacturers->ManufacturerDetails as $manufacturer){
 
 			echo "<pre>";
-			print_r($manufacturer);
+			print_r($manufacturer->ManufacturerID);
 			echo "</pre>";	
 
 
