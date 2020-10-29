@@ -333,11 +333,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$manufacturerDB =$manufacturersDB->rows;
 		$manuf = str_replace('\'', ' ', $manufacturer['manufacturer']);	
 
-
-
-		echo "<pre>";
-		print_r($)
-		echo "<pre>";
 		// if(empty($manufacturerDB) && !empty($manufacturer['manufacturer'])){ 
 		
 		// $insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
