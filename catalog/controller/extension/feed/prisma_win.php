@@ -320,8 +320,12 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 	function GetManufacturer(){
 	
-		$manufacturers = $this->GetProducts();
-		$manufacturers = $manufacturers[0];
+		$manufacturers = simplexml_load_file("/home/oraiomarket/public_html/Prisma Win/manufacturers.xml") or die("<br>Error: Cannot open XML (manufacturers)</br>");
+
+		echo "<pre>";
+		print_r($manufacturers);
+		echo "</pre>";
+
 
 		foreach($manufacturers as $manufacturer){
 
@@ -329,20 +333,25 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$manufacturerDB =$manufacturersDB->rows;
 		$manuf = str_replace('\'', ' ', $manufacturer['manufacturer']);	
 
-		if(empty($manufacturerDB) && !empty($manufacturer['manufacturer'])){ 
+
+
+		echo "<pre>";
+		print_r($)
+		echo "<pre>";
+		// if(empty($manufacturerDB) && !empty($manufacturer['manufacturer'])){ 
 		
-		$insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
+		// $insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
 
-				manufacturer_id  = '".(int)$manufacturer['manufacturer_id']."',
-				name = '".(string)$manuf."',
-				sort_order = 0 
+		// 		manufacturer_id  = '".(int)$manufacturer['manufacturer_id']."',
+		// 		name = '".(string)$manuf."',
+		// 		sort_order = 0 
 
-				ON DUPLICATE KEY UPDATE manufacturer_id = '".(int)$manufacturer['manufacturer_id']."', 
-										name = '".(string)$manuf."'
+		// 		ON DUPLICATE KEY UPDATE manufacturer_id = '".(int)$manufacturer['manufacturer_id']."', 
+		// 								name = '".(string)$manuf."'
 
-		");	
-		echo ("Manufacturer: " .$manuf."</br>")	;
-		}
+		// ");	
+		// echo ("Manufacturer: " .$manuf."</br>")	;
+		// }
 
 	}
 	
