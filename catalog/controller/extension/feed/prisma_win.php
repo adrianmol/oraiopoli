@@ -334,8 +334,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			// echo ($mymanufName);
 			// echo "</pre>";	
 
-
+			echo ("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer WHERE manufacturer_id ={$mymanufid}");
 		$manufacturersDB = $this->db->query("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer WHERE manufacturer_id ={$mymanufid}");
+
 		$manufacturerDB =$manufacturersDB->rows;
 		$manuf = str_replace('\'', ' ', $manufacturer['manufacturer']);	
 
