@@ -321,7 +321,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	function GetManufacturer(){
 	
 		$manufacturers = simplexml_load_file("/home/oraiomarket/public_html/Prisma Win/manufacturer.xml") or die("<br>Error: Cannot open XML (manufacturers)</br>");
-		$manufacturers = $manufacturers->ManufacturerDetails;
+		$manufacturers = $manufacturers;
 
 		echo "<pre>";
 		echo ($manufacturers);
