@@ -328,11 +328,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 			 $mymanufid = $manufacturer->ManufacturerID;
 			 $mymanufName = $manufacturer->ManufacturerName;
-			echo "<pre>";
-			echo ($mymanufid);
-			echo "<br>";
-			echo ($mymanufName);
-			echo "</pre>";	
+			// echo "<pre>";
+			// echo ($mymanufid);
+			// echo "<br>";
+			// echo ($mymanufName);
+			// echo "</pre>";	
 
 
 		$manufacturersDB = $this->db->query("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer WHERE manufacturer_id ={$mymanufid}");
