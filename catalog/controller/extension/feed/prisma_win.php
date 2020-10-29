@@ -326,8 +326,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		foreach($manufacturers->ManufacturerDetails as $manufacturer){
 
+			 $mymanuf = $manufacturer->ManufacturerID;
 			echo "<pre>";
-			echo($manufacturer['ManufacturerID']);
+			echo ($mymanuf);
 			echo "</pre>";	
 
 
