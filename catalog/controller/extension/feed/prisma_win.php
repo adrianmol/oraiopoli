@@ -18,7 +18,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		
 		//$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','10-1-2020');
 
-		$this->GetDataURL('GetProducts','bs-gg183-352','1-1-1990');
+	    $this->GetDataUrlManufacturer('GetManufacturers','bs-gg183-352');
 
 		// $this->InsertProduct();
 		// $this->ItemsWithNoEshop();
@@ -105,7 +105,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	}
 	
 		return $CategoryPath;
-
+	
 	}
 
 	function InsertPhoto(){
@@ -369,6 +369,31 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	// return  $data;
 
 	// }
+
+	function GetDataUrlManufacturer($path,$sitekey) {
+		$today = date('h-i-s_j-m-y');
+		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/'. $path;
+		$data = 'SiteKey='.(string)$sitekey.'&StorageCode=000';
+		
+		// use key 'http' even if you send the request to https://...
+		$options = array(
+			'http' => array(
+				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+				'method'  => 'POST',
+				'content' => $data
+			)
+		);
+
+		$context  = stream_context_create($options);
+		$result = file_get_contents($url, false, $context);
+		if ($result === FALSE) { /* Handle error */ }
+
+			$xml=simplexml_load_string($result) or die("Error: Cannot create manufacturer xml");	
+			$xml->saveXML('/home/oraiomarket/public_html/Prisma Win/manufacturer.xml');
+
+			//return $xml;
+	}
+
 
 
 	function GetDataURL($path,$sitekey,$date) {
