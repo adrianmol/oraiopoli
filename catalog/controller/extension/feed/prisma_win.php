@@ -113,30 +113,30 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			'datamodified'		=>(string) $product->ItemDateModified
 			); 
 
+			$ID= (int)$productID;	
 
+			$category[$ID] = array();
 
-			$category[$productID] = array();
-
-			$category[$productID]["productID"] = (string)$product->ItemId;
+			$category[$ID]["productID"] = (string)$product->ItemId;
 			
-			$category[$productID]["top_category"] = (string)$product->ItemGroup1;
+			$category[$ID]["top_category"] = (string)$product->ItemGroup1;
 			
 
 			if(!empty((string) $product->ItemGroup2)){
 
-				$category[$productID]["level1"] = (string)$product->ItemGroup2;
+				$category[$ID]["level1"] = (string)$product->ItemGroup2;
 				
 			}
 			
 			if(!empty((string) $product->ItemGroup3)){
 
-				$category[$productID]["level2"] = (string)$product->ItemGroup3;
+				$category[$ID]["level2"] = (string)$product->ItemGroup3;
 
 			}
 
 			if(!empty((string) $product->ItemGroup4)){
 
-				$category[$productID]["level3"] = (string)$product->ItemGroup4;
+				$category[$ID]["level3"] = (string)$product->ItemGroup4;
 			
 			}
 			
