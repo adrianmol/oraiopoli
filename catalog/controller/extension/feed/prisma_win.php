@@ -24,7 +24,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		//$this->InsertProduct();
 		//$this->ItemsWithNoEshop();
-		$data = $this->GetProducts();
+		 $this->GetCategory();
 
 
 		// echo "<pre>";
@@ -142,19 +142,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			
 			}
 			
-			
-			
-			// $category[(int)$productID] = array(
-			// 	'productID' =>(string)$product->ItemId,
-			// 	'top_category' =>(string) $product->ItemGroup1,
-			// 	'level1' =>(string) $product->ItemGroup2,
-			// 	'level2' =>(string) $product->ItemGroup3,
-			// 	'level3' =>(string) $product->ItemGroup4
-			// );
 		}
-		echo "<pre>";
-		print_r($category);
-		echo "</pre>";
+
 		return array ( $data , $category);
 
 	}
@@ -167,6 +156,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		foreach($data[1] as $category){
 		
+
+			echo ("Last key: ". (array_key_last($category))."<br>");
 
 			if(empty($category['level3'])){
 				if(empty($category['level2'])){
@@ -230,11 +221,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 
-			$insert_product_to_category = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_category (category_id,product_id) VALUES ({$category_field[0]['category_id']},{$productID})");
+			//$insert_product_to_category = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_category (category_id,product_id) VALUES ({$category_field[0]['category_id']},{$productID})");
 			
-			if($insert_product_to_category){
-				echo ("Status = {$insert_product_to_category} ProductID : {$productID} CategoryID :{$category_field[0]['category_id']} </br>");
-			}
+			// if($insert_product_to_category){
+			// 	echo ("Status = {$insert_product_to_category} ProductID : {$productID} CategoryID :{$category_field[0]['category_id']} </br>");
+			// }
 
 			$CategoryPath[$productID] =  array (
 
