@@ -139,19 +139,23 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			}
 
 
-			$sql = $this->db->query("SELECT cd.category_id FROM ". DB_PREFIX ."category_description cd ,". DB_PREFIX ."category c WHERE cd.name = '" . $category['level'.$level.''] . "'");
-			$catID = $sql->rows[0];
-			$CategoryPath[$category['ID']] =  array (
 
-				'productID'   => $category['ID'],
-				'cat1' 	      => $category['level'.$level.''],
-				'level'       => $level,
-				'categoryID'  => (int)$catID['category_id']
-			);
+			$categoryID = $this->db->query("SELECT cd.category_id FROM ". DB_PREFIX ."category cd ,". DB_PREFIX ."category c WHERE cd.name = '" . $category['level'.$level.''] . "'");
+			
+			$catID = $categoryID->rows[0];
+			// $CategoryPath[$category['ID']] =  array (
+
+			// 	'productID'   => $category['ID'],
+			// 	'cat1' 	      => $category['level'.$level.''],
+			// 	'level'       => $level,
+			// 	'categoryID'  => (int)$catID['category_id']
+			// );
 
 	}
-	
-		return $CategoryPath;
+		echo "<pre>";
+		print_r($catID);
+		echo "</pre>";
+		//return $CategoryPath;
 	
 	}
 
@@ -185,18 +189,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$ProductData = simplexml_load_file("/home/oraiomarket/public_html/prisma_win/productsNoEshop.xml") or die("<br>Error: Cannot open XML (Products No Eshop)</br>");
 		$product_no_eshop = 0;
 		
-		// foreach($ProductData->StoreItemsNoEshop as $product){
+		foreach($ProductData->StoreItemsNoEshop as $product){
 
-		//$product_id = $product->storeid;
-		$product_id = 18;
-
+		$product_id = $product->storeid;
 		$exits_product = $this->db->query("SELECT product_id FROM ". DB_PREFIX ."product WHERE product_id = '{$product_id}' ");
-		echo "<pre>";
-		print_r($exits_product);
-		echo "</pre>";
 		$exits_product = $exits_product->rows;
-		echo ("{$product_id} </br>");
-		echo (count($exits_product)."</br>");
 		if (count($exits_product) != 0){
 
 			$this->db->query("UPDATE ".DB_PREFIX."product SET 
@@ -204,8 +201,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				$product_no_eshop++;
 
 			}
-		//}
-		echo ("No eshop {$product_no_eshop} </br>");
+		}
 		return $product_no_eshop;
 	}
 
