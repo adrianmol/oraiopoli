@@ -19,11 +19,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//echo $_SERVER['DOCUMENT_ROOT'];
 		
 		$this->GetDataURL('GetProducts','bs-gg183-352','10-30-2020');
-
+		$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','10-27-2020');
 	    //$this->GetDataUrlManufacturer('GetManufacturers','bs-gg183-352');
 
-		// $this->InsertProduct();
-		// $this->ItemsWithNoEshop();
+		$this->InsertProduct();
+		$this->ItemsWithNoEshop();
 		// $this->GetCategory();
 		// $this->InsertPhoto();
 		// $this->GetManufacturer();	
@@ -72,14 +72,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 	}
 
-
-
 	function GetProducts(){
 
 		//$ProductData = $this->GetDataURL('GetProducts','10-20-2020');
-		
 		// $ProductData = curl("https://oraiomarket.gr/prisma_win/products.xml") or die("<br>Error: Cannot open XML (Products)</br>");
-		$ProductData = $this-> CallXML('https://oraiomarket.gr/prisma_win/products.xml');
+		$ProductData = $this->CallXML('https://oraiomarket.gr/prisma_win/products.xml');
 		$i=0;
 
 		foreach($ProductData->StoreDetails as $product){
@@ -183,7 +180,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	function ItemsWithNoEshop(){
 
 
-		$ProductData = simplexml_load_file("/home/oraiomarket/public_html/Prisma Win/productsNoEshop.xml") or die("<br>Error: Cannot open XML (No Eshop)</br>");
+		$ProductData = $this->CallXML('https://oraiomarket.gr/prisma_win/productsNoEshop.xml');
 		$data = array(); $i = 0;
 		
 		foreach($ProductData->StoreItemsNoEshop as $product){
@@ -201,7 +198,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 	function InsertProduct(){
-
 
 		$products   = $this->GetProducts();
 		$products   = $products[0];
@@ -368,63 +364,52 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 	function GetManufacturer(){
 	
-		$manufacturers = simplexml_load_file("/home/oraiomarket/public_html/Prisma Win/manufacturer.xml") or die("<br>Error: Cannot open XML (manufacturers)</br>");
+		$manufacturers = $this->CallXML('https://oraiomarket.gr/prisma_win/manufacturer.xml');;
 		//$manufacturers = $manufacturers->ManufacturerDetails;
 		
-
 		foreach($manufacturers->ManufacturerDetails as $manufacturer){
 
-			 $mymanufid = $manufacturer->ManufacturerID;
-			 $mymanufName = $manufacturer->ManufacturerName;
-			// echo "<pre>";
-			// echo ($mymanufid);
-			// echo "<br>";
-			// echo ($mymanufName);
-			// echo "</pre>";	
+				$mymanufid = $manufacturer->ManufacturerID;
+				$mymanufName = $manufacturer->ManufacturerName;
+				// echo "<pre>";
+				// echo ($mymanufid);
+				// echo "<br>";
+				// echo ($mymanufName);
+				// echo "</pre>";	
 
-		//echo ("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer WHERE manufacturer_id ={$mymanufid}</br>");
-		$manufacturersDB = $this->db->query("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer WHERE manufacturer_id ={$mymanufid}");
+			//echo ("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer WHERE manufacturer_id ={$mymanufid}</br>");
+			$manufacturersDB = $this->db->query("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer WHERE manufacturer_id ={$mymanufid}");
+			$manufacturerDB =$manufacturersDB->rows;
 
-		$manufacturerDB =$manufacturersDB->rows;
-		$manuf = str_replace('\'', ' ', $mymanufName);	
-
-		
-		if((count($manufacturerDB) == 0) && !empty($manuf)){ 
-		
-		$insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
-				manufacturer_id  = {$mymanufid},
-				name = '{$this->db->escape($manuf)}'");
-				
-				
-
-		echo ("Manufacturer:{$manuf} ID = {$mymanufid}</br>")	;
+				if((count($manufacturerDB) == 0) && !empty($manuf)){ 
+					$insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
+							manufacturer_id  = {$mymanufid},
+							name = '{$this->db->escape($mymanufName)}'");
+					echo ("Manufacturer:{$mymanufName} ID = {$mymanufid}</br>");
+				}
 		}
-
-	}
 	
 }
 
 
 
-	// function GetItemsPhoto(){
-	// 	$ProductData = $this->GetDataURL('GetItemsPhotoInfo','bs-gg183-352','1/1/2020');
+	function GetItemsPhoto(){
+		$ProductData = $this->GetDataURL('GetItemsPhotoInfo','bs-gg183-352','1/1/2020');
 
-	// 	foreach($ProductData->ItemsPhotoInfo as $ItemsPhoto){
+		foreach($ProductData->ItemsPhotoInfo as $ItemsPhoto){
 			
-	// 		(int)$productID = $ItemsPhoto->ItemCode;
+			(int)$productID = $ItemsPhoto->ItemCode;
 
-	// 		$data[(int)$productID] = array(
-	// 		'ItemCode'			=>(string) $ItemsPhoto->ItemCode,
-	// 		'ItemDesc'			=>(string) $ItemsPhoto->ItemDescription,
-	// 		'ItemPhotoName'		=>(string) $ItemsPhoto->ItemPhotoName,
-	// 		'PhotoPath'			=>(string) $ItemsPhoto->ItemPhotoPath,
-	// 		);
+			$data[(int)$productID] = array(
+			'ItemCode'			=>(string) $ItemsPhoto->ItemCode,
+			'ItemDesc'			=>(string) $ItemsPhoto->ItemDescription,
+			'ItemPhotoName'		=>(string) $ItemsPhoto->ItemPhotoName,
+			'PhotoPath'			=>(string) $ItemsPhoto->ItemPhotoPath,
+			);
 
-	// 	}
-
-	// return  $data;
-
-	// }
+		}
+	return  $data;
+	}
 
 	function GetDataUrlManufacturer($path,$sitekey) {
 		$today = date('h-i-s_j-m-y');
