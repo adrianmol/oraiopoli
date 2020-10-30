@@ -164,24 +164,21 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			$category_field = $category_field->rows;
 			//$categoryID = $category_field['category_id'];
 
-
-			echo "<pre>";
-			print_r($category_field);
-			echo "</pre>";
-
 			$CategoryPath[$productID] =  array (
 
 				'productID'   => $productID,
 				'level'       => $level,
 				'categoryID'  => (int)$category_field[0]['category_id']
 			);
-
-
-
-			
-	}
-		//return $CategoryPath;
 	
+	}
+		
+		echo "<pre>";
+		print_r($CategoryPath);
+		echo "</pre>";
+		
+		return $CategoryPath;
+
 	}
 
 	function InsertPhoto(){
