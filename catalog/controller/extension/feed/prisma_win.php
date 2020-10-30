@@ -16,6 +16,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$today = date("m-d-Y");
 		
 		$this->writelogs("Error","erros");
+
+		echo $_SERVER['DOCUMENT_ROOT'];
 		
 		//$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','10-1-2020');
 
@@ -52,7 +54,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	function GetProducts(){
 
 		//$ProductData = $this->GetDataURL('GetProducts','10-20-2020');
-		$ProductData = simplexml_load_file("/home/oraiomarket/public_html/Prisma Win/products.xml") or die("<br>Error: Cannot open XML (Products)</br>");
+		$ProductData = curl("/home/oraiomarket/public_html/Prisma Win/products.xml") or die("<br>Error: Cannot open XML (Products)</br>");
 		$i=0;
 
 		foreach($ProductData->StoreDetails as $product){
