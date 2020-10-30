@@ -139,6 +139,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			}
 
 			$productID = $category['productID'];
+
+			echo "<pre>";
+			print_r($category);
+			echo "</pre>";
 			
 			$my_category = $this->db->query("select  s.product_id, cp.path_id, cp.`level`,z.`name` from oc_product s 
 			LEFT JOIN oc_product_description d ON(d.product_id= s.product_id and d.language_id=2)
@@ -168,9 +172,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				'categoryID'  => (int)$category_field[0]['category_id']
 			);
 
-			echo "<pre>";
-			print_r($CategoryPath);
-			echo "</pre>";
+
 
 
 	}
