@@ -183,19 +183,21 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 		$ProductData = simplexml_load_file("/home/oraiomarket/public_html/prisma_win/productsNoEshop.xml") or die("<br>Error: Cannot open XML (Products No Eshop)</br>");
-		$data = array(); $i = 0;
+		$data = array(); $product_no_eshop = 0;
 		
 		foreach($ProductData->StoreItemsNoEshop as $product){
-		$exits_item = $this->db->query("SELECT product_id FROM ". DB_PREFIX ."product WHERE product_id = '".(int)$product->storeid."' ");
-		$exits_item = $exits_item->rows;
-		if (empty($exits_item)){
+
+		$product_id = $product->storeid;
+		$exits_product = $this->db->query("SELECT product_id FROM ". DB_PREFIX ."product WHERE product_id = '".(int)$product->storeid."' ");
+		$exits_product = $exits_product->rows;
+		if (count($exits_product) != 0){
 
 			$this->db->query("UPDATE ".DB_PREFIX."product SET 
-			status = 0 WHERE product_id = '".(int)$product->storeid."'");
-				$i++;
+			status = 0 WHERE product_id = {$product_id}");
+				$product_no_eshop++;
 			}
 		}
-		echo ("ProductNoEshop: ". $i."</br>");
+		return $product_no_eshop;
 	}
 
 
@@ -348,14 +350,17 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 		}
+		$product_no_eshop =	$this->ItemsWithNoEshop();
 		$GMTtoday = date("Y-m-d H:i:s");
 		$today = date("Y-m-d H:i:s",strtotime('+3 hour',strtotime($GMTtoday)));
 		$this->db->query("INSERT INTO ".DB_PREFIX."prisma_win SET
-			products_updated = '".$itemsUpdate."',
-			products_added = '".$itemsAdded."',
-			date_added = '".$today."'
+			products_updated = {$itemsUpdate},
+			products_deleted = {$product_no_eshop}
+			products_added = {$itemsAdded},
+			date_added = {$today}
 		");				
-		echo ("Update : ".$itemsUpdate. " product(s) </br>");
+		echo ("Updated : ".$itemsUpdate. " product(s) </br>");
+		echo ("Deleted : ".$product_no_eshop. " product(s) </br>");
 		echo ("Added : ".$itemsAdded. " product(s) </br>");
 		echo ("Date : ".$today. "  </br>");
 	}
