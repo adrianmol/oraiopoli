@@ -346,10 +346,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
 
 				manufacturer_id  = {$mymanufid},
-				name = {$manuf},
-				
+				name = {$manuf} ");	
 
-				ON DUPLICATE KEY UPDATE name = {$manuf} WHERE manufacturer_id = {$mymanufid}");	
 		echo ("Manufacturer:{$manuf} ID = {$mymanufid}</br>")	;
 		}
 
