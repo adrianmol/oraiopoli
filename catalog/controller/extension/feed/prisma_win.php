@@ -22,11 +22,12 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','10-27-2020');
 	    //$this->GetDataUrlManufacturer('GetManufacturers','bs-gg183-352');
 
-		$this->InsertProduct();
-		$this->ItemsWithNoEshop();
+		//$this->InsertProduct();
+		//$this->ItemsWithNoEshop();
 		// $this->GetCategory();
 		// $this->InsertPhoto();
-		// $this->GetManufacturer();	
+		// $this->GetManufacturer();
+		$this->GetProducts();	
 	}
 
 	public function writelogs($msg, $file) {
@@ -77,44 +78,45 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$ProductData = $this->GetDataURL('GetProducts','10-20-2020');
 		// $ProductData = curl("https://oraiomarket.gr/prisma_win/products.xml") or die("<br>Error: Cannot open XML (Products)</br>");
 		$ProductData = $this->CallXML('https://oraiomarket.gr/prisma_win/products.xml');
+		print_r($ProductData);
 		$i=0;
 
-		foreach($ProductData->StoreDetails as $product){
+		// foreach($ProductData->StoreDetails as $product){
 			
-			if($product->ItemStock <= 0 ) $product->ItemStock = 0;
+		// 	if($product->ItemStock <= 0 ) $product->ItemStock = 0;
 			
 
-			(int)$productID = $product->ItemId;	
-			$data[(int)$productID] = array(
-			'id'				=>(string) $product->ItemId,		
-			'code'				=>(string) $product->ItemCode,
-			'title'				=>(string) $product->ItemDescr,
-			'weight'			=>(string) $product->ItemWeight,
-			'itemStock'			=>(string) $product->ItemStock,
-			'category'			=>(string) $product->ItemGroup1,
-			'category_1'		=>(string) $product->ItemGroup2,
-			'category_2'		=>(string) $product->ItemGroup3,
-			'category_3'		=>(string) $product->ItemGroup4,
-			'manufacturer'		=>(string) $product->ItemManufacturer,
-			'manufacturer_id'	=>(string) $product->ItemManufacturerId,
-			'price_wholesale'	=>(string) $product->ItemWholesale,
-			'price_vat'			=>(string) $product->ItemRetailVat,
-			'mudescr'			=>(string) $product->ItemMUDescr,
-			'datacreated'		=>(string) $product->ItemDateCreated,
-			'datamodified'		=>(string) $product->ItemDateModified,
-			); 
+		// 	(int)$productID = $product->ItemId;	
+		// 	$data[(int)$productID] = array(
+		// 	'id'				=>(string) $product->ItemId,		
+		// 	'code'				=>(string) $product->ItemCode,
+		// 	'title'				=>(string) $product->ItemDescr,
+		// 	'weight'			=>(string) $product->ItemWeight,
+		// 	'itemStock'			=>(string) $product->ItemStock,
+		// 	'category'			=>(string) $product->ItemGroup1,
+		// 	'category_1'		=>(string) $product->ItemGroup2,
+		// 	'category_2'		=>(string) $product->ItemGroup3,
+		// 	'category_3'		=>(string) $product->ItemGroup4,
+		// 	'manufacturer'		=>(string) $product->ItemManufacturer,
+		// 	'manufacturer_id'	=>(string) $product->ItemManufacturerId,
+		// 	'price_wholesale'	=>(string) $product->ItemWholesale,
+		// 	'price_vat'			=>(string) $product->ItemRetailVat,
+		// 	'mudescr'			=>(string) $product->ItemMUDescr,
+		// 	'datacreated'		=>(string) $product->ItemDateCreated,
+		// 	'datamodified'		=>(string) $product->ItemDateModified,
+		// 	); 
 
-			$category[$i] = array(
-				'ID'     =>(string) $product->ItemId,
-				'parent' =>(string) $product->ItemGroup1,
-				'level1' =>(string) $product->ItemGroup2,
-				'level2' =>(string) $product->ItemGroup3,
-				'level3' =>(string) $product->ItemGroup4,
-			);
-			$i++;
-		}
+		// 	$category[(int)$productID] = array(
+		// 		'ID'     =>(string) $product->ItemId,
+		// 		'parent' =>(string) $product->ItemGroup1,
+		// 		'level1' =>(string) $product->ItemGroup2,
+		// 		'level2' =>(string) $product->ItemGroup3,
+		// 		'level3' =>(string) $product->ItemGroup4,
+		// 	);
+		// 	$i++;
+		// }
 
-		return array ( $data , $category);
+		// return array ( $data , $category);
 
 	}
 
