@@ -78,7 +78,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		//$ProductData = $this->GetDataURL('GetProducts','10-20-2020');
 		//$ProductData = curl("https://oraiomarket.gr/prisma_win/products.xml") or die("<br>Error: Cannot open XML (Products)</br>");
-		$ProductData = $this->CallXML('https://oraiomarket.gr/prisma_win/products.xml');
+		$ProductData = simplexml_load_string('/home/oraiomarket/public_html/prisma_win/products.xml');
 		
 		print_r($ProductData);
 		$i=0;
