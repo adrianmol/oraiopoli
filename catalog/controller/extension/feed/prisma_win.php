@@ -188,7 +188,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// foreach($ProductData->StoreItemsNoEshop as $product){
 
 		//$product_id = $product->storeid;
-		$product_id = 2;
+		$product_id = 18;
 
 		$exits_product = $this->db->query("SELECT product_id FROM ". DB_PREFIX ."product WHERE product_id = '{$product_id}' ");
 		echo "<pre>";
