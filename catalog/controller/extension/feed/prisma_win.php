@@ -163,11 +163,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			
 			$category_field = $category_field->rows;
 			$categoryID = $category_field['category_id'];
-			echo "</pre>";
-			echo $categoryID;
 
-			// print_r($categoryID);
-			// echo "</pre>";
+			echo "</pre>";
+			print_r($categoryID);
+			echo "</pre>";
 
 
 			$CategoryPath[$productID] =  array (
