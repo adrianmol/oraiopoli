@@ -469,31 +469,27 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$context  = stream_context_create($options);
 		$result = file_get_contents($url, false, $context);
 
-		echo ("<br>{$result}</br>");
-		// try{
-		// 	if (!empty($result)) { 
-		// 		if($path == 'GetProducts'){
+		//echo ("<br>{$result}</br>");
+		try{
+			if (!empty($result)) { 
+				if($path == 'GetProducts'){
 
-		// 			$xml=simplexml_load_string($result) or die("Error: Cannot create product xml");	
-		// 			$xml->saveXML('/home/oraiomarket/public_html/Prisma Win/products.xml');
+					$xml=simplexml_load_string($result) or $this->writelogs("Error: Cannot create xml (Get Products)", "error_prisma_xml \n");						
+					$xml->saveXML('/home/oraiomarket/public_html/Prisma Win/products.xml');
 
-		// 		}else if($path == 'GetItemsWithNoEshop'){
+				}else if($path == 'GetItemsWithNoEshop'){
 
-		// 			$xml=simplexml_load_string($result) or die("Error: Cannot create product no eshop xml");	
-		// 			$xml->saveXML('/home/oraiomarket/public_html/Prisma Win/productsNoEshop.xml');
+					$xml=simplexml_load_string($result) or $this->writelogs("Error: Cannot create xml (No Eshop)", "error_prisma_xml \n");;	
+					$xml->saveXML('/home/oraiomarket/public_html/Prisma Win/productsNoEshop.xml');
 
-		// 		}
-		// 	}else{
+				}
+			}
+		}catch (Exception $e) {
+			echo 'Caught exception: ',  $e->getMessage(), "\n";
+			$this->writelogs("Error: Empty result", "error_prisma_xml");
 
-		// 		$this->writelogs("Error: Cannot create xml", "error_prisma_xml \n");
-				
-		// 	}
-		// }catch (Exception $e) {
-		// 	echo 'Caught exception: ',  $e->getMessage(), "\n";
-		// 	$this->writelogs("Error: Empty result", "error_prisma_xml");
-
-		// }
-			//return $xml;
+		}
+			return $xml;
 	}
 
 	function GetPhotoPath($ItemCode) {
