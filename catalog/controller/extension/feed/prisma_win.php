@@ -334,24 +334,24 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			// echo ($mymanufName);
 			// echo "</pre>";	
 
-		echo ("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer WHERE manufacturer_id ={$mymanufid}</br>");
+		//echo ("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer WHERE manufacturer_id ={$mymanufid}</br>");
 		$manufacturersDB = $this->db->query("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer WHERE manufacturer_id ={$mymanufid}");
 
 		$manufacturerDB =$manufacturersDB->rows;
 		$manuf = str_replace('\'', ' ', $mymanufName);	
 
-		echo(count($manufacturerDB));
-		// if(empty($manufacturerDB) && !empty($manuf)){ 
 		
-		// $insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
+		if((count($manufacturerDB) == 0) && !empty($manuf)){ 
+		
+		$insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
 
-		// 		manufacturer_id  = {$mymanufid},
-		// 		name = {$manuf},
+				manufacturer_id  = {$mymanufid},
+				name = {$manuf},
 				
 
-		// 		ON DUPLICATE KEY UPDATE name = {$manuf} WHERE manufacturer_id = {$mymanufid}");	
-		// echo ("Manufacturer:{$manuf} ID = {$mymanufid}</br>")	;
-		// }
+				ON DUPLICATE KEY UPDATE name = {$manuf} WHERE manufacturer_id = {$mymanufid}");	
+		echo ("Manufacturer:{$manuf} ID = {$mymanufid}</br>")	;
+		}
 
 	}
 	
