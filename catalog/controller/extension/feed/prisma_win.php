@@ -355,7 +355,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$today = date("Y-m-d H:i:s",strtotime('+3 hour',strtotime($GMTtoday)));
 		$this->db->query("INSERT INTO ".DB_PREFIX."prisma_win SET
 			products_updated = {$itemsUpdate},
-			products_deleted = {$product_no_eshop}
+			products_deleted = {$product_no_eshop},
 			products_added = {$itemsAdded},
 			date_added = {$today}
 		");				
