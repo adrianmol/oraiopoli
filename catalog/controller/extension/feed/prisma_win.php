@@ -51,7 +51,12 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_URL, $url);    // get the url contents
 	curl_setopt($ch, CURLOPT_FAILONERROR, true); // Required for HTTP error codes to be reported via our call to curl_error($ch)
-	
+    curl_setopt($ch, CURLOPT_VERBOSE, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/xml'));
+
 	$xmlsResponse = curl_exec($ch); // execute curl request
 	
 	if (curl_errno($ch)) {
@@ -79,8 +84,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$ProductData = $this->GetDataURL('GetProducts','10-20-2020');
 		//$ProductData = curl("https://oraiomarket.gr/prisma_win/products.xml") or die("<br>Error: Cannot open XML (Products)</br>");
 		$ProductData = $this->CallXML('https://oraiomarket.gr/prisma_win/products.xml');
-		echo ($this->CallXML('https://oraiomarket.gr/prisma_win/products.xml'));
-		echo $ProductData;
+		
 		print_r($ProductData);
 		$i=0;
 
