@@ -22,9 +22,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','1-1-1990');
 	    //$this->GetDataUrlManufacturer('GetManufacturers','bs-gg183-352');
 
-		$this->InsertProduct();
+		//$this->InsertProduct();
 		//$this->ItemsWithNoEshop();
-		//$this->GetCategory();
+		$this->GetCategory();
 		// $this->InsertPhoto();
 		//$this->GetManufacturer();
 
@@ -191,7 +191,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 
-			$insert_product_to_category = $this->db->query("UPDATE oc_product_to_category SET category_id = {(int)$category_field[0]['category_id']} WHERE product_id = {(int)$productID}");
+			$insert_product_to_category = $this->db->query("UPDATE oc_product_to_category SET category_id = {$category_field[0]['category_id']} WHERE product_id = {$productID}");
 			
 			if($insert_product_to_category){
 				echo ("Status = {$insert_product_to_category} ProductID : {$productID} CategoryID :{$category_field[0]['category_id']} </br>");
