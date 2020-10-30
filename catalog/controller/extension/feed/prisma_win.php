@@ -113,7 +113,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			'datamodified'		=>(string) $product->ItemDateModified
 			); 
 
-			$category = array();
+
+
+			$category[(int)$productID][] = array();
 
 			$category["productID"] = (string)$product->ItemId;
 			
