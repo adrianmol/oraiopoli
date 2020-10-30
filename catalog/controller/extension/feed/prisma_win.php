@@ -161,7 +161,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			LEFT JOIN oc_category_description q ON( q.category_id = w.parent_id)
 			WHERE  cd.name = '{$my_category[$level]['name']}' AND q.name = '{$my_category[$level-1]['name']}'");
 			
-
+			$categoryID = $categoryID->rows;
+			
 			echo "<pre>";
 			print_r($categoryID);
 			echo "</pre>";
