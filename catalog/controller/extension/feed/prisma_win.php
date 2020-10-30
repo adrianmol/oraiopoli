@@ -18,13 +18,13 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$this->writelogs("Error","erros");
 		//echo $_SERVER['DOCUMENT_ROOT'];
 		
-		//$this->GetDataURL('GetProducts','bs-gg183-352','10-30-2020');
+		$this->GetDataURL('GetProducts','bs-gg183-352','1-1-1990');
 		//$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','1-1-1990');
 	    //$this->GetDataUrlManufacturer('GetManufacturers','bs-gg183-352');
 
-		//$this->InsertProduct();
+		$this->InsertProduct();
 		//$this->ItemsWithNoEshop();
-		$this->GetCategory();
+		//$this->GetCategory();
 		// $this->InsertPhoto();
 		//$this->GetManufacturer();
 
