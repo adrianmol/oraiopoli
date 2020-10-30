@@ -185,10 +185,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$ProductData = simplexml_load_file("/home/oraiomarket/public_html/prisma_win/productsNoEshop.xml") or die("<br>Error: Cannot open XML (Products No Eshop)</br>");
 		$product_no_eshop = 0;
 		
-		foreach($ProductData->StoreItemsNoEshop as $product){
+		// foreach($ProductData->StoreItemsNoEshop as $product){
 
 		$product_id = $product->storeid;
 		$exits_product = $this->db->query("SELECT product_id FROM ". DB_PREFIX ."product WHERE product_id = '{$product_id}' ");
+		print_r($exits_product);
 		$exits_product = $exits_product->rows;
 		echo ("{$product_id} </br>");
 		echo (count($exits_product)."</br>");
@@ -199,7 +200,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				$product_no_eshop++;
 
 			}
-		}
+		//}
 		echo ("No eshop {$product_no_eshop} </br>");
 		return $product_no_eshop;
 	}
