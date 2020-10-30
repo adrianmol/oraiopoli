@@ -52,7 +52,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	curl_setopt($ch, CURLOPT_URL, $url);    // get the url contents
 
 	$xmlsResponse = curl_exec($ch); // execute curl request
-	print $xmlsResponse;
+	echo $xmlsResponse;
 
 	if (curl_errno($ch)) {
 		$error_msg = curl_error($ch);
