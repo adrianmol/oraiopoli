@@ -344,9 +344,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		if((count($manufacturerDB) == 0) && !empty($manuf)){ 
 		
 		$insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
-
 				manufacturer_id  = {$mymanufid},
-				name = {$manuf} ");	
+				name = {$this->db->escape($manuf)}");	
 
 		echo ("Manufacturer:{$manuf} ID = {$mymanufid}</br>")	;
 		}
