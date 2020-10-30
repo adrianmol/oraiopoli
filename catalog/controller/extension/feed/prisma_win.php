@@ -162,28 +162,23 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			WHERE  cd.name = '{$my_category[$level]['name']}' AND q.name = '{$my_category[$level-1]['name']}'");
 			
 			$categoryID = $categoryID->rows;
-			
+
 			echo "<pre>";
 			print_r($categoryID);
 			echo "</pre>";
 
 
+			$CategoryPath[$productID] =  array (
 
+				'productID'   => $productID,
+				'level'       => $level,
+				'categoryID'  => (int)$categoryID['category_id']
+			);
 
-			//echo $category['level'.$level.''];
-			//echo "</br>";
-			//$categoryID = $this->db->query("SELECT cd.category_id, c.parent_id FROM ". DB_PREFIX ."category_description cd ,"
-			//"LEFT JOIN ". DB_PREFIX ."category c WHERE cd.name LIKE '". $category['level'.$level.''] . "'");
-			
-			//$catID = $categoryID->rows[0];
+			echo "<pre>";
+			print_r($CategoryPath);
+			echo "</pre>";
 
-			// $CategoryPath[$category['ID']] =  array (
-
-			// 	'productID'   => $category['ID'],
-			// 	'cat1' 	      => $category['level'.$level.''],
-			// 	'level'       => $level,
-			// 	'categoryID'  => (int)$catID['category_id']
-			// );
 
 	}
 		//return $CategoryPath;
