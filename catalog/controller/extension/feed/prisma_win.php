@@ -86,15 +86,17 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$ProductData = $this->GetDataURL('GetProducts','10-20-2020');
 		//$ProductData = curl("https://oraiomarket.gr/prisma_win/products.xml") or die("<br>Error: Cannot open XML (Products)</br>");
 		$ProductData = simplexml_load_file("/home/oraiomarket/public_html/prisma_win/products.xml") or die("<br>Error: Cannot open XML (Products)</br>");
-		$i=0;
+		$i=0; 
+
+		$ID=0;	
 
 		foreach($ProductData->StoreDetails as $product){
 			
 			if($product->ItemStock <= 0 ) $product->ItemStock = 0;
 			$i = 0;
-
-			(int)$productID = $product->ItemId;	
-			$data[(int)$productID] = array(
+			$ID = (int)$productID = $product->ItemId;	
+				
+			$data[$ID] = array(
 			'id'				=>(string) $product->ItemId,		
 			'code'				=>(string) $product->ItemCode,
 			'title'				=>(string) $product->ItemDescr,
@@ -113,7 +115,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			'datamodified'		=>(string) $product->ItemDateModified
 			); 
 
-			$ID= (int)$productID;	
+		
 
 			$category[$ID] = array();
 
