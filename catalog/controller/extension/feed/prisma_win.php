@@ -84,7 +84,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		foreach($ProductData->StoreDetails as $product){
 			
 			if($product->ItemStock <= 0 ) $product->ItemStock = 0;
-			
+			$i = 0;
 
 			(int)$productID = $product->ItemId;	
 			$data[(int)$productID] = array(
@@ -126,28 +126,45 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$data = $this->GetProducts();
 		$i=0; $catID = 0; $parent_level= 0;
 
-		echo "<pre>";
-		print_r($data[1]);
-		echo "</pre>";
-
-
-
 		foreach($data[1] as $category){
 			
 
-			if($category['level3']){
-				$level = 3;
+			if(empty($category['level3'])){
+				if(empty($category['level2'])){
+					if(empty($category['level1'])){
+
+					}else{
+						$main_category = $category['level1'];
+						$parent_category = $category['top_category'];
+					}
+
+				}else{
+					$main_category = $category['level2'];
+					$parent_category = $category['level1'];
+				}
+
+			}else{
 				$main_category = $category['level3'];
 				$parent_category = $category['level2'];
-			}else if ($category['level2']){
-				$level = 2;
-				$main_category = $category['level2'];
-				$parent_category = $category['level1'];
-			}else if ($category['level1']){
-				$level = 1;
-				$main_category = $category['level1'];
-				$parent_category = $category['top_category'];
 			}
+
+
+
+
+
+			// if(!empty($category['level3'])){
+			// 	$level = 3;
+			// 	$main_category = $category['level3'];
+			// 	$parent_category = $category['level2'];
+			// }else if ($category['level2']){
+			// 	$level = 2;
+			// 	$main_category = $category['level2'];
+			// 	$parent_category = $category['level1'];
+			// }else if ($category['level1']){
+			// 	$level = 1;
+			// 	$main_category = $category['level1'];
+			// 	$parent_category = $category['top_category'];
+			// }
 
 			$productID = $category['productID'];
 			
@@ -176,7 +193,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			$CategoryPath[$productID] =  array (
 
 				'productID'   => $productID,
-				'level'       => $level,
 				'categoryID'  => (int)$category_field[0]['category_id'],
 				'main_category'=> $main_category,
 				'parent_category'=> $parent_category
@@ -184,9 +200,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	
 	}
 		
-		// echo "<pre>";
-		// print_r($CategoryPath);
-		// echo "</pre>";
+		echo "<pre>";
+		print_r($CategoryPath);
+		echo "</pre>";
 
 		return $CategoryPath;
 
