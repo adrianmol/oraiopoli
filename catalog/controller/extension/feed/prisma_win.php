@@ -157,7 +157,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		foreach($data[1] as $category){
 		
 
-			echo end($category);
+			echo array_key_last($category);
 			echo "</br>";
 
 			if(empty($category['level3'])){
