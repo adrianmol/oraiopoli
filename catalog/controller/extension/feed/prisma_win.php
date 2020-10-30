@@ -19,7 +19,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		echo $_SERVER['DOCUMENT_ROOT'];
 		
-		//$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','10-1-2020');
+		$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','10-30-2020');
 
 	    //$this->GetDataUrlManufacturer('GetManufacturers','bs-gg183-352');
 
@@ -45,16 +45,42 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	}
 	
 
+	function CallXML($url){
+	try{
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_URL, $url);    // get the url contents
+	curl_setopt($ch, CURLOPT_FAILONERROR, true); // Required for HTTP error codes to be reported via our call to curl_error($ch)
+	
+	$xmlsResponse = curl_exec($ch); // execute curl request
+	
+	if (curl_errno($ch)) {
+		$error_msg = curl_error($ch);
+	}
+	curl_close($ch);
+	
+		$xml = simplexml_load_string($xmlsResponse);
 
 
+	}catch(Exception $e){
 
+		$errormgs = $e->getMessage();
+
+		$this->writelogs($errormgs, 'error_call_xml');
+	}
+	
+	return $xml;
+
+	}
 
 
 
 	function GetProducts(){
 
 		//$ProductData = $this->GetDataURL('GetProducts','10-20-2020');
-		$ProductData = curl("/home/oraiomarket/public_html/Prisma Win/products.xml") or die("<br>Error: Cannot open XML (Products)</br>");
+		
+		// $ProductData = curl("https://oraiomarket.gr/prisma_win/products.xml") or die("<br>Error: Cannot open XML (Products)</br>");
+		$ProductData = $this-> CallXML('https://oraiomarket.gr/prisma_win/products.xml');
 		$i=0;
 
 		foreach($ProductData->StoreDetails as $product){
