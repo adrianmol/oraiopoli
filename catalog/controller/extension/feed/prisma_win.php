@@ -150,10 +150,21 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 			$my_category = $my_category->rows;
 
-			echo "<pre>";
-			print_r($my_category);
-			echo "</pre>";
+			// echo "<pre>";
+			// print_r($my_category);
+			// echo "</pre>";
 
+
+			$categoryID = $this->db->query("SELECT cd.name AS top_category ,c.category_id, c.parent_id ,q.name AS parent_category FROM oc_category_description cd
+			LEFT JOIN oc_category c ON (cd.category_id = c.category_id)
+			LEFT JOIN oc_category w ON (w.category_id = c.category_id)
+			LEFT JOIN oc_category_description q ON( q.category_id = w.parent_id)
+			WHERE  cd.name = '{$my_category[$level]['name']}' AND q.name = '{$my_category[$level-1]['name']}'");
+			
+
+			echo "<pre>";
+			print_r($categoryID);
+			echo "</pre>";
 
 
 
