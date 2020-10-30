@@ -103,14 +103,14 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			'price_vat'			=>(string) $product->ItemRetailVat,
 			'mudescr'			=>(string) $product->ItemMUDescr,
 			'datacreated'		=>(string) $product->ItemDateCreated,
-			'datamodified'		=>(string) $product->ItemDateModified,
+			'datamodified'		=>(string) $product->ItemDateModified
 			); 
 
 			$category[(int)$productID] = array(
 				'top_category' =>(string) $product->ItemGroup1,
 				'level1' =>(string) $product->ItemGroup2,
 				'level2' =>(string) $product->ItemGroup3,
-				'level3' =>(string) $product->ItemGroup4,
+				'level3' =>(string) $product->ItemGroup4)
 			);
 			$i++;
 		}
@@ -124,8 +124,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$data = $this->GetProducts();
 		$i=0; $catID = 0;
-		//foreach($data[1] as $category){
-		
+		foreach($data[1] as $category){
+			
 
 			if($category['level3']){
 				$level = 3;
@@ -136,6 +136,25 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			}else if ($category['level1']){
 				$level = 1;
 			}
+
+			$productID= $category['productID'];
+
+			$my_category = $this->db->("select  s.product_id, cp.path_id, cp.`level`,z.`name` from oc_product s 
+			LEFT JOIN oc_product_description d ON(d.product_id= s.product_id and d.language_id=2)
+			LEFT JOIN oc_product_to_category r ON(r.product_id= s.product_id)
+			LEFT JOIN oc_category f ON(f.category_id= r.category_id)
+			LEFT JOIN oc_category_path cp ON(cp.category_id = f.category_id)
+			LEFT JOIN oc_category_description z ON(z.category_id= cp.path_id and z.language_id=2 )
+			where s.product_id={$productID} order by cp.path_id");
+
+
+
+			echo "<pre>";
+			print_r($my_category);
+			echo "</pre>";
+
+
+
 
 
 			//echo $category['level'.$level.''];
@@ -153,11 +172,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			// 	'categoryID'  => (int)$catID['category_id']
 			// );
 
-	//}
-
-		echo "<pre>";
-		print_r($data[1]);
-		echo "</pre>";
+	}
 		//return $CategoryPath;
 	
 	}
