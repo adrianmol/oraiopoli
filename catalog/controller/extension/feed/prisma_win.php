@@ -347,7 +347,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 				manufacturer_id  = {$mymanufid},
 				name = {$manuf},
-				sort_order = 0 
+				
 
 				ON DUPLICATE KEY UPDATE manufacturer_id = {$mymanufid}, 
 										name = {$manuf}
