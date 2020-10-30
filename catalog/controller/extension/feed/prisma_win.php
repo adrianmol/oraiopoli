@@ -15,6 +15,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		}
 		$today = date("m-d-Y");
 		
+		$this->writelogs("Error","erros");
 		
 		//$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','10-1-2020');
 
@@ -26,6 +27,26 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// $this->InsertPhoto();
 		$this->GetManufacturer();	
 	}
+
+	public function writelogs($msg, $file) {
+		date_default_timezone_set('Europe/Athens');
+		$log_filename = $_SERVER['DOCUMENT_ROOT']."/logs";
+		if (!file_exists($log_filename))
+		{
+			// create directory/folder
+			mkdir($log_filename, 0777, true);
+		}
+	
+		$getDate=date('d-M-Y');
+		$log_file_data = "{$log_filename}/{$file}-{$getDate}.log";
+		file_put_contents($log_file_data,date("h:i:s").":".$msg. "\n", FILE_APPEND);
+	}
+	
+
+
+
+
+
 
 
 	function GetProducts(){
@@ -345,7 +366,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		
 		$insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
 				manufacturer_id  = {$mymanufid},
-				name = '{$this->db->escape($manuf)}'");	
+				name = '{$this->db->escape($manuf)}'");
+				
+				
 
 		echo ("Manufacturer:{$manuf} ID = {$mymanufid}</br>")	;
 		}
