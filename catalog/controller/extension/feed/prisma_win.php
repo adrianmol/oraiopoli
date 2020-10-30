@@ -19,14 +19,14 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//echo $_SERVER['DOCUMENT_ROOT'];
 		
 		//$this->GetDataURL('GetProducts','bs-gg183-352','10-30-2020');
-		$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','1-1-1990');
+		//$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','1-1-1990');
 	    //$this->GetDataUrlManufacturer('GetManufacturers','bs-gg183-352');
 
-		$this->InsertProduct();
+		//$this->InsertProduct();
 		$this->ItemsWithNoEshop();
 		// $this->GetCategory();
 		// $this->InsertPhoto();
-		$this->GetManufacturer();
+		//$this->GetManufacturer();
 
 	}
 
@@ -183,18 +183,21 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 		$ProductData = simplexml_load_file("/home/oraiomarket/public_html/prisma_win/productsNoEshop.xml") or die("<br>Error: Cannot open XML (Products No Eshop)</br>");
-		$data = array(); $product_no_eshop = 0;
+		$product_no_eshop = 0;
 		
 		foreach($ProductData->StoreItemsNoEshop as $product){
 
 		$product_id = $product->storeid;
-		$exits_product = $this->db->query("SELECT product_id FROM ". DB_PREFIX ."product WHERE product_id = '".(int)$product->storeid."' ");
+		$exits_product = $this->db->query("SELECT product_id FROM ". DB_PREFIX ."product WHERE product_id = {$product_id} ");
 		$exits_product = $exits_product->rows;
+		echo ("{$product_id} </br>");
+		echo (count($exits_product)."</br>");
 		if (count($exits_product) != 0){
 
 			$this->db->query("UPDATE ".DB_PREFIX."product SET 
 			status = 0 WHERE product_id = {$product_id}");
 				$product_no_eshop++;
+				
 			}
 		}
 		echo ("No eshop {$product_no_eshop} </br>");
