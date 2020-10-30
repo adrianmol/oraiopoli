@@ -138,7 +138,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			
 			}
 			
-			print_r($category);
+			
 			
 			// $category[(int)$productID] = array(
 			// 	'productID' =>(string)$product->ItemId,
@@ -148,7 +148,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			// 	'level3' =>(string) $product->ItemGroup4
 			// );
 		}
-
+		echo "<pre>";
+		print_r($category);
+		echo "</pre>";
 		return array ( $data , $category);
 
 	}
