@@ -191,7 +191,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 
-			$insert_product_to_category = $this->db->query("UPDATE oc_product_to_category SET category_id ={$category_field[0]['category_id']} WHERE product_id ={$productID}");
+			$insert_product_to_category = $this->db->query("INSERT TO oc_product_to_category (category_id,product_id) VALUES ({$category_field[0]['category_id']},{$productID})");
 			
 			if($insert_product_to_category){
 				echo ("Status = {$insert_product_to_category} ProductID : {$productID} CategoryID :{$category_field[0]['category_id']} </br>");
