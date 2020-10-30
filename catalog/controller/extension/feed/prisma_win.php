@@ -473,15 +473,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		try{
 			if (!empty($result)) { 
 				if($path == 'GetProducts'){
-
 					$xml=simplexml_load_string($result) or $this->writelogs("Error: Cannot create xml (Get Products)", "error_prisma_xml \n");						
-					$xml->saveXML('/home/oraiomarket/public_html/Prisma Win/products.xml');
-
+					$xml->saveXML('/home/oraiomarket/public_html/prisma_win/products.xml');
 				}else if($path == 'GetItemsWithNoEshop'){
-
 					$xml=simplexml_load_string($result) or $this->writelogs("Error: Cannot create xml (No Eshop)", "error_prisma_xml \n");;	
-					$xml->saveXML('/home/oraiomarket/public_html/Prisma Win/productsNoEshop.xml');
-
+					$xml->saveXML('/home/oraiomarket/public_html/prisma_win/productsNoEshop.xml');
 				}
 			}
 		}catch (Exception $e) {
