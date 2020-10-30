@@ -144,7 +144,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 			$productID = $category['productID'];
 			
-			echo ("Product: {$productID} main_category: {$parent_category} parent_category: {$main_category} </br>")
+			echo ("Product: {$productID} main_category: {$parent_category} parent_category: {$main_category} </br>");
 			
 			$my_category = $this->db->query("select  s.product_id, cp.path_id, cp.`level`,z.`name` from oc_product s 
 			LEFT JOIN oc_product_description d ON(d.product_id= s.product_id and d.language_id=2)
