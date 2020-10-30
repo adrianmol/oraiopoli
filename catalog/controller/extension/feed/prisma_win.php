@@ -24,7 +24,14 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		//$this->InsertProduct();
 		//$this->ItemsWithNoEshop();
-		$this->GetCategory();
+		$data = $this->GetProducts();
+
+
+		echo "<pre>";
+		print_r($data[1]);
+		echo "</pre>";
+
+
 		// $this->InsertPhoto();
 		//$this->GetManufacturer();
 
@@ -106,14 +113,37 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			'datamodified'		=>(string) $product->ItemDateModified
 			); 
 
-			$category[(int)$productID] = array(
-				'productID' =>(string)$product->ItemId,
-				'top_category' =>(string) $product->ItemGroup1,
-				'level1' =>(string) $product->ItemGroup2,
-				'level2' =>(string) $product->ItemGroup3,
-				'level3' =>(string) $product->ItemGroup4
-			);
-			$i++;
+			$category[(int)$productID] = array();
+
+			$category["productID"] = (string)$product->ItemId;
+			
+			$category["top_category"] = (string)$product->ItemGroup1;
+			
+
+			if(!empty((string) $product->ItemGroup2)){
+
+				$category["level1"] = (string)$product->ItemGroup2;
+			
+			}
+			
+			if(!empty((string) $product->ItemGroup3)){
+
+				$category["level2"] = (string)$product->ItemGroup3;
+
+			}
+
+			if(!empty((string) $product->ItemGroup4)){
+
+				$category["level3"] = (string)$product->ItemGroup4;
+			
+			}
+			// $category[(int)$productID] = array(
+			// 	'productID' =>(string)$product->ItemId,
+			// 	'top_category' =>(string) $product->ItemGroup1,
+			// 	'level1' =>(string) $product->ItemGroup2,
+			// 	'level2' =>(string) $product->ItemGroup3,
+			// 	'level3' =>(string) $product->ItemGroup4
+			// );
 		}
 
 		return array ( $data , $category);
@@ -127,7 +157,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$i=0; $catID = 0; $parent_level= 0;
 
 		foreach($data[1] as $category){
-			
+		
 
 			if(empty($category['level3'])){
 				if(empty($category['level2'])){
