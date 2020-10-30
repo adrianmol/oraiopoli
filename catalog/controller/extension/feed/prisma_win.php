@@ -125,7 +125,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$data = $this->GetProducts();
 		$i=0; $catID = 0;
-		foreach($data[1] as $category){
+		//foreach($data[1] as $category){
 		
 
 			if($category['level3']){
@@ -139,11 +139,12 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			}
 
 
-			echo $category['level'.$level.''];
-			echo "</br>";
-			$categoryID = $this->db->query("SELECT cd.category_id, c.parent_id FROM ". DB_PREFIX ."category_description cd ,". DB_PREFIX ."category c WHERE cd.name LIKE '". $category['level'.$level.''] . "'");
+			//echo $category['level'.$level.''];
+			//echo "</br>";
+			//$categoryID = $this->db->query("SELECT cd.category_id, c.parent_id FROM ". DB_PREFIX ."category_description cd ,"
+			//"LEFT JOIN ". DB_PREFIX ."category c WHERE cd.name LIKE '". $category['level'.$level.''] . "'");
 			
-			$catID = $categoryID->rows[0];
+			//$catID = $categoryID->rows[0];
 
 			// $CategoryPath[$category['ID']] =  array (
 
@@ -153,10 +154,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			// 	'categoryID'  => (int)$catID['category_id']
 			// );
 
-	}
+	//}
 
 		echo "<pre>";
-		print_r($catID);
+		print_r($data[1]);
 		echo "</pre>";
 		//return $CategoryPath;
 	
