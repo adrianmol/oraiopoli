@@ -341,7 +341,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$manuf = str_replace('\'', ' ', $mymanufName);	
 
 
-		if(empty($manufacturerDB) > 0  && !empty($manuf)){ 
+		if(empty($manufacturerDB) && !empty($manuf)){ 
 		
 		$insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
 
