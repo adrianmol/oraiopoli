@@ -139,7 +139,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			}else if ($category['level1']){
 				$level = 1;
 				$main_category = $category['level1'];
-				$parent_category = $category['level0'];
+				$parent_category = "";
 			}
 
 			$productID = $category['productID'];
