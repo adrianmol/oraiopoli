@@ -188,7 +188,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		foreach($ProductData->StoreItemsNoEshop as $product){
 
 		$product_id = $product->storeid;
-		$exits_product = $this->db->query("SELECT product_id FROM ". DB_PREFIX ."product WHERE product_id = {$product_id} ");
+		$exits_product = $this->db->query("SELECT product_id FROM ". DB_PREFIX ."product WHERE product_id = '{$product_id}' ");
 		$exits_product = $exits_product->rows;
 		echo ("{$product_id} </br>");
 		echo (count($exits_product)."</br>");
@@ -197,7 +197,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			$this->db->query("UPDATE ".DB_PREFIX."product SET 
 			status = 0 WHERE product_id = {$product_id}");
 				$product_no_eshop++;
-				
+
 			}
 		}
 		echo ("No eshop {$product_no_eshop} </br>");
