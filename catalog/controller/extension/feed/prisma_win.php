@@ -140,9 +140,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 			$productID = $category['productID'];
 
-			echo "<pre>";
-			print_r($category);
-			echo "</pre>";
 			
 			$my_category = $this->db->query("select  s.product_id, cp.path_id, cp.`level`,z.`name` from oc_product s 
 			LEFT JOIN oc_product_description d ON(d.product_id= s.product_id and d.language_id=2)
@@ -158,12 +155,15 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			LEFT JOIN oc_category c ON (cd.category_id = c.category_id)
 			LEFT JOIN oc_category w ON (w.category_id = c.category_id)
 			LEFT JOIN oc_category_description q ON( q.category_id = w.parent_id)
-			WHERE  cd.name = '{$my_category[$level]['name']}' AND q.name = '{$my_category[$level-1]['name']}'");
+			WHERE  cd.name = '{$category['level'{$level}]}' AND q.name = '{$category['level'{$level-1]}}'");
 			
 			$category_field = $category_field->rows;
 			//$categoryID = $category_field['category_id'];
 
 
+			echo "<pre>";
+			print_r($category_field);
+			echo "</pre>";
 
 			$CategoryPath[$productID] =  array (
 
