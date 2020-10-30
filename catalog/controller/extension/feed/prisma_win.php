@@ -187,9 +187,13 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		
 		// foreach($ProductData->StoreItemsNoEshop as $product){
 
-		$product_id = $product->storeid;
+		//$product_id = $product->storeid;
+		$product_id = 2;
+
 		$exits_product = $this->db->query("SELECT product_id FROM ". DB_PREFIX ."product WHERE product_id = '{$product_id}' ");
+		echo "<pre>";
 		print_r($exits_product);
+		echo "</pre>";
 		$exits_product = $exits_product->rows;
 		echo ("{$product_id} </br>");
 		echo (count($exits_product)."</br>");
