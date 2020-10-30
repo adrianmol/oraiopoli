@@ -18,7 +18,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$this->writelogs("Error","erros");
 		//echo $_SERVER['DOCUMENT_ROOT'];
 		
-		$this->GetDataURL('GetProducts','bs-gg183-352','1-1-1990');
+		//$this->GetDataURL('GetProducts','bs-gg183-352','1-1-1990');
 		//$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','1-1-1990');
 	    //$this->GetDataUrlManufacturer('GetManufacturers','bs-gg183-352');
 
@@ -159,15 +159,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			LEFT JOIN oc_category c ON (cd.category_id = c.category_id)
 			LEFT JOIN oc_category w ON (w.category_id = c.category_id)
 			LEFT JOIN oc_category_description q ON( q.category_id = w.parent_id)
-			WHERE  cd.name = 'DELICATESEN' AND q.name = 'ΤΥΠΟΠΟΙΗΜΕΝΑ ΤΡΟΦΙΜΑ'");
+			WHERE  cd.name = '{$main_category}' AND q.name = '{$parent_category}'");
 			
 			$category_field = $category_field->rows;
 			//$categoryID = $category_field['category_id'];
 
-
-			echo "<pre>";
-			print_r($category_field);
-			echo "</pre>";
 
 			$CategoryPath[$productID] =  array (
 
@@ -178,9 +174,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	
 	}
 		
-		// echo "<pre>";
-		// print_r($CategoryPath);
-		// echo "</pre>";
+		echo "<pre>";
+		print_r($CategoryPath);
+		echo "</pre>";
 
 		return $CategoryPath;
 
