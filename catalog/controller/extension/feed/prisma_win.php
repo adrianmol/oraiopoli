@@ -18,8 +18,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$this->writelogs("Error","erros");
 		//echo $_SERVER['DOCUMENT_ROOT'];
 		
-		$this->GetDataURL('GetProducts','bs-gg183-352','10-30-2020');
-		$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','10-27-2020');
+		//$this->GetDataURL('GetProducts','bs-gg183-352','10-30-2020');
+		//$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','10-27-2020');
 	    //$this->GetDataUrlManufacturer('GetManufacturers','bs-gg183-352');
 
 		//$this->InsertProduct();
@@ -36,7 +36,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		if (!file_exists($log_filename))
 		{
 			// create directory/folder
-			mkdir($log_filename, 0755, true);
+			mkdir($log_filename, 0777, true);
 		}
 	
 		$getDate=date('d-M-Y');
