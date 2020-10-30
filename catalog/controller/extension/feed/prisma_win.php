@@ -190,6 +190,13 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			//$categoryID = $category_field['category_id'];
 
 
+
+			$insert_product_to_category = $this->db->query("UPDATE oc_product_to_category SET category_id = {(int)$category_field[0]['category_id']} WHERE product_id = {(int)$productID}");
+			
+			if($insert_product_to_category){
+				echo ("Status = {$insert_product_to_category} ProductID : {$productID} CategoryID :{$category_field[0]['category_id']} </br>");
+			}
+
 			$CategoryPath[$productID] =  array (
 
 				'productID'   => $productID,
@@ -197,6 +204,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				'main_category'=> $main_category,
 				'parent_category'=> $parent_category
 			);
+
 	
 	}
 		
@@ -363,15 +371,15 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 
-			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_category  SET 
+			// $insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_category  SET 
 
-			product_id  = '".(int)$product['id']."' ,
-			category_id = '".(int)$categories[$product['id']]['categoryID']."' 
+			// product_id  = '".(int)$product['id']."' ,
+			// category_id = '".(int)$categories[$product['id']]['categoryID']."' 
 
-			ON DUPLICATE KEY UPDATE product_id  = '".(int)$product['id']."', 
-									category_id = '".(int)$categories[$product['id']]['categoryID']."'
+			// ON DUPLICATE KEY UPDATE product_id  = '".(int)$categories[$product['id']]."', 
+			// 						category_id = '".(int)$categories[$product['id']]['categoryID']."'
 
-			");	
+			// ");	
 
 		$itemsAdded++;
 
