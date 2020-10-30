@@ -349,10 +349,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				name = {$manuf},
 				
 
-				ON DUPLICATE KEY UPDATE manufacturer_id = {$mymanufid}, 
-										name = {$manuf}
-
-		");	
+				ON DUPLICATE KEY UPDATE name = {$manuf} WHERE manufacturer_id = {$mymanufid}");	
 		echo ("Manufacturer:{$manuf} ID = {$mymanufid}</br>")	;
 		}
 
