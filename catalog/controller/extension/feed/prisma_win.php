@@ -115,7 +115,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 
-			$category[$productID][] = array();
+			$category[$productID] = array();
 
 			$category[$productID]["productID"] = (string)$product->ItemId;
 			
