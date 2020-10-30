@@ -16,10 +16,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$today = date("m-d-Y");
 		
 		//$this->writelogs("Error","erros");
-
-		echo $_SERVER['DOCUMENT_ROOT'];
+		//echo $_SERVER['DOCUMENT_ROOT'];
 		
-		$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','10-30-2020');
+		$this->GetDataURL('GetProducts','bs-gg183-352','10-30-2020');
 
 	    //$this->GetDataUrlManufacturer('GetManufacturers','bs-gg183-352');
 
@@ -27,7 +26,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// $this->ItemsWithNoEshop();
 		// $this->GetCategory();
 		// $this->InsertPhoto();
-		$this->GetManufacturer();	
+		// $this->GetManufacturer();	
 	}
 
 	public function writelogs($msg, $file) {
@@ -446,7 +445,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		if ($result === FALSE) { /* Handle error */ }
 
 			$xml=simplexml_load_string($result) or die("Error: Cannot create manufacturer xml");	
-			$xml->saveXML('/home/oraiomarket/public_html/Prisma Win/manufacturer.xml');
+			$xml->saveXML('/home/oraiomarket/public_html/prisma_win/manufacturer.xml');
 
 			//return $xml;
 	}
