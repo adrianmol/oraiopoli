@@ -155,17 +155,17 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			// echo "</pre>";
 
 
-			$categoryID = $this->db->query("SELECT cd.name AS top_category ,c.category_id, c.parent_id ,q.name AS parent_category FROM oc_category_description cd
+			$category_field = $this->db->query("SELECT cd.name AS top_category ,c.category_id, c.parent_id ,q.name AS parent_category FROM oc_category_description cd
 			LEFT JOIN oc_category c ON (cd.category_id = c.category_id)
 			LEFT JOIN oc_category w ON (w.category_id = c.category_id)
 			LEFT JOIN oc_category_description q ON( q.category_id = w.parent_id)
 			WHERE  cd.name = '{$my_category[$level]['name']}' AND q.name = '{$my_category[$level-1]['name']}'");
 			
-			$categoryID = $categoryID->rows;
-
-			echo "<pre>";
-			print_r($categoryID);
-			echo "</pre>";
+			$category_field = $category_field->rows;
+			$categoryID = $category_field->category_id;
+			echo $categoryID;
+			// print_r($categoryID);
+			// echo "</pre>";
 
 
 			$CategoryPath[$productID] =  array (
@@ -175,9 +175,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				'categoryID'  => (int)$categoryID['category_id']
 			);
 
-			echo "<pre>";
-			print_r($CategoryPath);
-			echo "</pre>";
+			// echo "<pre>";
+			// print_r($CategoryPath);
+			// echo "</pre>";
 
 
 	}
