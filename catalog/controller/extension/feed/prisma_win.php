@@ -162,10 +162,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			WHERE  cd.name = '{$my_category[$level]['name']}' AND q.name = '{$my_category[$level-1]['name']}'");
 			
 			$category_field = $category_field->rows;
-			$categoryID = $category_field['category_id'];
+			//$categoryID = $category_field['category_id'];
 
 			echo "</pre>";
-			print_r($categoryID);
+			print_r($category_field);
 			echo "</pre>";
 
 
@@ -173,7 +173,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 				'productID'   => $productID,
 				'level'       => $level,
-				'categoryID'  => (int)$categoryID['category_id']
+				'categoryID'  => (int)$category_field['category_id']
 			);
 
 			// echo "<pre>";
