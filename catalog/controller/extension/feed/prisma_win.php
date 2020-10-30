@@ -169,7 +169,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 				'productID'   => $productID,
 				'level'       => $level,
-				'categoryID'  => (int)$category_field[0]['category_id']
+				'categoryID'  => (int)$category_field[0]['category_id'],
+				'main_category'=> $main_category,
+				'parent_category'=> $parent_category
 			);
 	
 	}
