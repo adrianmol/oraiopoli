@@ -115,28 +115,28 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 
-			$category[(int)$productID][] = array();
+			$category[$productID][] = array();
 
-			$category["productID"] = (string)$product->ItemId;
+			$category[$productID]["productID"] = (string)$product->ItemId;
 			
-			$category["top_category"] = (string)$product->ItemGroup1;
+			$category[$productID]["top_category"] = (string)$product->ItemGroup1;
 			
 
 			if(!empty((string) $product->ItemGroup2)){
 
-				$category["level1"] = (string)$product->ItemGroup2;
+				$category[$productID]["level1"] = (string)$product->ItemGroup2;
 				
 			}
 			
 			if(!empty((string) $product->ItemGroup3)){
 
-				$category["level2"] = (string)$product->ItemGroup3;
+				$category[$productID]["level2"] = (string)$product->ItemGroup3;
 
 			}
 
 			if(!empty((string) $product->ItemGroup4)){
 
-				$category["level3"] = (string)$product->ItemGroup4;
+				$category[$productID]["level3"] = (string)$product->ItemGroup4;
 			
 			}
 			
