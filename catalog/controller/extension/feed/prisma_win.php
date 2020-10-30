@@ -36,7 +36,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		if (!file_exists($log_filename))
 		{
 			// create directory/folder
-			mkdir($log_filename, 0777, true);
+			mkdir($log_filename, 0755, true);
 		}
 	
 		$getDate=date('d-M-Y');
