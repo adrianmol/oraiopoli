@@ -22,12 +22,12 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','10-27-2020');
 	    //$this->GetDataUrlManufacturer('GetManufacturers','bs-gg183-352');
 
-		//$this->InsertProduct();
-		//$this->ItemsWithNoEshop();
+		$this->InsertProduct();
+		$this->ItemsWithNoEshop();
 		// $this->GetCategory();
 		// $this->InsertPhoto();
-		// $this->GetManufacturer();
-		$this->GetProducts();	
+		$this->GetManufacturer();
+
 	}
 
 	public function writelogs($msg, $file) {
