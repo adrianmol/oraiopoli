@@ -27,9 +27,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$data = $this->GetProducts();
 
 
-		echo "<pre>";
-		print_r($data[1]);
-		echo "</pre>";
+		// echo "<pre>";
+		// print_r($data[1]);
+		// echo "</pre>";
 
 
 		// $this->InsertPhoto();
@@ -123,7 +123,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			if(!empty((string) $product->ItemGroup2)){
 
 				$category["level1"] = (string)$product->ItemGroup2;
-			
+				
 			}
 			
 			if(!empty((string) $product->ItemGroup3)){
@@ -137,6 +137,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				$category["level3"] = (string)$product->ItemGroup4;
 			
 			}
+			
+			print_r($category);
+			
 			// $category[(int)$productID] = array(
 			// 	'productID' =>(string)$product->ItemId,
 			// 	'top_category' =>(string) $product->ItemGroup1,
