@@ -64,11 +64,12 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 	}catch(Exception $e){
 
-		$errormgs = $e->getMessage();
+		$error_msg = $e->getMessage();
 
-		$this->writelogs($errormgs, 'error_call_xml');
+		$this->writelogs($error_msg, 'error_call_xml');
 	}
-	
+
+	print_r($xml);
 	return $xml;
 
 	}
@@ -225,10 +226,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		}
 
 
-		
-		$title = str_replace('\'', ' ', $product['title']);	
-
-
 		//$this->GetPhotoPath();
 		$pathPhoto = ("catalog/products/".$product['code'].".JPG");
 
@@ -297,8 +294,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_description SET 
 			product_id  = '".(int)$product['id']."',
 			language_id = '".$language_id."',
-			name = '".(string)$title . "',
-			meta_title = '".(string)$title . "' 
+			name = '".$this->db->escape($product['title']) . "',
+			meta_title = '".$this->db->escape($product['title']) . "' 
 
 			ON DUPLICATE KEY UPDATE product_id = '".(int)$product['id']."'
 			");	
@@ -343,8 +340,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 			$this->db->query("UPDATE ". DB_PREFIX ."product_description SET 
 
-					name = '".(string)$title . "',
-					meta_title = '".(string)$title . "' 
+					name = '".$this->db->escape($product['title']) . "',
+					meta_title = '".$this->db->escape($product['title']) . "' 
 
 					WHERE product_id = '".(int)$product['id']."'
 					");	
