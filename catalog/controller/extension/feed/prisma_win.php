@@ -218,7 +218,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		foreach($products as $product){
 
 				if( $i != $numItems){
-					if($numItems % 20 == 0){
+
+					if(($i % 20) == 0){
 						//$photo = $this->GetPhotoPath($output);
 						echo "Request ".$j++."<br>";
 						echo $output;
