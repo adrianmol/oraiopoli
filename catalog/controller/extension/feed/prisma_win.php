@@ -300,7 +300,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$exits_item = $exits_item->rows;
 	
 		if (empty($exits_item)){
-
+			$added_product_id = (int)$product['id'];
 			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
 			product_id = '".(int)$product['id']."' ,
 			model = '".(int)$product['code']."',
@@ -317,13 +317,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			date_added ='". $newdatacreated ."',
 			date_modified ='".$newdatamodified ."'
 
-			ON DUPLICATE KEY UPDATE product_id = '".(int)$product['id']."', 
-									price = '".$product['price_vat']."',
-									quantity ='".(float)$product['itemStock']."',
-									image ='". $pathPhoto ."',
-									stock_status_id = '".(int)$StockStatus."',
-									manufacturer_id = '".(int)$product['manufacturer_id']."',
-									minimum = '".(float)$minimum."'
 			");	
 
 
@@ -343,14 +336,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			date_added ='". $newdatacreated ."',
 			date_modified ='".$newdatamodified ."'
 
-			ON DUPLICATE KEY UPDATE product_id = '".(int)$product['id']."', 
-									price = '".$product['price_vat']."',
-									quantity ='".(float)$product['itemStock']."',
-									image ='". $pathPhoto ."',
-									stock_status_id = '".(int)$StockStatus."',
-									manufacturer_id = '".(int)$product['manufacturer_id']."',
-									minimum = '".(float)$minimum."'
-			
 			");	
 
 			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_description SET 
