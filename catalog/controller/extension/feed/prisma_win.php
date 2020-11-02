@@ -225,7 +225,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				}
 
 		}
-		echo ($output);
+		//echo ($output);
 		$photo = $this->GetPhotoPath($output);
 		$photo[$product['id']]['itemtype'] = ($photo[$product['id']]['itemtype'] ? $photo[$product['id']]['itemtype'] : "JPG");
 		$pathPhoto = ("catalog/products/".$product['code'].".".$photo[$product['id']]['itemtype']);
@@ -541,7 +541,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$data = 'SiteKey=bs-gg183-352&JsonStrWeb={   "items": [ '.$ItemCode.' ]}';
 
 		echo $data;
-		
+
 		//use key 'http' even if you send the request to https://...
 		// $options = array(
 		// 	'http' => array(
