@@ -540,28 +540,31 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/UploadImageToFtp';
 		$data = 'SiteKey=bs-gg183-352&JsonStrWeb={   "items": [ '.$ItemCode.' ]}';
 
+		echo $data;
+		
 		//use key 'http' even if you send the request to https://...
-		$options = array(
-			'http' => array(
-				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-				'method'  => 'POST',
-				'content' => $data
-			)
-		);
-		$context  = stream_context_create($options);
-		$result = file_get_contents($url, false, $context);
-		if ($result === FALSE) { /* Handle error */ }
-		$xml=simplexml_load_string($result) or die("Error: Cannot create image xml");
+		// $options = array(
+		// 	'http' => array(
+		// 		'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+		// 		'method'  => 'POST',
+		// 		'content' => $data
+		// 	)
+		// );
+		
+		// $context  = stream_context_create($options);
+		// $result = file_get_contents($url, false, $context);
+		// if ($result === FALSE) { /* Handle error */ }
+		// $xml=simplexml_load_string($result) or die("Error: Cannot create image xml");
 
-		foreach($xml->ItemImageUpload as $photoInfo){
-			$photo[(int)$photoInfo->ItemCode] = array(
+		// foreach($xml->ItemImageUpload as $photoInfo){
+		// 	$photo[(int)$photoInfo->ItemCode] = array(
 
-			'itemcode'  => (string)$photoInfo->ItemCode,
-			'itemtype'  => (string)$photoInfo->ImageType
-			);
-		}
+		// 	'itemcode'  => (string)$photoInfo->ItemCode,
+		// 	'itemtype'  => (string)$photoInfo->ImageType
+		// 	);
+		// }
 				
-		return $photo;
+		// return $photo;
 
 	}
 
