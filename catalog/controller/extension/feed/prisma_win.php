@@ -157,8 +157,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		foreach($data[1] as $category){
 		
 
-
-			echo count($category);
+			echo "Name: ".end($category) . " Number: " . count($category);
 			echo "</br>";
 
 			// echo array_key_last($category);
