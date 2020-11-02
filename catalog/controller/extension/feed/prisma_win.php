@@ -86,14 +86,12 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$ProductData = $this->GetDataURL('GetProducts','10-20-2020');
 		//$ProductData = curl("https://oraiomarket.gr/prisma_win/products.xml") or die("<br>Error: Cannot open XML (Products)</br>");
 		$ProductData = simplexml_load_file("/home/oraiomarket/public_html/prisma_win/products.xml") or die("<br>Error: Cannot open XML (Products)</br>");
-		$i=0; 
 
 		$ID=0;	
 
 		foreach($ProductData->StoreDetails as $product){
 			
 			if($product->ItemStock <= 0 ) $product->ItemStock = 0;
-			$i = 0;
 			$ID = (int)$productID = $product->ItemId;	
 				
 			$data[$ID] = array(
@@ -227,12 +225,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				}
 
 		}
-
+		echo ($output);
 		$photo = $this->GetPhotoPath($output);
 		$photo[$product['id']]['itemtype'] = ($photo[$product['id']]['itemtype'] ? $photo[$product['id']]['itemtype'] : "JPG");
 		$pathPhoto = ("catalog/products/".$product['code'].".".$photo[$product['id']]['itemtype']);
-
-		echo ($pathPhoto);
+		
 
 	}
 
@@ -294,6 +291,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$exits_item = $this->db->query("SELECT product_id FROM ". DB_PREFIX ."product WHERE product_id = '".(int)$product['id']."' ");
 		$exits_item = $exits_item->rows;
+	
 		if (empty($exits_item)){
 
 			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
@@ -424,6 +422,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		echo ("Date : ".$today. "  </br>");
 	}
 
+
+	
 	function GetManufacturer(){
 	
 		$manufacturers = simplexml_load_file("/home/oraiomarket/public_html/prisma_win/manufacturer.xml") or die("<br>Error: Cannot open XML (manufacturer)</br>");
