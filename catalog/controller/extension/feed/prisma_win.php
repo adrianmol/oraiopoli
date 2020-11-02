@@ -1,7 +1,8 @@
 <?php
+
 class ControllerExtensionfeedPrismawin extends Controller {
-
-
+	
+	
 	public function index() {
 
 		
@@ -299,6 +300,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$exits_item = $this->db->query("SELECT product_id FROM ". DB_PREFIX ."product WHERE product_id = '{$product['id']}' ");
 		$exits_item = $exits_item->rows;
 		echo "ID: ".$product['id']."</br>";
+
 		if (empty($exits_item)){
 			$added_product_id = (int)$product['id'];
 			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
@@ -398,10 +400,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 		}
-
+		date_default_timezone_set('Europe/Athens');
 		$product_no_eshop = $this->ItemsWithNoEshop();
-		$GMTtoday = date("Y-m-d H:i:s");
-		$today = date("Y-m-d H:i:s",strtotime('+3 hour',strtotime($GMTtoday)));
+		$today = date("Y-m-d H:i:s");
+		//$today = date("Y-m-d H:i:s",strtotime('+2 hour',strtotime($GMTtoday)));
 		$this->db->query("INSERT INTO ".DB_PREFIX."prisma_win SET
 			products_updated = {$itemsUpdate},
 			products_deleted = {$product_no_eshop},
