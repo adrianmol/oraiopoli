@@ -204,9 +204,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	
 	 }
 		
-		echo "<pre>";
-		print_r($CategoryPath);
-		echo "</pre>";
+		// echo "<pre>";
+		// print_r($CategoryPath);
+		// echo "</pre>";
 
 		return $CategoryPath;
 
@@ -410,7 +410,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		}
 
 		$product_no_eshop = $this->ItemsWithNoEshop();
-		echo $product_no_eshop;
 		$GMTtoday = date("Y-m-d H:i:s");
 		$today = date("Y-m-d H:i:s",strtotime('+3 hour',strtotime($GMTtoday)));
 		$this->db->query("INSERT INTO ".DB_PREFIX."prisma_win SET
