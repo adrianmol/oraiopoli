@@ -10,10 +10,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		if(isset($_REQUEST["update"])) {
 
-			echo "Updated";
-			$this->InsertProduct();
+			//echo "Updated";
+			//$this->InsertProduct();
 		}
-		$today = date("m-d-Y");
+		//$today = date("m-d-Y");
 		
 		//$this->writelogs("Error","erros");
 		//echo $_SERVER['DOCUMENT_ROOT'];
@@ -157,27 +157,31 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		foreach($data[1] as $category){
 		
 
-			echo array_key_last($category);
+
+			echo count($category);
 			echo "</br>";
 
-			if(empty($category['level3'])){
-				if(empty($category['level2'])){
-					if(empty($category['level1'])){
+			// echo array_key_last($category);
+			// echo "</br>";
 
-					}else{
-						$main_category = $category['level1'];
-						$parent_category = $category['top_category'];
-					}
+			// if(empty($category['level3'])){
+			// 	if(empty($category['level2'])){
+			// 		if(empty($category['level1'])){
 
-				}else{
-					$main_category = $category['level2'];
-					$parent_category = $category['level1'];
-				}
+			// 		}else{
+			// 			$main_category = $category['level1'];
+			// 			$parent_category = $category['top_category'];
+			// 		}
 
-			}else{
-				$main_category = $category['level3'];
-				$parent_category = $category['level2'];
-			}
+			// 	}else{
+			// 		$main_category = $category['level2'];
+			// 		$parent_category = $category['level1'];
+			// 	}
+
+			// }else{
+			// 	$main_category = $category['level3'];
+			// 	$parent_category = $category['level2'];
+			// }
 
 
 
@@ -197,53 +201,53 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			// 	$parent_category = $category['top_category'];
 			// }
 
-			$productID = $category['productID'];
+	// 		$productID = $category['productID'];
 			
-			//echo ("Product: {$productID} main_category: {$parent_category} parent_category: {$main_category} </br>");
+	// 		//echo ("Product: {$productID} main_category: {$parent_category} parent_category: {$main_category} </br>");
 			
-			$my_category = $this->db->query("select  s.product_id, cp.path_id, cp.`level`,z.`name` from oc_product s 
-			LEFT JOIN oc_product_description d ON(d.product_id= s.product_id and d.language_id=2)
-			LEFT JOIN oc_product_to_category r ON(r.product_id= s.product_id)
-			LEFT JOIN oc_category f ON(f.category_id= r.category_id)
-			LEFT JOIN oc_category_path cp ON(cp.category_id = f.category_id)
-			LEFT JOIN oc_category_description z ON(z.category_id= cp.path_id and z.language_id=2 )
-			where s.product_id={$productID} order by cp.path_id");
+	// 		$my_category = $this->db->query("select  s.product_id, cp.path_id, cp.`level`,z.`name` from oc_product s 
+	// 		LEFT JOIN oc_product_description d ON(d.product_id= s.product_id and d.language_id=2)
+	// 		LEFT JOIN oc_product_to_category r ON(r.product_id= s.product_id)
+	// 		LEFT JOIN oc_category f ON(f.category_id= r.category_id)
+	// 		LEFT JOIN oc_category_path cp ON(cp.category_id = f.category_id)
+	// 		LEFT JOIN oc_category_description z ON(z.category_id= cp.path_id and z.language_id=2 )
+	// 		where s.product_id={$productID} order by cp.path_id");
 
-			$my_category = $my_category->rows;
+	// 		$my_category = $my_category->rows;
 
-			$category_field = $this->db->query("SELECT cd.name AS top_category ,c.category_id, c.parent_id ,q.name AS parent_category FROM oc_category_description cd
-			LEFT JOIN oc_category c ON (cd.category_id = c.category_id)
-			LEFT JOIN oc_category w ON (w.category_id = c.category_id)
-			LEFT JOIN oc_category_description q ON( q.category_id = w.parent_id)
-			WHERE  cd.name = '{$main_category}' AND q.name = '{$parent_category}'");
+	// 		$category_field = $this->db->query("SELECT cd.name AS top_category ,c.category_id, c.parent_id ,q.name AS parent_category FROM oc_category_description cd
+	// 		LEFT JOIN oc_category c ON (cd.category_id = c.category_id)
+	// 		LEFT JOIN oc_category w ON (w.category_id = c.category_id)
+	// 		LEFT JOIN oc_category_description q ON( q.category_id = w.parent_id)
+	// 		WHERE  cd.name = '{$main_category}' AND q.name = '{$parent_category}'");
 			
-			$category_field = $category_field->rows;
-			//$categoryID = $category_field['category_id'];
+	// 		$category_field = $category_field->rows;
+	// 		//$categoryID = $category_field['category_id'];
 
 
 
-			//$insert_product_to_category = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_category (category_id,product_id) VALUES ({$category_field[0]['category_id']},{$productID})");
+	// 		//$insert_product_to_category = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_category (category_id,product_id) VALUES ({$category_field[0]['category_id']},{$productID})");
 			
-			// if($insert_product_to_category){
-			// 	echo ("Status = {$insert_product_to_category} ProductID : {$productID} CategoryID :{$category_field[0]['category_id']} </br>");
-			// }
+	// 		// if($insert_product_to_category){
+	// 		// 	echo ("Status = {$insert_product_to_category} ProductID : {$productID} CategoryID :{$category_field[0]['category_id']} </br>");
+	// 		// }
 
-			$CategoryPath[$productID] =  array (
+	// 		$CategoryPath[$productID] =  array (
 
-				'productID'   => $productID,
-				'categoryID'  => (int)$category_field[0]['category_id'],
-				'main_category'=> $main_category,
-				'parent_category'=> $parent_category
-			);
+	// 			'productID'   => $productID,
+	// 			'categoryID'  => (int)$category_field[0]['category_id'],
+	// 			'main_category'=> $main_category,
+	// 			'parent_category'=> $parent_category
+	// 		);
 
 	
-	}
+	 }
 		
 		// echo "<pre>";
 		// print_r($CategoryPath);
 		// echo "</pre>";
 
-		return $CategoryPath;
+		//return $CategoryPath;
 
 	}
 
