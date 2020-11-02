@@ -296,9 +296,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$sec = strtotime($product['datamodified']);
 		$newdatamodified = date("Y/m/d H:i",$sec);
 
-		$exits_item = $this->db->query("SELECT product_id FROM ". DB_PREFIX ."product WHERE product_id = '".(int)$product['id']."' ");
+		$exits_item = $this->db->query("SELECT product_id FROM ". DB_PREFIX ."product WHERE product_id = '{$product['id']}' ");
 		$exits_item = $exits_item->rows;
-	
+		echo "ID: ".$product['id']."</br>";
 		if (empty($exits_item)){
 			$added_product_id = (int)$product['id'];
 			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
