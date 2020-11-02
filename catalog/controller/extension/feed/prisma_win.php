@@ -220,11 +220,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				if( $i != $numItems){
 
 					if(($i % 20) == 0){
-						//$photo = $this->GetPhotoPath($output);
 						$output .= ('{ "storecode": "'.$product['code'].'" }');	
-						echo "Request ".$j++."\n";
-						echo $output;
-						echo "<br>";
+						$photo = $this->GetPhotoPath($output , $i);
 						$output = "";
 
 					}
@@ -544,7 +541,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			return $xml;
 	}
 
-	function GetPhotoPath($ItemCode) {
+	function GetPhotoPath($ItemCode ,$count) {
 
 		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/UploadImageToFtp';
 		$data = 'SiteKey=bs-gg183-352&JsonStrWeb={   "items": [ '.$ItemCode.' ]}';
@@ -560,16 +557,15 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$context  = stream_context_create($options);
 		$result = file_get_contents($url, false, $context);
 		if ($result === FALSE) { /* Handle error */ }
-		$xml=simplexml_load_string($result) or die("Error: Cannot create image xml");
-
+		$xml=simplexml_load_string($result) or die("Error: Cannot create image xml");					
+		$xml->saveXML('/home/oraiomarket/public_html/prisma_win/image_json'.$count.'.xml');
 		foreach($xml->ItemImageUpload as $photoInfo){
 			$photo[(int)$photoInfo->ItemCode] = array(
 
 			'itemcode'  => (string)$photoInfo->ItemCode,
 			'itemtype'  => (string)$photoInfo->ImageType
 			);
-		}
-				
+		}	
 		return $photo;
 
 	}
