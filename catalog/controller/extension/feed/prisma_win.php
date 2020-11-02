@@ -221,10 +221,12 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 					if(($i % 20) == 0){
 						//$photo = $this->GetPhotoPath($output);
-						echo "Request ".$j++."<br>";
+						$output .= ('{ "storecode": "'.$product['code'].'" }');	
+						echo "Request ".$j++."\n";
 						echo $output;
 						echo "<br>";
 						$output = "";
+
 					}
 					$output .= ('{ "storecode": "'.$product['code'].'" },');
 				}else{
