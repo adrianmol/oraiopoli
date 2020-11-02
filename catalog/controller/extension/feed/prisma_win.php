@@ -18,14 +18,14 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$this->writelogs("Error","erros");
 		//echo $_SERVER['DOCUMENT_ROOT'];
 		
-		//$this->GetDataURL('GetProducts','bs-gg183-352','1-1-1990');
+		$this->GetDataURL('GetProducts','bs-gg183-352','11-1-2020');
 		//$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','1-1-1990');
 	    //$this->GetDataUrlManufacturer('GetManufacturers','bs-gg183-352');
 
 		//$this->InsertProduct();
 		//$this->ItemsWithNoEshop();
 		 $this->GetCategory();
-
+		 $this->InsertProduct();
 
 		// echo "<pre>";
 		// print_r($data[1]);
@@ -367,15 +367,15 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 
-			// $insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_category  SET 
+			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_category  SET 
 
-			// product_id  = '".(int)$product['id']."' ,
-			// category_id = '".(int)$categories[$product['id']]['categoryID']."' 
+			product_id  = '".(int)$product['id']."' ,
+			category_id = '".(int)$categories[$product['id']]['categoryID']."' 
 
-			// ON DUPLICATE KEY UPDATE product_id  = '".(int)$categories[$product['id']]."', 
-			// 						category_id = '".(int)$categories[$product['id']]['categoryID']."'
+			ON DUPLICATE KEY UPDATE product_id  = '".(int)$categories[$product['id']]."', 
+									category_id = '".(int)$categories[$product['id']]['categoryID']."'
 
-			// ");	
+			");	
 
 		$itemsAdded++;
 
