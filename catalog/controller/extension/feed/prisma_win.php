@@ -18,13 +18,13 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$this->writelogs("Error","erros");
 		//echo $_SERVER['DOCUMENT_ROOT'];
 		
-		//$this->GetDataURL('GetProducts','bs-gg183-352','11-1-2020');
+		$this->GetDataURL('GetProducts','bs-gg183-352','11-2-2020');
 		//$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','1-1-1990');
 	    //$this->GetDataUrlManufacturer('GetManufacturers','bs-gg183-352');
 
 		$this->InsertProduct();
-		//$this->ItemsWithNoEshop();
-		 $this->GetCategory();
+		 //$this->ItemsWithNoEshop();
+		 //$this->GetCategory();
 		 //$this->InsertProduct();
 
 		// echo "<pre>";
@@ -218,25 +218,26 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		foreach($products as $product){
 
 				if( $i != $numItems){
+				  	$i++;
+						if(($i % 20) == 0){
+							$output .= ('{ "storecode": "'.$product['code'].'" }');	
+							$photo = $this->GetPhotoPath($output , $i);
+							$output = "";
 
-					if(($i % 20) == 0){
-						$output .= ('{ "storecode": "'.$product['code'].'" }');	
-						$photo = $this->GetPhotoPath($output , $i);
-						$output = "";
-
-					}
-					$output .= ('{ "storecode": "'.$product['code'].'" },');
+						}else{
+							$output .= ('{ "storecode": "'.$product['code'].'" },');
+						}
 				}else{
-					$output .= ('{ "storecode": "'.$product['code'].'" }');	
-				}
-				$i++;
-		}
-		//echo ($output);
-		//$photo = $this->GetPhotoPath($output);
-		//$photo[$product['id']]['itemtype'] = ($photo[$product['id']]['itemtype'] ? $photo[$product['id']]['itemtype'] : "JPG");
-		//$pathPhoto = ("catalog/products/".$product['code'].".".$photo[$product['id']]['itemtype']);
-		
 
+					$output .= ('{ "storecode": "'.$product['code'].'" }');	
+
+				}
+		}
+
+		$photo = $this->GetPhotoPath($output, $i);
+		$photo[$product['id']]['itemtype'] = ($photo[$product['id']]['itemtype'] ? $photo[$product['id']]['itemtype'] : "JPG");
+		$pathPhoto[] = ("catalog/products/".$product['code'].".".$photo[$product['id']]['itemtype']);
+	
 	}
 
 	function ItemsWithNoEshop(){
