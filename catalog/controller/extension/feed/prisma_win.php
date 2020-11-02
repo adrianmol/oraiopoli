@@ -32,7 +32,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		// echo "</pre>";
 
 
-		// $this->InsertPhoto();
+		$this->InsertPhoto();
 		//$this->GetManufacturer();
 
 	}
