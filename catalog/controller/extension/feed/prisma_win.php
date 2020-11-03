@@ -553,11 +553,54 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		FROM oc_order o	LEFT JOIN oc_order_status os ON ( os.order_status_id = o.order_status_id)
 		WHERE os.`name` IS NOT NULL AND o.order_status_id=1");
 
+		$data = $list_data_order->rows;
+
+			foreach($data as $row) {
+				$insertorder[] =  array(	
+				'CustUsername' => $row['CustUsername'],
+				'OrderNo' => $row['OrderNo'],
+				'StorageCode' => $row['StorageCode'],
+				'TroposPliromis' => $row['TroposPliromis'],
+				'TroposApostolhs' => $row['TroposApostolhs'],
+				'SkoposDiak' => $row['SkoposDiak'],
+				'ToposFortoshs' => $row['ToposFortoshs'],
+				'Comments' => $row['Comments'],
+				'Comments2' => $row['Comments2'],
+				'Comments3' => $row['Comments3'],
+				'CustName' => $row['CustName'],
+				'CustAfm' => $row['CustAfm'],
+				'ShippingCity' => $row['ShippingCity'],
+				'ShippingAddress' => $row['ShippingAddress'],
+				'ShippingZip' => $row['ShippingZip'],
+				'CustCity' => $row['CustCity'],
+				'CustAddress' => $row['CustAddress'],
+				'CustZip' => $row['CustZip'],
+				'CustEmail' => $row['CustEmail'],
+				'CustMobile' => $row['CustMobile'],
+				'CustTel' => $row['CustTel'],
+				'CustTimok' => $row['CustTimok'],
+				'CustFax' => $row['CustFax'],
+				'CustDOY' => $row['CustDOY'],
+				'ShippingDate' => $row['ShippingDate'],
+				'InvoiceCode' => $row['InvoiceCode']
+			);								  
+		}	
+
+		$list_store = $this->jsonRemoveUnicodeSequences($insertorder);
+
+
+
+
+
+
+		echo "{\"Store\":\n {\"items\":".$list_store."}\n}";
+
 
 		
-		echo "<pre>";
-		echo json_encode($this->jsonRemoveUnicodeSequences($list_data_order));
-		echo "</pre>";
+		// echo "<pre>";
+		// echo json_encode($this->jsonRemoveUnicodeSequences($list_data_order));
+		// echo "</pre>";
+
 
 		
 
@@ -567,9 +610,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 	function jsonRemoveUnicodeSequences($struct) {
 		try {
-			
 			return preg_replace_callback('/\\\\u([0-9a-fA-F]{4})/', function ($match) {
-				return mb_convert_encoding(pack('H*', $match[1]), 'UTF-8', 'UCS-2BE');
+				return mb_convert_encoding(pack('H*', $match[1]), 'utf8_general_ci', 'UCS-2BE');
 			}, json_encode($struct));
 		
 		 } catch (Exception $e) {
