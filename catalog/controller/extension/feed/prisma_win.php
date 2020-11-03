@@ -387,10 +387,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			products_added = {$itemsAdded},
 			date_added = '{$today}'
 		");				
-		// echo ("Updated : ".$itemsUpdate. " product(s) </br>");
-		// echo ("Deleted : ".$product_no_eshop. " product(s) </br>");
-		// echo ("Added : ".$itemsAdded. " product(s) </br>");
-		// echo ("Date : ".$today. "  </br>");
+		echo ("Updated : ".$itemsUpdate. " product(s) </br>");
+		echo ("Deleted : ".$product_no_eshop. " product(s) </br>");
+		echo ("Added : ".$itemsAdded. " product(s) </br>");
+		echo ("Date : ".$today. "  </br>");
 	}
 
 
