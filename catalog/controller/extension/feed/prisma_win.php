@@ -24,7 +24,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 
-
+		$this->SendOrderJson();
 
 
 		//$today = date("m-d-Y");
@@ -536,4 +536,39 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 	}
 
+
+	function SendOrderJson(){
+
+		$list_data_order = $this->db->query("SELECT DISTINCT  os.order_status_id, os.name,  o.email AS CustUsername , o.order_id AS OrderNo, 
+		'000' AS StorageCode,o.payment_method AS TroposPliromis, 
+		o.shipping_method AS TroposApostolhs, 
+		'ΠΩΛΗΣΗ' AS SkoposDiak,'ΕΔΡΑΜΑΣ' AS ToposFortoshs, 
+		o.`comment`AS Comments,'' AS Comments2, 
+		'' AS Comments3, CONCAT (o.firstname,' ', o.lastname) AS CustName,
+		'' AS CustAfm, o.shipping_city AS ShippingCity, o.shipping_address_1 AS ShippingAddress,
+		o.shipping_postcode AS ShippingZip, o.shipping_city AS CustCity,
+		o.payment_address_1 AS CustAddress, o.payment_postcode AS CustZip,
+		o.email AS CustEmail, o.telephone AS CustMobile , o.telephone AS CustTel,
+		'' AS CustTimok, o.fax AS CustFax, '' AS CustDOY, o.date_added AS ShippingDate,'' AS InvoiceCode
+		FROM oc_order o	LEFT JOIN oc_order_status os ON ( os.order_status_id = o.order_status_id)
+		WHERE os.`name` IS NOT NULL AND o.order_status_id=1");
+
+
+		
+		echo "<pre>";
+		print_r($$list_data_order);
+		echo "</pre>";
+
+
+
+	}
+
+
+
+
+
+
+
 }
+
+
