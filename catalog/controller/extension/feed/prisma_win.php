@@ -530,6 +530,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			'itemtype'  => (string)$photoInfo->ImageType
 			);
 		}	
+
+		$this->writelogs( implode(" , ", $photo[(int)$photoInfo->ItemCode]) , "GetPhotoPath");
 		return $photo;
 
 	}
