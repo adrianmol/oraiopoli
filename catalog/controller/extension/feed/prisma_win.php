@@ -555,7 +555,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 		$data = $list_data_order->rows;
-		$orderID = $data['OrderNo'];
+		$orderID = $data['OrderNo'][0];
 
 
 
@@ -591,7 +591,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				'ShippingDate' => $row['ShippingDate'],
 				'InvoiceCode' => $row['InvoiceCode']
 			);	
-										  
+
 		}	
 		
 		//'items'[] =$this->jsonRemoveUnicodeSequences($this->GetOrderProductLists($row['OrderNo']))
