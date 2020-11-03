@@ -4,16 +4,30 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	
 	
 	public function index() {
-
+		$today = date("m-d-Y");
 		
 #https://oraiomarket.gr/index.php?route=extension/feed/prisma_win
 
+		$this->GetDataURL('GetProducts','bs-gg183-352',$today);
 
 		if(isset($_REQUEST["update"])) {
 
 			echo "Updated";
 			$this->InsertProduct();
+			$this->ItemsWithNoEshop();
+			$this->GetManufacturer();
 		}
+
+		if(isset($_REQUEST["updateimage"])) {
+
+			echo "Updated";
+			$this->InsertPhoto();
+		}
+
+
+
+
+
 
 		//$today = date("m-d-Y");
 		
@@ -25,7 +39,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','1-1-1990');
 	    //$this->GetDataUrlManufacturer('GetManufacturers','bs-gg183-352');
 
-		$this->InsertProduct();
+		 //$this->InsertProduct();
 		 //$this->ItemsWithNoEshop();
 		 //$this->GetCategory();
 		 //$this->InsertProduct();
@@ -342,18 +356,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		}else{
 
-
-
-			
-		$productID = (int)$product['id'];
-		$productMODEL = (int)$product['code'];
-		$prodcutItemStock = (float)$product['itemStock'];
-		$productPriceVat = $product['price_vat'];
-		$productManufacturer = (int)$product['manufacturer_id'];
-		$productName = $this->db->escape($product['title']);
-		$productMetaTitle = $this->db->escape($product['title']);
-		$productCategoryID = (int)$categories[$product['id']]['categoryID'];
-
 			$this->db->query("UPDATE ".DB_PREFIX."product SET 
 
 					product_id = {$productID} ,
@@ -385,10 +387,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			products_added = {$itemsAdded},
 			date_added = '{$today}'
 		");				
-		echo ("Updated : ".$itemsUpdate. " product(s) </br>");
-		echo ("Deleted : ".$product_no_eshop. " product(s) </br>");
-		echo ("Added : ".$itemsAdded. " product(s) </br>");
-		echo ("Date : ".$today. "  </br>");
+		// echo ("Updated : ".$itemsUpdate. " product(s) </br>");
+		// echo ("Deleted : ".$product_no_eshop. " product(s) </br>");
+		// echo ("Added : ".$itemsAdded. " product(s) </br>");
+		// echo ("Date : ".$today. "  </br>");
 	}
 
 
