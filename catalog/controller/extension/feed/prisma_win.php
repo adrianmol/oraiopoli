@@ -555,11 +555,13 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 		
-		echo "<pre>";
-		print_r($list_data_order);
-		echo "</pre>";
+		// echo "<pre>";
+		echo json_encode($list_data_order);
+		// echo "</pre>";
 
+		
 
+		//$data = 'SiteKey=bs-gg183-352&JsonStrWeb={   "items": [ '.$ItemCode.' ]}';
 
 	}
 
