@@ -12,7 +12,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		if(isset($_REQUEST["update"])) {
 
-			echo "Updated";
 			$this->InsertProduct();
 			$this->ItemsWithNoEshop();
 			$this->GetManufacturer();
@@ -20,7 +19,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		if(isset($_REQUEST["updateimage"])) {
 
-			echo "Updated";
 			$this->InsertPhoto();
 		}
 
@@ -273,10 +271,12 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			$this->db->query("UPDATE ".DB_PREFIX."product SET 
 			status = 0 WHERE product_id = {$product_id}");
 				$product_no_eshop++;
-
 			}
 		}
+		$msg = "Total disable: {$product_no_eshop} product(s)";
+		$this->writelogs($msg,"ItemsWithNoEshop");
 		return $product_no_eshop;
+		
 	}
 
 
@@ -387,10 +387,15 @@ class ControllerExtensionfeedPrismawin extends Controller {
 			products_added = {$itemsAdded},
 			date_added = '{$today}'
 		");				
-		echo ("Updated : ".$itemsUpdate. " product(s) </br>");
-		echo ("Deleted : ".$product_no_eshop. " product(s) </br>");
-		echo ("Added : ".$itemsAdded. " product(s) </br>");
-		echo ("Date : ".$today. "  </br>");
+		
+		$msg ="";
+		$msg .="Updated : {$itemsUpdate} product(s) \n";
+		$msg .="Deleted : {$product_no_eshop} product(s) \n";
+		$msg .="Added : {$itemsAdded} product(s) \n";
+		$msg .="Date : {$today} \n";
+	
+	
+		$this->writelogs($msg,"productUpdated");
 	}
 
 
@@ -401,24 +406,18 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		//$manufacturers = $manufacturers->ManufacturerDetails;
 		
 		foreach($manufacturers->ManufacturerDetails as $manufacturer){
-
+				$msg =""; 
 				$mymanufid = $manufacturer->ManufacturerID;
 				$mymanufName = $manufacturer->ManufacturerName;
-				// echo "<pre>";
-				// echo ($mymanufid);
-				// echo "<br>";
-				// echo ($mymanufName);
-				// echo "</pre>";	
 
 			//echo ("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer WHERE manufacturer_id ={$mymanufid}</br>");
 			$manufacturersDB = $this->db->query("SELECT manufacturer_id FROM ". DB_PREFIX ."manufacturer WHERE manufacturer_id ={$mymanufid}");
 			$manufacturerDB =$manufacturersDB->rows;
 
 				if((count($manufacturerDB) == 0) && !empty($manuf)){ 
-					$insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer  SET 
-							manufacturer_id  = {$mymanufid},
-							name = '{$this->db->escape($mymanufName)}'");
-					echo ("Manufacturer:{$mymanufName} ID = {$mymanufid}</br>");
+					$insertmanufacturer = $this->db->query("INSERT INTO ". DB_PREFIX ."manufacturer (manufacturer_id,name) VALUES ($mymanufid,'$this->db->escape($mymanufName')");
+					$msg .="Manufacturer:{$mymanufName} ID = {$mymanufid}";
+					$this->writelogs($msg,"GetManufacturer");
 				}
 		}
 	
