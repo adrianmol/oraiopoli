@@ -615,7 +615,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$list_store = $this->jsonRemoveUnicodeSequences($insertorder);
 
-		echo "{\"Store\":\n {\"items\":".$list_store."}\n}";
+		echo "{$list_store}\n}";
 
 		// echo "<pre>";
 		// echo json_encode($this->jsonRemoveUnicodeSequences($list_data_order));
