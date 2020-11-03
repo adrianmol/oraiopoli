@@ -589,15 +589,19 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				'CustFax' => $row['CustFax'],
 				'CustDOY' => $row['CustDOY'],
 				'ShippingDate' => $row['ShippingDate'],
-				'InvoiceCode' => $row['InvoiceCode'],
-				'items'[] = $this->jsonRemoveUnicodeSequences($this->GetOrderProductLists($row['OrderNo']))
+				'InvoiceCode' => $row['InvoiceCode']
 			);								  
 		}	
+		
+		//'items'[] =$this->jsonRemoveUnicodeSequences($this->GetOrderProductLists($row['OrderNo']))
+		
+		array_push($insertorder, array($this->GetOrderProductLists($data['OrderNo'])));
 
+			
 		$list_store = $this->jsonRemoveUnicodeSequences($insertorder);
 
 
-
+		
 
 
 
