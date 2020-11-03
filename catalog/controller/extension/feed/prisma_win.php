@@ -11,15 +11,17 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		if(isset($_REQUEST["update"])) {
 
-			//echo "Updated";
-			//$this->InsertProduct();
+			echo "Updated";
+			$this->InsertProduct();
 		}
+
 		//$today = date("m-d-Y");
 		
 		//$this->writelogs("Error","erros");
 		//echo $_SERVER['DOCUMENT_ROOT'];
 		
-		$this->GetDataURL('GetProducts','bs-gg183-352','11-2-2020');
+		//$this->GetDataURL('GetProducts','bs-gg183-352','11-2-2020');
+		
 		//$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','1-1-1990');
 	    //$this->GetDataUrlManufacturer('GetManufacturers','bs-gg183-352');
 
@@ -297,103 +299,76 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$sec = strtotime($product['datamodified']);
 		$newdatamodified = date("Y/m/d H:i",$sec);
 
-		$exits_item = $this->db->query("SELECT product_id FROM ". DB_PREFIX ."product WHERE product_id = '{$product['id']}' ");
+
+		$productID = (int)$product['id'];
+		$productMODEL = (int)$product['code'];
+		$prodcutItemStock = (float)$product['itemStock'];
+		$productPriceVat = $product['price_vat'];
+		$productManufacturer = (int)$product['manufacturer_id'];
+		$productName = $this->db->escape($product['title']);
+		$productMetaTitle = $this->db->escape($product['title']);
+		$productCategoryID = (int)$categories[$product['id']]['categoryID'];
+
+
+		$exits_item = $this->db->query("SELECT product_id FROM ". DB_PREFIX ."product WHERE product_id = '{$productID}' ");
 		$exits_item = $exits_item->rows;
-		echo "ID: ".$product['id']."</br>";
+		
 
 		if (empty($exits_item)){
-			$added_product_id = (int)$product['id'];
-			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
-			product_id = '".(int)$product['id']."' ,
-			model = '".(int)$product['code']."',
-			quantity ='".(float)$product['itemStock']."',
-			stock_status_id = '".(int)$itemOutStock."',
-			in_stock_status_id = '".(int)$StockStatus."',
-			image ='". $pathPhoto ."',
-			shipping = '".(int)$status."',
-			price = '".$product['price_vat']."',
-			tax_class_id = '".(int)$tax_class."',
-			manufacturer_id = '".(int)$product['manufacturer_id']."',
-			status = '".(int)$status."',
-			minimum = '".(float)$minimum."',
-			date_added ='". $newdatacreated ."',
-			date_modified ='".$newdatamodified ."'
-
-			");	
+			echo "ID: ".$productID."</br>";
+			$added_product_id = $productID;
 
 
-			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product SET 
-			product_id = '".(int)$product['id']."' ,
-			model = '".(int)$product['code']."',
-			quantity ='".(float)$product['itemStock']."',
-			stock_status_id = '".(int)$itemOutStock."',
-			in_stock_status_id = '".(int)$StockStatus."',
-			image ='". $pathPhoto ."',
-			shipping = '".(int)$status."',
-			price = '".$product['price_vat']."',
-			tax_class_id = '".(int)$tax_class."',
-			manufacturer_id = '".(int)$product['manufacturer_id']."',
-			status = '".(int)$status."',
-			minimum = '".(float)$minimum."',
-			date_added ='". $newdatacreated ."',
-			date_modified ='".$newdatamodified ."'
+			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product 
+			       (product_id,model,quantity,stock_status_id,image,shipping,price,tax_class_id,manufacturer_id,status,minimum,date_added,date_modified) 
+			VALUES ({$productID},{$productMODEL},{$prodcutItemStock},{$itemOutStock},{$StockStatus},'{$pathPhoto}',{$status},{$productPriceVat},{$tax_class},{$productManufacturer},{$status},{$minimum},{$newdatacreated},{$newdatamodified})
+			)");
 
-			");	
+	
 
-			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_description SET 
-			product_id  = '".(int)$product['id']."',
-			language_id = '".$language_id."',
-			name = '".$this->db->escape($product['title']) . "',
-			meta_title = '".$this->db->escape($product['title']) . "' 
-
-			ON DUPLICATE KEY UPDATE product_id = '".(int)$product['id']."'
-			");	
-
-			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_store SET 
-
-			product_id = '".(int)$product['id']."' ,
-			store_id = '".$storeid."'
-
-			ON DUPLICATE KEY UPDATE product_id = '".(int)$product['id']."'
-			");	
+			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_description (product_id,language_id, name,meta_title, ) 
+																					   VALUES ({$productID},{$language_id},{$productName},{$productMetaTitle})");
 
 
+			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_store (product_id,store_id ) 
+																					   VALUES ({$productID},{$storeid})");
 
-			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_category  SET 
 
-			product_id  = '".(int)$product['id']."' ,
-			category_id = '".(int)$categories[$product['id']]['categoryID']."' 
+			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_to_category (product_id,category_id ) 
+																					   VALUES ({$productID},{$productCategoryID})");
 
-			ON DUPLICATE KEY UPDATE product_id  = '".(int)$categories[$product['id']]."', 
-									category_id = '".(int)$categories[$product['id']]['categoryID']."'
-
-			");	
 
 		$itemsAdded++;
 
 		}else{
 
+
+
+			
+		$productID = (int)$product['id'];
+		$productMODEL = (int)$product['code'];
+		$prodcutItemStock = (float)$product['itemStock'];
+		$productPriceVat = $product['price_vat'];
+		$productManufacturer = (int)$product['manufacturer_id'];
+		$productName = $this->db->escape($product['title']);
+		$productMetaTitle = $this->db->escape($product['title']);
+		$productCategoryID = (int)$categories[$product['id']]['categoryID'];
+
 			$this->db->query("UPDATE ".DB_PREFIX."product SET 
 
-					product_id = '".(int)$product['id']."' ,
-					quantity ='".(float)$product['itemStock']."',
-					stock_status_id = '".(int)$itemOutStock."',
-					in_stock_status_id = '".(int)$StockStatus."',
-					price = '".$product['price_vat']."',
-					manufacturer_id = '".(int)$product['manufacturer_id']."',
-					date_modified ='".$newdatamodified ."'
+					product_id = {$productID} ,
+					quantity ={$prodcutItemStock},
+					stock_status_id = {$itemOutStock},
+					in_stock_status_id = {$StockStatus},
+					price = {$productPriceVat},
+					manufacturer_id = {$productManufacturer},
+					date_modified ='{$newdatamodified}'
 					
-					WHERE product_id = '".(int)$product['id']."'
+					WHERE product_id = {$productID}
 					");
 			
 
-			$this->db->query("UPDATE ". DB_PREFIX ."product_description SET 
-
-					name = '".$this->db->escape($product['title']) . "',
-					meta_title = '".$this->db->escape($product['title']) . "' 
-
-					WHERE product_id = '".(int)$product['id']."'
-					");	
+			$this->db->query("UPDATE ". DB_PREFIX ."product_description SET name = '{$productMetaTitle}', meta_title = '{$productMetaTitle}' WHERE product_id = {$productID}");	
 
 			$itemsUpdate++;
 		}
