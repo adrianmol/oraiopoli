@@ -590,10 +590,24 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				'CustDOY' => $row['CustDOY'],
 				'ShippingDate' => $row['ShippingDate'],
 				'InvoiceCode' => $row['InvoiceCode']
-			);	
-			array_push($insertorder, array($this->GetOrderProductLists($row['OrderNo'])));
-		}	
-		
+				
+				);
+			
+
+			$listProducts= $this->GetOrderProductLists($row['OrderNo']);
+			foreach($listProducts as $item) {
+			$insertorder['items'] =  array(
+				'storecode' => $item['storecode'],
+				'pricefpa' => $item['pricefpa'],
+				'qty' => $item['qty'],
+				'itemcomment' => $item['itemcomment'],
+				'discount' => $item['discount'],
+				'tax' => $item['tax']
+
+				);
+			}	
+	
+		}
 		//'items'[] =$this->jsonRemoveUnicodeSequences($this->GetOrderProductLists($row['OrderNo']))
 		
 		//array_push($insertorder, array($this->GetOrderProductLists(10)));
@@ -601,23 +615,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$list_store = $this->jsonRemoveUnicodeSequences($insertorder);
 
-
-		
-
-
-
 		echo "{\"Store\":\n {\"items\":".$list_store."}\n}";
 
-
-		
 		// echo "<pre>";
 		// echo json_encode($this->jsonRemoveUnicodeSequences($list_data_order));
 		// echo "</pre>";
-
-
-		
-
-		//$data = 'SiteKey=bs-gg183-352&JsonStrWeb={   "items": [ '.$ItemCode.' ]}';
 
 	}
 
