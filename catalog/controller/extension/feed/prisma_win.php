@@ -556,7 +556,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		
 		echo "<pre>";
-		echo json_encode(jsonRemoveUnicodeSequences($list_data_order));
+		echo json_encode($this->jsonRemoveUnicodeSequences($list_data_order));
 		echo "</pre>";
 
 		
