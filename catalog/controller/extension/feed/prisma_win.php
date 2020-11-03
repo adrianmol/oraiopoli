@@ -640,7 +640,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		op.quantity AS qty, '' AS itemcomment, '' AS discount, '' AS tax
 		 FROM oc_order_product op
 		LEFT JOIN oc_order o ON (o.order_id = op.order_id)
-		WHERE  op.order_id ={$orderID})");
+		WHERE  op.order_id ={$orderID}");
 
 		return $list_data_order_product->rows;
 
