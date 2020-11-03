@@ -556,7 +556,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		
 		echo "<pre>";
-		print_r($$list_data_order);
+		print_r($list_data_order);
 		echo "</pre>";
 
 
