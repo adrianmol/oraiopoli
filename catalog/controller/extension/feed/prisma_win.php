@@ -591,12 +591,12 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				'ShippingDate' => $row['ShippingDate'],
 				'InvoiceCode' => $row['InvoiceCode']
 			);	
-
+			array_push($insertorder, array($this->GetOrderProductLists($row['CustUsername'])));
 		}	
 		
 		//'items'[] =$this->jsonRemoveUnicodeSequences($this->GetOrderProductLists($row['OrderNo']))
 		
-		array_push($insertorder, array($this->GetOrderProductLists(10)));
+		//array_push($insertorder, array($this->GetOrderProductLists(10)));
 
 
 		$list_store = $this->jsonRemoveUnicodeSequences($insertorder);
