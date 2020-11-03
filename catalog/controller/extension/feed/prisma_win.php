@@ -553,6 +553,13 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		FROM oc_order o	LEFT JOIN oc_order_status os ON ( os.order_status_id = o.order_status_id)
 		WHERE os.`name` IS NOT NULL AND o.order_status_id=1");
 
+
+		$data = $list_data_order->rows;
+		$orderID = $data['OrderNo'];
+
+
+
+
 		$data = $list_data_order->rows;
 
 			foreach($data as $row) {
@@ -582,7 +589,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 				'CustFax' => $row['CustFax'],
 				'CustDOY' => $row['CustDOY'],
 				'ShippingDate' => $row['ShippingDate'],
-				'InvoiceCode' => $row['InvoiceCode']
+				'InvoiceCode' => $row['InvoiceCode'],
+				'items'[] = $this->GetOrderProductLists($row['OrderNo'])
 			);								  
 		}	
 
@@ -620,6 +628,20 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	 }	
 
 
-}
 
+	 function GetOrderProductLists($orderID){
+
+		$list_data_order_product = $this->db->query("SELECT  op.product_id AS storecode, op.price AS pricefpa,
+		op.quantity AS qty, '' AS itemcomment, '' AS discount, '' AS tax
+		 FROM oc_order_product op
+		LEFT JOIN oc_order o ON (o.order_id = op.order_id)
+		WHERE  op.order_id ={$orderID})");
+
+		return $list_data_order_product->rows;
+
+	 }
+
+
+
+}
 
