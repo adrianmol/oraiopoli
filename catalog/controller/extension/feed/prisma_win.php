@@ -8,7 +8,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		
 #https://oraiomarket.gr/index.php?route=extension/feed/prisma_win
 
-		$this->GetDataURL('GetProducts',SiteKey_Megasoft,$today);
+		$this->GetDataURL('GetProducts',SiteKey_Megasoft,'11-3-2020');
 
 		if(isset($_REQUEST["update"])) {
 
@@ -23,42 +23,16 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		}
 
 
-		$data = $this->GetCustomers(SiteKey_Megasoft);
+		//$data = $this->GetCustomers(SiteKey_Megasoft);
 
 
 
-		foreach($data->CustomerDetails as $customerData){
-			if(!empty($customerData->CustomerEmail)){
-			echo ("ID : {$customerData->CustomerId} Email: {$customerData->CustomerEmail} \n");
-			}
-		}
+		// foreach($data->CustomerDetails as $customerData){
+		// 	if(!empty($customerData->CustomerEmail)){
+		// 	echo ("ID : {$customerData->CustomerId} Email: {$customerData->CustomerEmail} \n");
+		// 	}
+		// }
 
-
-		//$this->SendOrderJson();
-
-
-		//$today = date("m-d-Y");
-		
-		//$this->writelogs("Error","erros");
-		//echo $_SERVER['DOCUMENT_ROOT'];
-		
-		//$this->GetDataURL('GetProducts','bs-gg183-352','11-2-2020');
-		
-		//$this->GetDataURL('GetItemsWithNoEshop','bs-gg183-352','1-1-1990');
-	    //$this->GetDataUrlManufacturer('GetManufacturers','bs-gg183-352');
-
-		 //$this->InsertProduct();
-		 //$this->ItemsWithNoEshop();
-		 //$this->GetCategory();
-		 //$this->InsertProduct();
-
-		// echo "<pre>";
-		// print_r($data[1]);
-		// echo "</pre>";
-
-
-		//$this->InsertPhoto();
-		//$this->GetManufacturer();
 
 	}
 
