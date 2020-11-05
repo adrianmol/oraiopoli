@@ -28,8 +28,9 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 		foreach($data->CustomerDetails as $customerData){
-
+			if(!empty($customerData->CustomerEmail)){
 			echo ("ID : {$customerData->CustomerId} Email: {$customerData->CustomerEmail} \n");
+			}
 		}
 
 
