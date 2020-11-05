@@ -10,18 +10,24 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$this->GetDataURL('GetProducts',SiteKey_Megasoft,$today);
 
-		if(isset($_REQUEST["update"])) {
+		if(isset($_GET["data"])) {
 
-			$this->InsertProduct();
-			$this->ItemsWithNoEshop();
-			$this->GetManufacturer();
-		}
+		  $request=	$_GET["data"];
+			switch ($request) {
+				case "products":
+					
+					$this->InsertProduct();
+					$this->ItemsWithNoEshop();
+					$this->GetManufacturer();	
 
-		if(isset($_REQUEST["updateimage"])) {
 
-			$this->InsertPhoto();
-		}
-
+					break;
+				case "photos":
+						$this->InsertPhoto();
+					break;
+			}	
+		
+		}	
 
 		//$data = $this->GetCustomers(SiteKey_Megasoft);
 
