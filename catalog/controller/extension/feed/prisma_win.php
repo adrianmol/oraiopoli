@@ -23,7 +23,16 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		}
 
 
-		$this->GetCustomers(SiteKey_Megasoft);
+		$data = $this->GetCustomers(SiteKey_Megasoft);
+
+
+
+		foreach($data->CustomerDetails as $customerData){
+
+			echo ("ID : {$customerData->CustomerId} Email: {$customerData->CustomerEmail} \n");
+		}
+
+
 		//$this->SendOrderJson();
 
 
@@ -667,11 +676,6 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		if ($result === FALSE) { /* Handle error */ }
 		$xml=simplexml_load_string($result) or die("Error: Cannot create image xml");					
 		$xml->saveXML('/home/oraiomarket/public_html/prisma_win/getCustomers.xml');
-
-		$xml = $xml->CustomerDetails;
-		echo "<pre>";
-		print_r($xml);
-		echo "</pre>";
 
 		return $xml;
 	 }
