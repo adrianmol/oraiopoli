@@ -668,7 +668,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$xml=simplexml_load_string($result) or die("Error: Cannot create image xml");					
 		$xml->saveXML('/home/oraiomarket/public_html/prisma_win/getCustomers.xml');
 
-
+		$xml = $xml->CustomerDetails;
 		echo "<pre>";
 		print_r($xml);
 		echo "</pre>";
