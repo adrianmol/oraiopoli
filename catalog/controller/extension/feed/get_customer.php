@@ -1,6 +1,6 @@
 <?php
 
-class ControllerExtensionfeedGetCustomer extends Controller {
+class ControllerExtensionfeedGetcustomer extends Controller {
 	
 	
 	public function index() {
