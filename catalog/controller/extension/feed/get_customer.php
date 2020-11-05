@@ -1,6 +1,6 @@
 <?php
 
-class ControllerExtensionfeedGetcustomer extends Controller {
+class ControllerExtensionfeedPrismawinCustomer extends Controller {
 	
 	
 	public function index() {
