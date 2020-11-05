@@ -292,10 +292,10 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$pathPhoto = ("catalog/products/".$product['code'].".JPG");
 
 		$sec = strtotime($product['datacreated']);
-		$newdatacreated = date("Y/m/d H:i",$sec);
+		$newdatacreated = date("Y-m-d H:i",$sec);
 
 		$sec = strtotime($product['datamodified']);
-		$newdatamodified = date("Y/m/d H:i",$sec);
+		$newdatamodified = date("Y-m-d H:i",$sec);
 
 
 		$productID = (int)$product['id'];
@@ -319,8 +319,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product 
 			       (product_id,model,quantity,stock_status_id,image,shipping,price,tax_class_id,manufacturer_id,status,minimum,date_added,date_modified) 
-			VALUES ({$productID},{$productMODEL},{$prodcutItemStock},{$itemOutStock},{$StockStatus},'{$pathPhoto}',{$status},{$productPriceVat},{$tax_class},{$productManufacturer},{$status},{$minimum},'{$newdatacreated}','{$newdatamodified}')
-			)");
+			VALUES ({$productID},{$productMODEL},{$prodcutItemStock},{$itemOutStock},{$StockStatus},'{$pathPhoto}',{$status},{$productPriceVat},{$tax_class},{$productManufacturer},{$status},{$minimum},'{$newdatacreated}','{$newdatamodified}')");
 
 	
 
