@@ -319,13 +319,13 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product 
 			       (product_id,model,quantity,stock_status_id,image,shipping,price,tax_class_id,manufacturer_id,status,minimum,date_added,date_modified) 
-			VALUES ({$productID},{$productMODEL},{$prodcutItemStock},{$itemOutStock},{$StockStatus},'{$pathPhoto}',{$status},{$productPriceVat},{$tax_class},{$productManufacturer},{$status},{$minimum},{$newdatacreated},{$newdatamodified})
+			VALUES ({$productID},{$productMODEL},{$prodcutItemStock},{$itemOutStock},{$StockStatus},'{$pathPhoto}',{$status},{$productPriceVat},{$tax_class},{$productManufacturer},{$status},{$minimum},'{$newdatacreated}','{$newdatamodified}')
 			)");
 
 	
 
 			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_description (product_id,language_id, name,meta_title, ) 
-																					   VALUES ({$productID},{$language_id},{$productName},{$productMetaTitle})");
+																					   VALUES ({$productID},{$language_id},'{$productName}','{$productMetaTitle}')");
 
 
 			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_store (product_id,store_id ) 
@@ -342,7 +342,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 			$this->db->query("UPDATE ".DB_PREFIX."product SET 
 
-					product_id = {$productID} ,
+					product_id = '{$productID}' ,
 					quantity ={$prodcutItemStock},
 					stock_status_id = {$itemOutStock},
 					in_stock_status_id = {$StockStatus},
