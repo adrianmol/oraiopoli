@@ -23,8 +23,8 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		}
 
 
-
-		$this->SendOrderJson();
+		$this->GetCustomers(SiteKey_Megasoft);
+		//$this->SendOrderJson();
 
 
 		//$today = date("m-d-Y");
@@ -615,7 +615,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 		$list_store = $this->jsonRemoveUnicodeSequences($insertorder);
 
-		echo "{$list_store}\n}";
+		echo "{\"Store\":\n {\"items\":".$list_store."}\n}";
 
 		// echo "<pre>";
 		// echo json_encode($this->jsonRemoveUnicodeSequences($list_data_order));
@@ -650,5 +650,30 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 
+	 function GetCustomers($sitekey){
+
+		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/GetCustomers';
+		$data = "SiteKey={$sitekey}&Date=1-1-2010";
+		//use key 'http' even if you send the request to https://...
+		$options = array(
+			'http' => array(
+				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+				'method'  => 'POST',
+				'content' => $data
+			)
+		);
+		$context  = stream_context_create($options);
+		$result = file_get_contents($url, false, $context);
+		if ($result === FALSE) { /* Handle error */ }
+		$xml=simplexml_load_string($result) or die("Error: Cannot create image xml");					
+		$xml->saveXML('/home/oraiomarket/public_html/prisma_win/getCustomers.xml');
+
+
+		echo "<pre>";
+		print_r($xml);
+		echo "</pre>";
+
+		return $xml;
+	 }
 }
 
