@@ -330,7 +330,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 	
 
 			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_description (`product_id`,`language_id`,`name`, `meta_title` ) 
-																					   VALUES ({$productID},{$language_id},'{$productName}','{$productMetaTitle}')");
+																					   VALUES ({$productID},{$language_id},'{$productName}','{$productMetaTitle}') ON DUPLICATE KEY UPDATE `name`='{$productName}',`meta_title`='{$productMetaTitle}'");
 
 
 			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_store (product_id,store_id ) 
