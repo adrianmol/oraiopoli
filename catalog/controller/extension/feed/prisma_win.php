@@ -168,13 +168,13 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 			$productID = $category['productID'];
 			
-			// $my_category = $this->db->query("select  s.product_id, cp.path_id, cp.`level`,z.`name` from oc_product s 
-			// LEFT JOIN oc_product_description d ON(d.product_id= s.product_id and d.language_id=2)
-			// LEFT JOIN oc_product_to_category r ON(r.product_id= s.product_id)
-			// LEFT JOIN oc_category f ON(f.category_id= r.category_id)
-			// LEFT JOIN oc_category_path cp ON(cp.category_id = f.category_id)
-			// LEFT JOIN oc_category_description z ON(z.category_id= cp.path_id and z.language_id=2 )
-			// where s.product_id={$productID} order by cp.path_id");
+			$my_category = $this->db->query("select  s.product_id, cp.path_id, cp.`level`,z.`name` from oc_product s 
+			LEFT JOIN oc_product_description d ON(d.product_id= s.product_id and d.language_id=2)
+			LEFT JOIN oc_product_to_category r ON(r.product_id= s.product_id)
+			LEFT JOIN oc_category f ON(f.category_id= r.category_id)
+			LEFT JOIN oc_category_path cp ON(cp.category_id = f.category_id)
+			LEFT JOIN oc_category_description z ON(z.category_id= cp.path_id and z.language_id=2 )
+			where s.product_id={$productID} order by cp.path_id");
 
 			// $my_category = $my_category->rows;
 
@@ -314,7 +314,7 @@ class ControllerExtensionfeedPrismawin extends Controller {
 		$productCategoryID = (int)$categories[$product['id']]['categoryID'];
 
 
-		$exits_item = $this->db->query("SELECT product_id FROM ". DB_PREFIX ."product WHERE product_id = '{$productID}' ");
+		$exits_item = $this->db->query("SELECT product_id FROM ". DB_PREFIX ."product WHERE product_id = {$productID} ");
 		$exits_item = $exits_item->rows;
 		
 
