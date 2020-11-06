@@ -334,11 +334,11 @@ class ControllerExtensionfeedPrismawin extends Controller {
 
 
 			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_store (product_id,store_id ) 
-																					   VALUES ({$productID},{$storeid})");
+																					   VALUES ({$productID},{$storeid}) ON DUPLICATE KEY UPDATE `store_id` = {$storeid}");
 
 
 			$insertproduct = $this->db->query("INSERT INTO ". DB_PREFIX ."product_to_to_category (product_id,category_id ) 
-																					   VALUES ({$productID},{$productCategoryID})");
+																					   VALUES ({$productID},{$productCategoryID}) ON DUPLICATE KEY UPDATE `category_id`= {$productCategoryID}");
 
 
 		$itemsAdded++;
