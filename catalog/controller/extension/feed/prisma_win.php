@@ -247,8 +247,9 @@ class ControllerExtensionfeedPrismawin extends Controller
 	function ItemsWithNoEshop()
 	{
 
-		echo ($ProductData = simplexml_load_file("/home/oraiomarket/public_html/prisma_win/productsNoEshop.xml"));
+		$ProductData = simplexml_load_file("/home/oraiomarket/public_html/prisma_win/productsNoEshop.xml");
 
+		echo $ProductData;
 		if ($ProductData = simplexml_load_file("/home/oraiomarket/public_html/prisma_win/productsNoEshop.xml")) { //or die("<br>Error: Cannot open XML (Products No Eshop)</br>");
 			$product_no_eshop = 0;
 
