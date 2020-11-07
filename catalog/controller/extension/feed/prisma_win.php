@@ -385,7 +385,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 		$msg .= "Added : {$itemsAdded} product(s) \n";
 		$msg .= "Date : {$today} \n";
 
-
+		echo $msg;
 		$this->writelogs($msg, "productUpdated");
 	}
 
