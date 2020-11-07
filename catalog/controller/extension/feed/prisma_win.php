@@ -20,7 +20,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 				case "products":
 
 					$this->InsertProduct();
-					$this->ItemsWithNoEshop();
+					//$this->ItemsWithNoEshop();
 					$this->GetManufacturer();
 
 
@@ -390,6 +390,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 		$msg .= "Date : {$today} \n";
 
 		echo $msg;
+
 		$this->writelogs($msg, "productUpdated");
 	}
 
