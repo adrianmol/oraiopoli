@@ -247,28 +247,24 @@ class ControllerExtensionfeedPrismawin extends Controller
 	function ItemsWithNoEshop()
 	{
 
-		$ProductData = simplexml_load_file("/home/oraiomarket/public_html/prisma_win/productsNoEshop.xml");
+		$ProductData = simplexml_load_file("/home/oraiomarket/public_html/prisma_win/productsNoEshop.xml") or die("<br>Error: Cannot open XML (Products No Eshop)</br>");
+		$product_no_eshop = 0;
 
-		echo $ProductData;
-		if ($ProductData = simplexml_load_file("/home/oraiomarket/public_html/prisma_win/productsNoEshop.xml")) { //or die("<br>Error: Cannot open XML (Products No Eshop)</br>");
-			$product_no_eshop = 0;
+		foreach ($ProductData->StoreItemsNoEshop as $product) {
 
-			foreach ($ProductData->StoreItemsNoEshop as $product) {
+			$product_id = $product->storeid;
+			$exits_product = $this->db->query("SELECT product_id FROM " . DB_PREFIX . "product WHERE product_id = '{$product_id}' ");
+			$exits_product = $exits_product->rows;
+			if (count($exits_product) != 0) {
 
-				$product_id = $product->storeid;
-				$exits_product = $this->db->query("SELECT product_id FROM " . DB_PREFIX . "product WHERE product_id = '{$product_id}' ");
-				$exits_product = $exits_product->rows;
-				if (count($exits_product) != 0) {
-
-					$this->db->query("UPDATE " . DB_PREFIX . "product SET 
+				$this->db->query("UPDATE " . DB_PREFIX . "product SET 
 			status = 0 WHERE product_id = {$product_id}");
-					$product_no_eshop++;
-				}
+				$product_no_eshop++;
 			}
-			$msg = "Total disable: {$product_no_eshop} product(s)";
-			$this->writelogs($msg, "ItemsWithNoEshop");
-			return $product_no_eshop;
 		}
+		$msg = "Total disable: {$product_no_eshop} product(s)";
+		$this->writelogs($msg, "ItemsWithNoEshop");
+		return $product_no_eshop;
 	}
 
 
@@ -372,7 +368,12 @@ class ControllerExtensionfeedPrismawin extends Controller
 			}
 		}
 		date_default_timezone_set('Europe/Athens');
-		$product_no_eshop = $this->ItemsWithNoEshop();
+
+		if ($this->ItemsWithNoEshop()) {
+			$product_no_eshop = $this->ItemsWithNoEshop();
+		} else {
+			$product_no_eshop = 0;
+		}
 		$today = date("Y-m-d H:i:s");
 		//$today = date("Y-m-d H:i:s",strtotime('+2 hour',strtotime($GMTtoday)));
 		$this->db->query("INSERT INTO " . DB_PREFIX . "prisma_win SET
