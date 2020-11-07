@@ -247,25 +247,27 @@ class ControllerExtensionfeedPrismawin extends Controller
 	function ItemsWithNoEshop()
 	{
 
+		echo ($ProductData = simplexml_load_file("/home/oraiomarket/public_html/prisma_win/productsNoEshop.xml"));
 
-		$ProductData = simplexml_load_file("/home/oraiomarket/public_html/prisma_win/productsNoEshop.xml") or die("<br>Error: Cannot open XML (Products No Eshop)</br>");
-		$product_no_eshop = 0;
+		if ($ProductData = simplexml_load_file("/home/oraiomarket/public_html/prisma_win/productsNoEshop.xml")) { //or die("<br>Error: Cannot open XML (Products No Eshop)</br>");
+			$product_no_eshop = 0;
 
-		foreach ($ProductData->StoreItemsNoEshop as $product) {
+			foreach ($ProductData->StoreItemsNoEshop as $product) {
 
-			$product_id = $product->storeid;
-			$exits_product = $this->db->query("SELECT product_id FROM " . DB_PREFIX . "product WHERE product_id = '{$product_id}' ");
-			$exits_product = $exits_product->rows;
-			if (count($exits_product) != 0) {
+				$product_id = $product->storeid;
+				$exits_product = $this->db->query("SELECT product_id FROM " . DB_PREFIX . "product WHERE product_id = '{$product_id}' ");
+				$exits_product = $exits_product->rows;
+				if (count($exits_product) != 0) {
 
-				$this->db->query("UPDATE " . DB_PREFIX . "product SET 
+					$this->db->query("UPDATE " . DB_PREFIX . "product SET 
 			status = 0 WHERE product_id = {$product_id}");
-				$product_no_eshop++;
+					$product_no_eshop++;
+				}
 			}
+			$msg = "Total disable: {$product_no_eshop} product(s)";
+			$this->writelogs($msg, "ItemsWithNoEshop");
+			return $product_no_eshop;
 		}
-		$msg = "Total disable: {$product_no_eshop} product(s)";
-		$this->writelogs($msg, "ItemsWithNoEshop");
-		return $product_no_eshop;
 	}
 
 
