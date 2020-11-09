@@ -10,7 +10,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 
 		#https://oraiomarket.gr/index.php?route=extension/feed/prisma_win
 
-		$this->GetDataURL('GetProducts', SiteKey_Megasoft, '1-1-2010');
+		$this->GetDataURL('GetProducts', SiteKey_Megasoft, $today);
 		$this->GetDataURL('GetItemsWithNoEshop', SiteKey_Megasoft, $today);
 
 		if (isset($_GET["data"])) {
