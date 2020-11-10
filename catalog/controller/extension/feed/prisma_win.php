@@ -23,11 +23,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 
 
 		echo "done";
-		$data = $this->managementCustomFields();
-
-		echo "<pre>";
-		print $data;
-		echo "</pre>";
+		$this->managementCustomFields();
 
 
 
