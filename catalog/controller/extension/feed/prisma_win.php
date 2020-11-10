@@ -753,7 +753,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 
 		$sql_option = "INSERT INTO `" . DB_PREFIX . "product_option` (`product_option_id`, `product_id`, `option_id`, `value`, `required`) VALUES";
 
-		$sql_option_values = "INSERT INTO `" . DB_PREFIX . "product_option_value` ( `product_option_id`, `product_id`, `option_id`, `option_value_id`, `quantity`, `subtract`, `price`, `price_prefix`, `points`, `points_prefix`, `weight`, `weight_prefix`) VALUES";
+		$sql_option_values_qy = "INSERT INTO `" . DB_PREFIX . "product_option_value` ( `product_option_id`, `product_id`, `option_id`, `option_value_id`, `quantity`, `subtract`, `price`, `price_prefix`, `points`, `points_prefix`, `weight`, `weight_prefix`) VALUES";
 
 		$data = array();
 		$sql_values = array();
@@ -801,11 +801,11 @@ class ControllerExtensionfeedPrismawin extends Controller
 
 				$sql_option .= implode(',', $sql_values) . ";";
 
-				$sql_option_values .= implode(',', $sql_options_values) . ";";
+				$sql_option_values_qy .= implode(',', $sql_options_values) . ";";
 				$this->db->query($sql_option);
-				$this->db->query($sql_options_values);
+				$this->db->query($sql_option_values_qy);
 				//$result = $sql_option . "\n\n" . $sql_option_values;
-				$this->writelogs($sql_option . "\n\n" . $sql_option_values, "getCustomFieldsQuery");
+				$this->writelogs($sql_option . "\n\n" . $sql_option_values_qy, "getCustomFieldsQuery");
 			}
 		} catch (Exception $e) {
 			echo 'Caught exception: ',  $e->getMessage(), "\n";
