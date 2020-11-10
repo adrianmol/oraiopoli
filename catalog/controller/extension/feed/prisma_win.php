@@ -744,7 +744,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 		$result = "";
 
 		//$optionsData = $this->GetCustom();
-		$optionsData = simplexml_load_file("/home/oraiomarket/public_html/prisma_win/getCustomFields.xml");
+		$optionsData = simplexml_load_file("/home/oraiomarket/public_html/prisma_win/getCustomFields.xml") or die("<br>Error: Cannot open XML (Products)</br>");
 		$lastCount = $this->getLastProductOptionID() + 1;
 
 		$sql_option = "INSERT INTO `" . DB_PREFIX . "product_option` (`product_option_id`, `product_id`, `option_id`, `value`, `required`) VALUES ";
@@ -759,51 +759,48 @@ class ControllerExtensionfeedPrismawin extends Controller
 
 		try {
 
-			if (count($optionsData) > 0) {
-				echo "im here";
-				foreach ($optionsData->CustomFields as $node) {
-					//echo $node;
-					if (isset($node->CustomField_4)) {
+			foreach ($optionsData->CustomFields as $node) {
+				//echo $node;
+				if (isset($node->CustomField_4)) {
 
-						$productID = (int)$node->ApoId;
+					$productID = (int)$node->ApoId;
 
-						$quantity = (float)$this->getLastProductQuantity($productID);
+					$quantity = (float)$this->getLastProductQuantity($productID);
 
-						$getID = $this->db->query("SELECT p.product_id FROM `" . DB_PREFIX . "product_option` p WHERE p.product_id = {$productID}");
+					$getID = $this->db->query("SELECT p.product_id FROM `" . DB_PREFIX . "product_option` p WHERE p.product_id = {$productID}");
 
-						if (empty($getID->row['product_id'])) {
+					if (empty($getID->row['product_id'])) {
 
-							$sql_values[] = "({$lastCount}, {$productID}, 13, '', 1)";
-						}
-
-						$pos = strpos($node->CustomField_4, $findme);
-
-						if ($pos == false) {
-							$option_value_id = (int)$this->getLastProductOptionValueID($node->CustomField_4);
-
-							$sql_options_values[] = "( {$lastCount}, {$productID}, 13, {$option_value_id}, {$quantity}, 1, 0.0000, '+', 0, '+', 0.00000000, '+')";
-						} else {
-							$args = explode(',', $node->CustomField_4);
-							foreach ($args as $item) {
-
-								$option_value_id = (int)$this->getLastProductOptionValueID($item);
-
-								$sql_options_values[] = "( {$lastCount}, {$productID}, 13, {$option_value_id}, {$quantity}, 1, 0.0000, '+', 0, '+', 0.00000000, '+')";
-							}
-						}
+						$sql_values[] = "({$lastCount}, {$productID}, 13, '', 1)";
 					}
 
-					$lastCount++;
+					$pos = strpos($node->CustomField_4, $findme);
+
+					if ($pos == false) {
+						$option_value_id = (int)$this->getLastProductOptionValueID($node->CustomField_4);
+
+						$sql_options_values[] = "( {$lastCount}, {$productID}, 13, {$option_value_id}, {$quantity}, 1, 0.0000, '+', 0, '+', 0.00000000, '+')";
+					} else {
+						$args = explode(',', $node->CustomField_4);
+						foreach ($args as $item) {
+
+							$option_value_id = (int)$this->getLastProductOptionValueID($item);
+
+							$sql_options_values[] = "( {$lastCount}, {$productID}, 13, {$option_value_id}, {$quantity}, 1, 0.0000, '+', 0, '+', 0.00000000, '+')";
+						}
+					}
 				}
 
-				$sql_option .= implode(',', $sql_values) . ";";
-
-				$sql_option_values_qy .= implode(',', $sql_options_values) . ";";
-				$this->db->query($sql_option);
-				$this->db->query($sql_option_values_qy);
-				//$result = $sql_option . "\n\n" . $sql_option_values;
-				$this->writelogs($sql_option . "\n\n" . $sql_option_values_qy, "getCustomFieldsQuery");
+				$lastCount++;
 			}
+
+			$sql_option .= implode(',', $sql_values) . ";";
+
+			$sql_option_values_qy .= implode(',', $sql_options_values) . ";";
+			$this->db->query($sql_option);
+			$this->db->query($sql_option_values_qy);
+			//$result = $sql_option . "\n\n" . $sql_option_values;
+			$this->writelogs($sql_option . "\n\n" . $sql_option_values_qy, "getCustomFieldsQuery");
 		} catch (Exception $e) {
 			echo 'Caught exception: ',  $e->getMessage(), "\n";
 			$this->writelogs("Error: Empty result", "error_getCustomFields_xml");
