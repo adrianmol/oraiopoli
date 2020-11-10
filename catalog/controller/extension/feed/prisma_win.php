@@ -715,7 +715,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 
 		//echo $result; 
 		$count = 0;
-		$xml = "";
+		//$xml = "";
 		try {
 			if (!empty($result)) {
 
@@ -733,7 +733,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 		} catch (Exception $e) {
 			echo 'Caught exception: ',  $e->getMessage(), "\n";
 			$this->writelogs("Error: Empty result", "error_getCustomFields_xml");
-			$xml = "";
+			//$xml = "";
 		}
 		return $xml;
 	}
