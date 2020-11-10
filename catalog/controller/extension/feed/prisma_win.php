@@ -706,7 +706,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 		$Date = date('m-d-Y');
 
 		$url = "http://ecommercews.megasoft.gr/eCommerceWebService.asmx/GetCustomFields";
-		$data = "SiteKey={$sitekey}&Date={$Date}&StorageCode=000";
+		$data = "SiteKey={$sitekey}&Date=1-1-2000&StorageCode=000";
 		//use key 'http' even if you send the request to https://...
 		$options = array(
 			'http' => array(
