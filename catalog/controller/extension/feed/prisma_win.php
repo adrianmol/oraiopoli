@@ -715,7 +715,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 		$context  = stream_context_create($options);
 		$result = file_get_contents($url, false, $context);
 
-		//echo $result; 
+		echo $result;
 		$count = 0;
 		try {
 			if (!empty($result)) {
