@@ -751,9 +751,9 @@ class ControllerExtensionfeedPrismawin extends Controller
 		//$optionsData = simplexml_load_file("/home/oraiomarket/public_html/prisma_win/getCustomFields.xml");	
 		$lastCount = $this->getLastProductOptionID() + 1;
 
-		$sql_option = "INSERT INTO `" . DB_PREFIX . "product_option` (`product_option_id`, `product_id`, `option_id`, `value`, `required`) VALUES";
+		$sql_option = "INSERT INTO `" . DB_PREFIX . "product_option` (`product_option_id`, `product_id`, `option_id`, `value`, `required`) VALUES ";
 
-		$sql_option_values_qy = "INSERT INTO `" . DB_PREFIX . "product_option_value` ( `product_option_id`, `product_id`, `option_id`, `option_value_id`, `quantity`, `subtract`, `price`, `price_prefix`, `points`, `points_prefix`, `weight`, `weight_prefix`) VALUES";
+		$sql_option_values_qy = "INSERT INTO `" . DB_PREFIX . "product_option_value` ( `product_option_id`, `product_id`, `option_id`, `option_value_id`, `quantity`, `subtract`, `price`, `price_prefix`, `points`, `points_prefix`, `weight`, `weight_prefix`) VALUES ";
 
 		$data = array();
 		$sql_values = array();
