@@ -10,8 +10,20 @@ class ControllerExtensionfeedPrismawin extends Controller
 
 		#https://oraiomarket.gr/index.php?route=extension/feed/prisma_win
 
+
+		#This link is for update products
+		#https://oraiomarket.gr/index.php?route=extension/feed/prisma_win&data=products
+
+		#This link is for update photo
+		#https://oraiomarket.gr/index.php?route=extension/feed/prisma_win&data=photos
+
 		$this->GetDataURL('GetProducts', SiteKey_Megasoft, $today);
 		$this->GetDataURL('GetItemsWithNoEshop', SiteKey_Megasoft, $today);
+
+
+
+		echo "done";
+		$this->managementCustomFields();
 
 		if (isset($_GET["data"])) {
 
@@ -20,7 +32,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 				case "products":
 
 					$this->InsertProduct();
-					//$this->ItemsWithNoEshop();
+					$this->ItemsWithNoEshop();
 					$this->GetManufacturer();
 
 
@@ -477,7 +489,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 	function GetDataURL($path, $sitekey, $date)
 	{
 		$today = date('h-i-s_j-m-y');
-		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/' . $path;
+		$url = 'https://ecommercews.megasoft.gr/eCommerceWebService.asmx/' . $path;
 		$data = 'SiteKey=' . (string)$sitekey . '&Date=' . $date . '&StorageCode=000';
 
 		// use key 'http' even if you send the request to https://...
@@ -513,7 +525,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 	function GetPhotoPath($ItemCode, $count)
 	{
 
-		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/UploadImageToFtp';
+		$url = 'https://ecommercews.megasoft.gr/eCommerceWebService.asmx/UploadImageToFtp';
 		$data = 'SiteKey=bs-gg183-352&JsonStrWeb={   "items": [ ' . $ItemCode . ' ]}';
 		//use key 'http' even if you send the request to https://...
 		$options = array(
@@ -659,7 +671,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 	function GetCustomers($sitekey)
 	{
 
-		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/GetCustomers';
+		$url = 'https://ecommercews.megasoft.gr/eCommerceWebService.asmx/GetCustomers';
 		$data = "SiteKey={$sitekey}&Date=1-1-2010";
 		//use key 'http' even if you send the request to https://...
 		$options = array(
@@ -677,5 +689,142 @@ class ControllerExtensionfeedPrismawin extends Controller
 		$xml->saveXML('/home/oraiomarket/public_html/prisma_win/getCustomers.xml');
 
 		return $xml;
+	}
+
+
+
+
+	function GetCustom()
+	{
+		$sitekey = "bs-gg183-352";
+		$Date = date('m-d-Y');
+
+		$url = "http://ecommercews.megasoft.gr/eCommerceWebService.asmx/GetCustomFields";
+		$data = "SiteKey={$sitekey}&Date={$Date}&StorageCode=000";
+		//use key 'http' even if you send the request to https://...
+		$options = array(
+			'http' => array(
+				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+				'method'  => 'POST',
+				'content' => $data
+			)
+		);
+
+		$context  = stream_context_create($options);
+		$result = file_get_contents($url, false, $context);
+
+		//echo $result; 
+		$count = 0;
+		$xml = "";
+		try {
+			if (!empty($result)) {
+
+				foreach (simplexml_load_string($result)->CustomFields as $node) {
+					if (isset($node->CustomField_4)) {
+						$count++;
+					}
+				}
+				if ($count > 0) {
+
+					//$xml->saveXML('/home/oraiomarket/public_html/prisma_win/getCustomFields.xml');
+					$xml = simplexml_load_string($result);
+				}
+			}
+		} catch (Exception $e) {
+			echo 'Caught exception: ',  $e->getMessage(), "\n";
+			$this->writelogs("Error: Empty result", "error_getCustomFields_xml");
+			$xml = "";
+		}
+		return $xml;
+	}
+
+	function managementCustomFields()
+	{
+
+		$result = "";
+
+		$optionsData = $this->GetCustom();
+		//$optionsData = simplexml_load_file("/home/oraiomarket/public_html/prisma_win/getCustomFields.xml");	
+		$lastCount = $this->getLastProductOptionID() + 1;
+
+		$sql_option = "INSERT INTO `" . DB_PREFIX . "product_option` (`product_option_id`, `product_id`, `option_id`, `value`, `required`) VALUES";
+
+		$sql_option_values = "INSERT INTO `" . DB_PREFIX . "product_option_value` ( `product_option_id`, `product_id`, `option_id`, `option_value_id`, `quantity`, `subtract`, `price`, `price_prefix`, `points`, `points_prefix`, `weight`, `weight_prefix`) VALUES";
+
+		$data = array();
+		$sql_values = array();
+		$sql_options_values = array();
+
+		$findme   = ',';
+
+		try {
+
+			if (count($optionsData) > 0) {
+				foreach ($optionsData->CustomFields as $node) {
+					if (isset($node->CustomField_4)) {
+
+						$productID = (int)$node->ApoId;
+
+						$quantity = (float)$this->getLastProductQuantity($productID);
+
+						$getID = $this->db->query("SELECT p.product_id FROM `" . DB_PREFIX . "product_option` p WHERE p.product_id = {$productID}");
+
+						if (empty($getID->row['product_id'])) {
+
+							$sql_values[] = "\n({$lastCount}, {$productID}, 13, '', 1)";
+						}
+
+						$pos = strpos($node->CustomField_4, $findme);
+
+						if ($pos == false) {
+							$option_value_id = (int)$this->getLastProductOptionValueID($node->CustomField_4);
+
+							$sql_options_values[] = "( {$lastCount}, {$productID}, 13, {$option_value_id}, {$quantity}, 1, 0.0000, '+', 0, '+', 0.00000000, '+')";
+						} else {
+							$args = explode(',', $node->CustomField_4);
+							foreach ($args as $item) {
+
+								$option_value_id = (int)$this->getLastProductOptionValueID($item);
+
+								$sql_options_values[] = "( {$lastCount}, {$productID}, 13, {$option_value_id}, {$quantity}, 1, 0.0000, '+', 0, '+', 0.00000000, '+')";
+							}
+						}
+					}
+
+					$lastCount++;
+				}
+
+				$sql_option .= implode(',', $sql_values) . ";";
+
+				$sql_option_values .= implode(',', $sql_options_values) . ";";
+				//$this->db->query($sql_option);	
+
+				$result = $sql_option . "\n\n" . $sql_option_values;
+			}
+		} catch (Exception $e) {
+			echo 'Caught exception: ',  $e->getMessage(), "\n";
+			$this->writelogs("Error: Empty result", "error_getCustomFields_xml");
+		}
+		return  $result;
+	}
+
+	function getLastProductOptionID()
+	{
+		$query = $this->db->query("SELECT MAX(c.product_option_id) AS max FROM `" . DB_PREFIX . "product_option` c ");
+		return $query->row['max'];
+	}
+
+
+	function getLastProductOptionValueID($name)
+	{
+		$query = $this->db->query("SELECT z.option_value_id from " . DB_PREFIX . "option_value_description z WHERE z.language_id=2 and z.name like '%{$name}%'");
+		return $query->row['option_value_id'];
+	}
+
+
+	function getLastProductQuantity($id)
+	{
+		$query = $this->db->query("SELECT z.quantity  from " . DB_PREFIX . "oc_product z WHERE  z.product_id={$id}");
+		return $query->row['quantity'];
 	}
 }
