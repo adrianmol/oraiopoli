@@ -724,6 +724,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 		try {
 			if (!empty($result)) {
 
+				$xml = simplexml_load_string($result);
 				foreach (simplexml_load_string($result)->CustomFields as $node) {
 					if (isset($node->CustomField_4)) {
 						$count++;
@@ -732,7 +733,6 @@ class ControllerExtensionfeedPrismawin extends Controller
 				if ($count > 0) {
 
 					$xml->saveXML('/home/oraiomarket/public_html/prisma_win/getCustomFields.xml');
-					$xml = simplexml_load_string($result);
 				}
 			}
 		} catch (Exception $e) {
