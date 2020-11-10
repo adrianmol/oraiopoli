@@ -816,8 +816,8 @@ class ControllerExtensionfeedPrismawin extends Controller
 
 	function getLastProductOptionID()
 	{
-		$query = $this->db->query("SELECT MAX(c.product_option_id) AS max FROM `" . DB_PREFIX . "product_option` c ");
-		return $query->row['max'];
+		$query = $this->db->query("SELECT MAX(c.product_option_id) AS d FROM " . DB_PREFIX . "oc_product_option c ");
+		return $query->row['d'];
 	}
 
 
