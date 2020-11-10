@@ -824,7 +824,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 
 	function getLastProductQuantity($id)
 	{
-		$query = $this->db->query("SELECT z.quantity  from " . DB_PREFIX . "oc_product z WHERE  z.product_id={$id}");
+		$query = $this->db->query("SELECT z.quantity  from " . DB_PREFIX . "product z WHERE  z.product_id={$id}");
 		return $query->row['quantity'];
 	}
 }
