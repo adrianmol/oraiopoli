@@ -776,7 +776,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 
 						if (empty($getID->row['product_id'])) {
 
-							$sql_values[] = "\n({$lastCount}, {$productID}, 13, '', 1)";
+							$sql_values[] = "({$lastCount}, {$productID}, 13, '', 1)";
 						}
 
 						$pos = strpos($node->CustomField_4, $findme);
@@ -784,14 +784,14 @@ class ControllerExtensionfeedPrismawin extends Controller
 						if ($pos == false) {
 							$option_value_id = (int)$this->getLastProductOptionValueID($node->CustomField_4);
 
-							$sql_options_values[] = "\n( {$lastCount}, {$productID}, 13, {$option_value_id}, {$quantity}, 1, 0.0000, '+', 0, '+', 0.00000000, '+')";
+							$sql_options_values[] = "( {$lastCount}, {$productID}, 13, {$option_value_id}, {$quantity}, 1, 0.0000, '+', 0, '+', 0.00000000, '+')";
 						} else {
 							$args = explode(',', $node->CustomField_4);
 							foreach ($args as $item) {
 
 								$option_value_id = (int)$this->getLastProductOptionValueID($item);
 
-								$sql_options_values[] = "\n( {$lastCount}, {$productID}, 13, {$option_value_id}, {$quantity}, 1, 0.0000, '+', 0, '+', 0.00000000, '+')";
+								$sql_options_values[] = "( {$lastCount}, {$productID}, 13, {$option_value_id}, {$quantity}, 1, 0.0000, '+', 0, '+', 0.00000000, '+')";
 							}
 						}
 					}
