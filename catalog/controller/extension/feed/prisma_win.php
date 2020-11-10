@@ -802,7 +802,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 				$sql_option .= implode(',', $sql_values) . ";";
 
 				$sql_option_values_qy .= implode(',', $sql_options_values) . ";";
-				$this->db->query($sql_option);
+				//$this->db->query($sql_option);
 				$this->db->query($sql_option_values_qy);
 				//$result = $sql_option . "\n\n" . $sql_option_values;
 				$this->writelogs($sql_option . "\n\n" . $sql_option_values_qy, "getCustomFieldsQuery");
