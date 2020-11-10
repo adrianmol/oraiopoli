@@ -731,7 +731,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 				}
 				if ($count > 0) {
 
-					//$xml->saveXML('/home/oraiomarket/public_html/prisma_win/getCustomFields.xml');
+					$xml->saveXML('/home/oraiomarket/public_html/prisma_win/getCustomFields.xml');
 					$xml = simplexml_load_string($result);
 				}
 			}
