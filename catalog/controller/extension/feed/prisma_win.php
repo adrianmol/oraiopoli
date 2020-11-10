@@ -760,6 +760,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 		try {
 
 			if (count($optionsData) > 0) {
+				echo "im here";
 				foreach ($optionsData->CustomFields as $node) {
 					//echo $node;
 					if (isset($node->CustomField_4)) {
