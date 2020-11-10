@@ -802,15 +802,16 @@ class ControllerExtensionfeedPrismawin extends Controller
 				$sql_option .= implode(',', $sql_values) . ";";
 
 				$sql_option_values .= implode(',', $sql_options_values) . ";";
-				//$this->db->query($sql_option);	
-
-				$result = $sql_option . "\n\n" . $sql_option_values;
+				$this->db->query($sql_option);
+				$this->db->query($sql_options_values);
+				//$result = $sql_option . "\n\n" . $sql_option_values;
+				$this->writelogs($sql_option . "\n\n" . $sql_option_values, "getCustomFieldsQuery");
 			}
 		} catch (Exception $e) {
 			echo 'Caught exception: ',  $e->getMessage(), "\n";
 			$this->writelogs("Error: Empty result", "error_getCustomFields_xml");
 		}
-		return  $result;
+		//return  $result;
 	}
 
 	function getLastProductOptionID()
