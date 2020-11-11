@@ -241,7 +241,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 
 			if ($i != $numItems) {
 				$i++;
-				if ($i < 100) {
+				if ($i > 100) {
 					$output .= ('{ "storecode": "' . $product['code'] . '" },');
 				}
 				// if (($i % 30) == 0) {
