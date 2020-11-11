@@ -229,8 +229,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 
 	function InsertPhoto()
 	{
-		$i = 0;
-		$j = 0;
+
 		$output = "";
 		$products   = $this->GetProducts();
 		$products = $products[0];
@@ -242,7 +241,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 
 			if ($i != $numItems) {
 				$i++;
-				if (($i % 40) == 0) {
+				if (($i % 5) == 0) {
 
 					$output .= ('{ "storecode": "' . $product['code'] . '" }');
 					$photo = $this->GetPhotoPath($output, $i);
