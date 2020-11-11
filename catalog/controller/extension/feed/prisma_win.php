@@ -508,7 +508,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 		$context  = stream_context_create($options);
 		$result = file_get_contents($url, false, $context);
 
-		//echo ("<br>{$result}</br>");
+		echo ("<br>{$result}</br>");
 		try {
 			if (!empty($result)) {
 				if ($path == 'GetProducts') {
