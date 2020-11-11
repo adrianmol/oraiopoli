@@ -241,17 +241,14 @@ class ControllerExtensionfeedPrismawin extends Controller
 
 			if ($i != $numItems) {
 				$i++;
-				if ($i > 100) {
+				if (($i % 20) == 0) {
+
+					$output .= ('{ "storecode": "' . $product['code'] . '" }');
+					$photo = $this->GetPhotoPath($output, $i);
+					$output = "";
+				} else {
 					$output .= ('{ "storecode": "' . $product['code'] . '" },');
 				}
-				// if (($i % 30) == 0) {
-
-				// 	$output .= ('{ "storecode": "' . $product['code'] . '" }');
-				// 	$photo = $this->GetPhotoPath($output, $i);
-				// 	$output = "";
-				// } else {
-				// 	$output .= ('{ "storecode": "' . $product['code'] . '" },');
-				// }
 			} else {
 
 				$output .= ('{ "storecode": "' . $product['code'] . '" }');
