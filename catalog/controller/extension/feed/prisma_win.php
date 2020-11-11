@@ -242,7 +242,8 @@ class ControllerExtensionfeedPrismawin extends Controller
 
 			if ($i != $numItems) {
 				$i++;
-				if (($i % 20) == 0) {
+				if (($i % 40) == 0) {
+
 					$output .= ('{ "storecode": "' . $product['code'] . '" }');
 					$photo = $this->GetPhotoPath($output, $i);
 					$output = "";
@@ -254,7 +255,6 @@ class ControllerExtensionfeedPrismawin extends Controller
 				$output .= ('{ "storecode": "' . $product['code'] . '" }');
 			}
 		}
-
 		$photo = $this->GetPhotoPath($output, $i);
 		$photo[$product['id']]['itemtype'] = ($photo[$product['id']]['itemtype'] ? $photo[$product['id']]['itemtype'] : "JPG");
 		$pathPhoto[] = ("catalog/products/" . $product['code'] . "." . $photo[$product['id']]['itemtype']);
