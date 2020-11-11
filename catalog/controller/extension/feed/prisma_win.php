@@ -22,10 +22,6 @@ class ControllerExtensionfeedPrismawin extends Controller
 
 
 
-		echo "done";
-		$this->managementCustomFields();
-
-
 
 		if (isset($_GET["data"])) {
 
@@ -41,6 +37,12 @@ class ControllerExtensionfeedPrismawin extends Controller
 					break;
 				case "photos":
 					$this->InsertPhoto();
+					break;
+
+				case "options":
+
+					$this->GetCustom();
+					$this->managementCustomFields();
 					break;
 			}
 		}
@@ -715,13 +717,13 @@ class ControllerExtensionfeedPrismawin extends Controller
 		$context  = stream_context_create($options);
 		$result = file_get_contents($url, false, $context);
 
-		echo $result;
+		//echo $result;
 		$count = 0;
 		try {
 			if (!empty($result)) {
 
 				$xml = simplexml_load_string($result);
-				foreach (simplexml_load_string($result)->CustomFields as $node) {
+				foreach ($xml->CustomFields as $node) {
 					if (isset($node->CustomField_4)) {
 						$count++;
 					}
@@ -744,9 +746,13 @@ class ControllerExtensionfeedPrismawin extends Controller
 		$result = "";
 
 		//$optionsData = $this->GetCustom();
+
+
 		$optionsData = simplexml_load_file("/home/oraiomarket/public_html/prisma_win/getCustomFields.xml") or die("<br>Error: Cannot open XML (Products)</br>");
-		$lastCount = $this->getLastProductOptionID() + 1;
-		echo $lastCount;
+
+		$lastCount = $this->getLastProductOptionID();
+
+
 		$sql_option = "INSERT INTO `" . DB_PREFIX . "product_option` (`product_option_id`, `product_id`, `option_id`, `value`, `required`) VALUES ";
 
 		$sql_option_values_qy = "INSERT INTO `" . DB_PREFIX . "product_option_value` ( `product_option_id`, `product_id`, `option_id`, `option_value_id`, `quantity`, `subtract`, `price`, `price_prefix`, `points`, `points_prefix`, `weight`, `weight_prefix`) VALUES ";
@@ -797,21 +803,40 @@ class ControllerExtensionfeedPrismawin extends Controller
 			$sql_option .= implode(',', $sql_values) . ";";
 
 			$sql_option_values_qy .= implode(',', $sql_options_values) . ";";
-			$this->db->query($sql_option);
-			$this->db->query($sql_option_values_qy);
-			//$result = $sql_option . "\n\n" . $sql_option_values;
-			$this->writelogs($sql_option . "\n\n" . $sql_option_values_qy, "getCustomFieldsQuery");
+
+			if (count($sql_values) > 0) {
+
+				$this->db->query($sql_option);
+			}
+
+			if (count($sql_options_values) > 0) {
+
+				$this->db->query($sql_option_values_qy);
+			}
+
+			//$result = $sql_option . "\n\n" . $sql_option_values_qy;
+			$this->writelogs($sql_option . "\n\n" . $sql_option_values_qy, "getCustomQueries");
 		} catch (Exception $e) {
 			echo 'Caught exception: ',  $e->getMessage(), "\n";
 			$this->writelogs("Error: Empty result", "error_getCustomFields_xml");
 		}
+
 		//return  $result;
 	}
 
 	function getLastProductOptionID()
 	{
-		$query = $this->db->query("SELECT MAX(c.product_option_id) AS d FROM " . DB_PREFIX . "oc_product_option c ");
-		return $query->row['d'];
+		$query = $this->db->query("SELECT MAX(c.product_option_id) AS last_id FROM " . DB_PREFIX . "product_option c ");
+
+		if ($query->row['last_id']) {
+
+			$last_id = $query->row['last_id'] + 1;
+		} else {
+
+			$last_id = 1;
+		}
+
+		return $last_id;
 	}
 
 
