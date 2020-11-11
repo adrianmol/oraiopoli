@@ -493,7 +493,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 	function GetDataURL($path, $sitekey, $date)
 	{
 		$today = date('h-i-s_j-m-y');
-		$url = 'https://ecommercews.megasoft.gr/eCommerceWebService.asmx/' . $path;
+		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/' . $path;
 		$data = 'SiteKey=' . (string)$sitekey . '&Date=' . $date . '&StorageCode=000';
 
 		// use key 'http' even if you send the request to https://...
@@ -529,7 +529,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 	function GetPhotoPath($ItemCode, $count)
 	{
 
-		$url = 'https://ecommercews.megasoft.gr/eCommerceWebService.asmx/UploadImageToFtp';
+		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/UploadImageToFtp';
 		$data = 'SiteKey=bs-gg183-352&JsonStrWeb={   "items": [ ' . $ItemCode . ' ]}';
 		//use key 'http' even if you send the request to https://...
 		$options = array(
