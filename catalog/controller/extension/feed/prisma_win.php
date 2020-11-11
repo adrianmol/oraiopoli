@@ -17,8 +17,6 @@ class ControllerExtensionfeedPrismawin extends Controller
 		#This link is for update photo
 		#https://oraiomarket.gr/index.php?route=extension/feed/prisma_win&data=photos
 
-		$this->GetDataURL('GetProducts', SiteKey_Megasoft, $today);
-		$this->GetDataURL('GetItemsWithNoEshop', SiteKey_Megasoft, $today);
 
 
 
@@ -29,6 +27,8 @@ class ControllerExtensionfeedPrismawin extends Controller
 			switch ($request) {
 				case "products":
 
+					$this->GetDataURL('GetProducts', SiteKey_Megasoft, $today);
+					$this->GetDataURL('GetItemsWithNoEshop', SiteKey_Megasoft, $today);
 					$this->InsertProduct();
 					$this->ItemsWithNoEshop();
 					$this->GetManufacturer();
@@ -508,7 +508,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 		$context  = stream_context_create($options);
 		$result = file_get_contents($url, false, $context);
 
-		echo ("<br>{$result}</br>");
+		//echo ("<br>{$result}</br>");
 		try {
 			if (!empty($result)) {
 				if ($path == 'GetProducts') {
