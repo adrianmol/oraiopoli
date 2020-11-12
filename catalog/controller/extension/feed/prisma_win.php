@@ -132,7 +132,8 @@ class ControllerExtensionfeedPrismawin extends Controller
 				'price_vat'			=> (string) $product->ItemRetailVat,
 				'mudescr'			=> (string) $product->ItemMUDescr,
 				'datacreated'		=> (string) $product->ItemDateCreated,
-				'datamodified'		=> (string) $product->ItemDateModified
+				'datamodified'		=> (string) $product->ItemDateModified,
+				'itemNotes'         => (string) $product->ItemNotes
 			);
 
 
@@ -159,6 +160,9 @@ class ControllerExtensionfeedPrismawin extends Controller
 				$category[$ID]["level3"] = (string)$product->ItemGroup4;
 			}
 		}
+
+
+
 
 		return array($data, $category);
 	}
@@ -333,7 +337,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 			$productName = $this->db->escape($product['title']);
 			$productMetaTitle = $this->db->escape($product['title']);
 			$productCategoryID = (int)$categories[$product['id']]['categoryID'];
-
+			$productDescr = ((string)$product['itemNotes'] != " ") ? (string)$product['itemNotes'] : " ";
 
 			$exits_item = $this->db->query("SELECT product_id FROM " . DB_PREFIX . "product WHERE product_id = {$productID} ");
 			$exits_item = $exits_item->rows;
@@ -350,8 +354,8 @@ class ControllerExtensionfeedPrismawin extends Controller
 
 
 
-				$insertproduct = $this->db->query("INSERT INTO " . DB_PREFIX . "product_description (`product_id`,`language_id`,`name`, `meta_title` ) 
-																					   VALUES ({$productID},{$language_id},'{$productName}','{$productMetaTitle}') ON DUPLICATE KEY UPDATE `name`='{$productName}',`meta_title`='{$productMetaTitle}'");
+				$insertproduct = $this->db->query("INSERT INTO " . DB_PREFIX . "product_description (`product_id`,`language_id`,`name`,`description `,`meta_title` ) 
+																					   VALUES ({$productID},{$language_id},'{$productName}','{$productDescr}','{$productMetaTitle}') ON DUPLICATE KEY UPDATE `name`='{$productName}',`meta_title`='{$productMetaTitle}'");
 
 
 				$insertproduct = $this->db->query("INSERT INTO " . DB_PREFIX . "product_to_store (product_id,store_id ) 
@@ -379,7 +383,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 					");
 
 
-				$this->db->query("UPDATE " . DB_PREFIX . "product_description SET name = '{$productMetaTitle}', meta_title = '{$productMetaTitle}' WHERE product_id = {$productID}");
+				$this->db->query("UPDATE " . DB_PREFIX . "product_description SET name = '{$productMetaTitle}', meta_title = '{$productMetaTitle}',description='{$productDescr}' WHERE product_id = {$productID}");
 
 				$itemsUpdate++;
 			}
