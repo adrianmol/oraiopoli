@@ -27,7 +27,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 			switch ($request) {
 				case "products":
 
-					$this->GetDataURL('GetProducts', SiteKey_Megasoft, $today);
+					$this->GetDataURL('GetProducts', SiteKey_Megasoft, '1-1-2020');
 					$this->GetDataURL('GetItemsWithNoEshop', SiteKey_Megasoft, $today);
 					$this->InsertProduct();
 					$this->ItemsWithNoEshop();
