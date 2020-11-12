@@ -239,8 +239,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 		// echo ($numItems);
 		foreach ($products as $product) {
 
-			if ($i != $numItems) {
-				$i++;
+			if (++$i != $numItems) {
 				if (($i % 20) == 0) {
 
 					$output .= ('{ "storecode": "' . $product['code'] . '" }');
