@@ -252,8 +252,6 @@ class ControllerExtensionfeedPrismawin extends Controller
 			}
 		}
 		$this->GetPhotoPath($output, $i);
-		//$photo[$product['id']]['itemtype'] = ($photo[$product['id']]['itemtype'] ? $photo[$product['id']]['itemtype'] : "JPG");
-		//$pathPhoto[] = ("catalog/products/" . $product['code'] . "." . $photo[$product['id']]['itemtype']);
 	}
 
 	function ItemsWithNoEshop()
@@ -526,37 +524,30 @@ class ControllerExtensionfeedPrismawin extends Controller
 	{
 
 		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/UploadImageToFtp';
-		$data = 'SiteKey=bs-gg183-352&JsonStrWeb={   "items": [ ' . $ItemCode . ' ]}';
+		$data = 'SiteKey=bs-gg183-352&JsonStrWeb={"items":[' . $ItemCode . ']}';
 		//use key 'http' even if you send the request to https://...
-		print $data . "\n";
-		// $options = array(
-		// 	'http' => array(
-		// 		'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-		// 		'method'  => 'POST',
-		// 		'content' => $data
-		// 	)
-		// );
+		//print $data . "<br>";
+		$options = array(
+			'http' => array(
+				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+				'method'  => 'POST',
+				'content' => $data
+			)
+		);
 
-		// $context  = stream_context_create($options);
-		// $result = file_get_contents($url, false, $context);
-		// if ($result === FALSE) { /* Handle error */
-		// }
-		// try {
-		// 	if (!empty($result)) {
-		// 		$xml = simplexml_load_string($result) or die("Error: Cannot create image xml");
-		// 		$xml->saveXML('/home/oraiomarket/public_html/prisma_win/image_json' . $count . '.xml');
-		// 		foreach ($xml->ItemImageUpload as $photoInfo) {
-		// 			$photo[(int)$photoInfo->ItemCode] = array(
-
-		// 				'itemcode'  => (string)$photoInfo->ItemCode,
-		// 				'itemtype'  => (string)$photoInfo->ImageType
-		// 			);
-		// 		}
-		// 	}
-		// } catch (Exception $e) {
-		// 	echo 'Caught exception: ',  $e->getMessage(), "\n";
-		// 	$this->writelogs("Error: Empty result", "error_prisma_xml");
-		// }
+		$context  = stream_context_create($options);
+		$result = file_get_contents($url, false, $context);
+		if ($result === FALSE) { /* Handle error */
+		}
+		try {
+			if (!empty($result)) {
+				$xml = simplexml_load_string($result);
+				$xml->saveXML('/home/oraiomarket/public_html/prisma_win/image_json' . $count . '.xml');
+			}
+		} catch (Exception $e) {
+			echo 'Caught exception: ',  $e->getMessage(), "\n";
+			$this->writelogs("Error: Empty result", "error_prisma_xml");
+		}
 	}
 	function SendOrderJson()
 	{
