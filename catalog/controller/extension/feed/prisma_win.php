@@ -244,8 +244,6 @@ class ControllerExtensionfeedPrismawin extends Controller
 				if (($i % 20) == 0) {
 
 					$output .= ('{ "storecode": "' . $product['code'] . '" }');
-					print $output . "\n";
-
 					$photo = $this->GetPhotoPath($output, $i);
 					$output = "";
 				} else {
@@ -256,7 +254,6 @@ class ControllerExtensionfeedPrismawin extends Controller
 				$output .= ('{ "storecode": "' . $product['code'] . '" }');
 			}
 		}
-		print $output . "\n";
 		$photo = $this->GetPhotoPath($output, $i);
 		$photo[$product['id']]['itemtype'] = ($photo[$product['id']]['itemtype'] ? $photo[$product['id']]['itemtype'] : "JPG");
 		$pathPhoto[] = ("catalog/products/" . $product['code'] . "." . $photo[$product['id']]['itemtype']);
@@ -534,6 +531,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 		$url = 'http://ecommercews.megasoft.gr/eCommerceWebService.asmx/UploadImageToFtp';
 		$data = 'SiteKey=bs-gg183-352&JsonStrWeb={   "items": [ ' . $ItemCode . ' ]}';
 		//use key 'http' even if you send the request to https://...
+		print $data . "\n";
 		$options = array(
 			'http' => array(
 				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
