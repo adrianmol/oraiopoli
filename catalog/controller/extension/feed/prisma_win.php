@@ -244,6 +244,8 @@ class ControllerExtensionfeedPrismawin extends Controller
 				if (($i % 20) == 0) {
 
 					$output .= ('{ "storecode": "' . $product['code'] . '" }');
+					print $output . "\n";
+
 					$photo = $this->GetPhotoPath($output, $i);
 					$output = "";
 				} else {
@@ -254,6 +256,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 				$output .= ('{ "storecode": "' . $product['code'] . '" }');
 			}
 		}
+		print $output . "\n";
 		$photo = $this->GetPhotoPath($output, $i);
 		$photo[$product['id']]['itemtype'] = ($photo[$product['id']]['itemtype'] ? $photo[$product['id']]['itemtype'] : "JPG");
 		$pathPhoto[] = ("catalog/products/" . $product['code'] . "." . $photo[$product['id']]['itemtype']);
@@ -372,7 +375,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 
 				$this->db->query("UPDATE " . DB_PREFIX . "product SET 
 
-					product_id = '{$productID}' ,
+					product_id = '{$productID}',
 					quantity ={$prodcutItemStock},
 					stock_status_id = {$itemOutStock},
 					in_stock_status_id = {$StockStatus},
