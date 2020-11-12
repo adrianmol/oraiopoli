@@ -541,21 +541,23 @@ class ControllerExtensionfeedPrismawin extends Controller
 		$result = file_get_contents($url, false, $context);
 		if ($result === FALSE) { /* Handle error */
 		}
-		$xml = simplexml_load_string($result) or die("Error: Cannot create image xml");
-		$xml->saveXML('/home/oraiomarket/public_html/prisma_win/image_json' . $count . '.xml');
-		foreach ($xml->ItemImageUpload as $photoInfo) {
-			$photo[(int)$photoInfo->ItemCode] = array(
+		try {
+			if (!empty($result)) {
+				$xml = simplexml_load_string($result) or die("Error: Cannot create image xml");
+				$xml->saveXML('/home/oraiomarket/public_html/prisma_win/image_json' . $count . '.xml');
+				foreach ($xml->ItemImageUpload as $photoInfo) {
+					$photo[(int)$photoInfo->ItemCode] = array(
 
-				'itemcode'  => (string)$photoInfo->ItemCode,
-				'itemtype'  => (string)$photoInfo->ImageType
-			);
+						'itemcode'  => (string)$photoInfo->ItemCode,
+						'itemtype'  => (string)$photoInfo->ImageType
+					);
+				}
+			}
+		} catch (Exception $e) {
+			echo 'Caught exception: ',  $e->getMessage(), "\n";
+			$this->writelogs("Error: Empty result", "error_prisma_xml");
 		}
-
-		$this->writelogs(implode(" , ", $photo[(int)$photoInfo->ItemCode]), "GetPhotoPath");
-		return $photo;
 	}
-
-
 	function SendOrderJson()
 	{
 
