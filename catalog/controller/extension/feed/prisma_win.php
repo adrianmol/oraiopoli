@@ -239,23 +239,21 @@ class ControllerExtensionfeedPrismawin extends Controller
 		// echo ($numItems);
 		foreach ($products as $product) {
 
-			if (++$i != $numItems) {
+			if (++$i == $numItems) {
+				$output .= ('{ "storecode": "' . $product['code'] . '" }');
+			} else {
 				if (($i % 20) == 0) {
-
 					$output .= ('{ "storecode": "' . $product['code'] . '" }');
-					$photo = $this->GetPhotoPath($output, $i);
+					$this->GetPhotoPath($output, $i);
 					$output = "";
 				} else {
 					$output .= ('{ "storecode": "' . $product['code'] . '" },');
 				}
-			} else {
-
-				$output .= ('{ "storecode": "' . $product['code'] . '" }');
 			}
 		}
-		$photo = $this->GetPhotoPath($output, $i);
-		$photo[$product['id']]['itemtype'] = ($photo[$product['id']]['itemtype'] ? $photo[$product['id']]['itemtype'] : "JPG");
-		$pathPhoto[] = ("catalog/products/" . $product['code'] . "." . $photo[$product['id']]['itemtype']);
+		$this->GetPhotoPath($output, $i);
+		//$photo[$product['id']]['itemtype'] = ($photo[$product['id']]['itemtype'] ? $photo[$product['id']]['itemtype'] : "JPG");
+		//$pathPhoto[] = ("catalog/products/" . $product['code'] . "." . $photo[$product['id']]['itemtype']);
 	}
 
 	function ItemsWithNoEshop()
