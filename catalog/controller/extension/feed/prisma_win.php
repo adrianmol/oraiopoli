@@ -27,7 +27,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 			switch ($request) {
 				case "products":
 
-					$this->GetDataURL('GetProducts', SiteKey_Megasoft, '1-1-2020');
+					$this->GetDataURL('GetProducts', SiteKey_Megasoft, $today);
 					$this->GetDataURL('GetItemsWithNoEshop', SiteKey_Megasoft, $today);
 					$this->InsertProduct();
 					$this->ItemsWithNoEshop();
@@ -444,7 +444,7 @@ class ControllerExtensionfeedPrismawin extends Controller
 
 	function GetItemsPhoto()
 	{
-		$ProductData = $this->GetDataURL('GetItemsPhotoInfo', 'bs-gg183-352', '1/1/2020');
+		$ProductData = $this->GetDataURL(' ', 'bs-gg183-352', '1/1/2020');
 
 		foreach ($ProductData->ItemsPhotoInfo as $ItemsPhoto) {
 
